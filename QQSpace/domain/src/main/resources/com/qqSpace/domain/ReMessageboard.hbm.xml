@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.qqSpace.domain.ReMessageboard" table="re_messageboard" schema="qqspace">
+        <id name="rmid">
+            <column name="rmid" sql-type="int(11)"/>
+        </id>
+        <property name="content">
+            <column name="content" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="pubdate">
+            <column name="pubdate" sql-type="datetime"/>
+        </property>
+        <many-to-one name="userByUid" class="com.qqSpace.domain.User">
+            <column name="uid" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="messageboardByMbid" class="com.qqSpace.domain.Messageboard">
+            <column name="mbid" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
