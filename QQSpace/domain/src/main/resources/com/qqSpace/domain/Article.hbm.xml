@@ -8,9 +8,6 @@
         <id name="aid">
             <column name="aid" sql-type="int(11)"/>
         </id>
-        <property name="uid">
-            <column name="uid" sql-type="int(11)"/>
-        </property>
         <property name="content">
             <column name="content" sql-type="varchar(255)" not-null="true"/>
         </property>

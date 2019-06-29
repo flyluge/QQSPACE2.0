@@ -8,12 +8,6 @@
         <id name="mbid">
             <column name="mbid" sql-type="int(11)"/>
         </id>
-        <property name="tuid">
-            <column name="tuid" sql-type="int(11)" not-null="true"/>
-        </property>
-        <property name="wuid">
-            <column name="wuid" sql-type="int(11)" not-null="true"/>
-        </property>
         <property name="content">
             <column name="content" sql-type="varchar(255)"/>
         </property>

@@ -59,21 +59,9 @@
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Friend"/>
         </set>
-        <set name="friendsByUid_0" inverse="true">
-            <key>
-                <column name="fuid" not-null="true"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Friend"/>
-        </set>
         <set name="messageboardsByUid" inverse="true">
             <key>
                 <column name="tuid" not-null="true"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Messageboard"/>
-        </set>
-        <set name="messageboardsByUid_0" inverse="true">
-            <key>
-                <column name="wuid" not-null="true"/>
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Messageboard"/>
         </set>

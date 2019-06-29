@@ -1,12 +1,9 @@
 package com.qqSpace.domain;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 
 public class ReComment {
     private int rmid;
-    private Integer uid;
-    private Integer cid;
     private String content;
     private Timestamp pubdate;
     private User userByUid;
@@ -18,22 +15,6 @@ public class ReComment {
 
     public void setRmid(int rmid) {
         this.rmid = rmid;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-    public Integer getCid() {
-        return cid;
-    }
-
-    public void setCid(Integer cid) {
-        this.cid = cid;
     }
 
     public String getContent() {
@@ -50,23 +31,6 @@ public class ReComment {
 
     public void setPubdate(Timestamp pubdate) {
         this.pubdate = pubdate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ReComment reComment = (ReComment) o;
-        return rmid == reComment.rmid &&
-                Objects.equals(uid, reComment.uid) &&
-                Objects.equals(cid, reComment.cid) &&
-                Objects.equals(content, reComment.content) &&
-                Objects.equals(pubdate, reComment.pubdate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rmid, uid, cid, content, pubdate);
     }
 
     public User getUserByUid() {
