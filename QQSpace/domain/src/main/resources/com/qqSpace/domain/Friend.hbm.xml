@@ -8,12 +8,6 @@
         <id name="fid">
             <column name="fid" sql-type="int(11)"/>
         </id>
-        <property name="tuid">
-            <column name="tuid" sql-type="int(11)" not-null="true"/>
-        </property>
-        <property name="fuid">
-            <column name="fuid" sql-type="int(11)" not-null="true"/>
-        </property>
         <property name="status">
             <column name="status" sql-type="int(11)" not-null="true"/>
         </property>

@@ -8,12 +8,6 @@
         <id name="pid">
             <column name="pid" sql-type="int(11)"/>
         </id>
-        <property name="uid">
-            <column name="uid" sql-type="int(11)" not-null="true"/>
-        </property>
-        <property name="aid">
-            <column name="aid" sql-type="int(11)" not-null="true"/>
-        </property>
         <many-to-one name="userByUid" class="com.qqSpace.domain.User">
             <column name="uid" not-null="true"/>
         </many-to-one>

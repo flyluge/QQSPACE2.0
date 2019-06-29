@@ -2,7 +2,6 @@ package com.qqSpace.domain;
 
 import java.sql.Date;
 import java.util.Collection;
-import java.util.Objects;
 
 public class User {
     private int uid;
@@ -19,13 +18,10 @@ public class User {
     private Collection<Article> articlesByUid;
     private Collection<Comment> commentsByUid;
     private Collection<Friend> friendsByUid;
-    private Collection<Friend> friendsByUid_0;
     private Collection<Messageboard> messageboardsByUid;
-    private Collection<Messageboard> messageboardsByUid_0;
     private Collection<Praise> praisesByUid;
     private Collection<ReComment> reCommentsByUid;
     private Collection<ReMessageboard> reMessageboardsByUid;
-
     public int getUid() {
         return uid;
     }
@@ -106,28 +102,6 @@ public class User {
         this.hometown = hometown;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return uid == user.uid &&
-                Objects.equals(useremail, user.useremail) &&
-                Objects.equals(userpassword, user.userpassword) &&
-                Objects.equals(userphone, user.userphone) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(birthday, user.birthday) &&
-                Objects.equals(astro, user.astro) &&
-                Objects.equals(sex, user.sex) &&
-                Objects.equals(career, user.career) &&
-                Objects.equals(hometown, user.hometown);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uid, useremail, userpassword, userphone, username, birthday, astro, sex, career, hometown);
-    }
-
     public Collection<Album> getAlbumsByUid() {
         return albumsByUid;
     }
@@ -160,28 +134,12 @@ public class User {
         this.friendsByUid = friendsByUid;
     }
 
-    public Collection<Friend> getFriendsByUid_0() {
-        return friendsByUid_0;
-    }
-
-    public void setFriendsByUid_0(Collection<Friend> friendsByUid_0) {
-        this.friendsByUid_0 = friendsByUid_0;
-    }
-
     public Collection<Messageboard> getMessageboardsByUid() {
         return messageboardsByUid;
     }
 
     public void setMessageboardsByUid(Collection<Messageboard> messageboardsByUid) {
         this.messageboardsByUid = messageboardsByUid;
-    }
-
-    public Collection<Messageboard> getMessageboardsByUid_0() {
-        return messageboardsByUid_0;
-    }
-
-    public void setMessageboardsByUid_0(Collection<Messageboard> messageboardsByUid_0) {
-        this.messageboardsByUid_0 = messageboardsByUid_0;
     }
 
     public Collection<Praise> getPraisesByUid() {
