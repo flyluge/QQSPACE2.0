@@ -40,9 +40,9 @@
     <!--druid数据源  -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
-		<property name="url" value="jdbc:mysql://localhost:3306/qqspace?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false" />
+		<property name="url" value="jdbc:mysql://129.204.203.239:3306/qqspace?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false" />
 		<property name="username" value="root" />
-		<property name="password" value="123456" />
+		<property name="password" value="chzu2016624,,," />
 		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="1" />
 		<property name="minIdle" value="1" />
