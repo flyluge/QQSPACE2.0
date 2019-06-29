@@ -12,4 +12,25 @@
     	http://www.springframework.org/schema/aop/spring-aop.xsd
     	http://www.springframework.org/schema/tx
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!--相册dao  -->
+    <bean name="albumDao" class="com.qqspace.dao.AlbumDao">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--说说dao  -->
+    <bean name="articleDao" class="com.qqspace.dao.ArticleDao">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--说说评论dao  -->
+    <bean name="commentDao" class="com.qqspace.dao.CommentDao">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--好友dao  -->
+    <bean name="friendDao" class="com.qqspace.dao.FriendDao">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--留言板dao  -->
+    <bean name="messageboardDao" class="com.qqspace.dao.MessageboardDao">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
 </beans>

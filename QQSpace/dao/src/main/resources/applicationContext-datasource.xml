@@ -12,11 +12,6 @@
     	http://www.springframework.org/schema/aop/spring-aop.xsd
     	http://www.springframework.org/schema/tx
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
-    	
-    <bean id="test01" class="com.qqspace.dao.test01">
-    	<property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>	
-    	
     <!--配置Hibernate的sessionFactory  -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<!--配置dataSource数据源  -->
