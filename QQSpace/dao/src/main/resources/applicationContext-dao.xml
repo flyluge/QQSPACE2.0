@@ -13,24 +13,39 @@
     	http://www.springframework.org/schema/tx
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<!--相册dao  -->
-    <bean name="albumDao" class="com.qqspace.dao.AlbumDao">
+    <bean name="albumDao" class="com.qqspace.dao.impl.AlbumDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!--说说dao  -->
-    <bean name="articleDao" class="com.qqspace.dao.ArticleDao">
+    <bean name="articleDao" class="com.qqspace.dao.impl.ArticleDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!--说说评论dao  -->
-    <bean name="commentDao" class="com.qqspace.dao.CommentDao">
+    <bean name="commentDao" class="com.qqspace.dao.impl.CommentDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!--好友dao  -->
-    <bean name="friendDao" class="com.qqspace.dao.FriendDao">
+    <bean name="friendDao" class="com.qqspace.dao.impl.FriendDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!--留言板dao  -->
-    <bean name="messageboardDao" class="com.qqspace.dao.MessageboardDao">
+    <bean name="messageboardDao" class="com.qqspace.dao.impl.MessageBoardDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
-    
+    <!--回复留言板dao  -->
+    <bean name="remessageboardDao" class="com.qqspace.dao.impl.ReMessageboardDaoimpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--回复评论dao  -->
+    <bean name="recomment" class="com.qqspace.dao.impl.ReCommentDaoimpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--用户dao  -->
+    <bean name="userDao" class="com.qqspace.dao.impl.UserDaoimpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--点赞板dao  -->
+    <bean name="praiseDao" class="com.qqspace.dao.impl.PraiseDaoimpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 </beans>

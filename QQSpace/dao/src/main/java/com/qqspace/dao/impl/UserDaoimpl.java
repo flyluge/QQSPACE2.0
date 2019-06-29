@@ -20,6 +20,11 @@ public class UserDaoimpl extends BaseDaoimpl<User> implements UserDao {
 		}
 		return null;
 	}
-	
+//	@Test
+//	public void test() {
+//		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-dao.xml");
+//		UserDaoimpl udi = (UserDaoimpl) a.getBean("userDao");
+//		System.out.println(udi.findByPage(0, 5));
+//	}
 
 }
