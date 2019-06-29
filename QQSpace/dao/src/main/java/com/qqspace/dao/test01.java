@@ -17,6 +17,7 @@ public class test01 extends BaseDaoimpl<UserVo>{
 	}
 	@Test
 	public void Test() {
+		@SuppressWarnings("resource")
 		ApplicationContext a=new ClassPathXmlApplicationContext("applicationContext-datasource.xml");
 		test01 t=(test01) a.getBean("test01");
 		UserVo user = t.findById(2);
