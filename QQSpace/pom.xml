@@ -11,6 +11,7 @@
   	<module>service</module>
   	<module>web</module>
   	<module>domain</module>
+  	<module>util</module>
   </modules>
   <!-- 属性 -->
 	<properties>
