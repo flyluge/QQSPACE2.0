@@ -32,7 +32,6 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
     private String fileFileName; //得到文件的名称
     private Integer currpage;//当前页码
     private Integer pagesize;//页面大小
-    private Integer uid;//相册拥有者
     public void setAlbumService(AlbumService albumService) {
 		this.albumService = albumService;
 	}
@@ -64,12 +63,6 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	public void setPagesize(Integer pagesize) {
 		this.pagesize = pagesize;
 	}
-	public Integer getUid() {
-		return uid;
-	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
 	/**
 	 * 删除相册  
 	 * 表单需要传入相册的id
@@ -94,7 +87,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 			User user=(User) ActionContext.getContext().get("user");
 			Album album=new Album();
 			album.setImage(url);
-			album.setUserByUid(user);
+			album.setUid(user.getUid());;
 			albumService.addAlbum(album);
 			this.write(true, "上传成功");
 		} catch (IOException e) {
@@ -108,12 +101,16 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 */
 	public void findSessionAlbumByPage() {
 		User user=(User) ActionContext.getContext().get("user");
-		uid=user.getUid();
-		PageBean<Album> page=albumService.findAlbumByPage(uid,currpage,pagesize);
-		if(page==null) {
+		if(user==null) {
 			this.write(false, "查看相册失败");
 		}else {
-			this.write(true, page);
+			album.setUid(user.getUid());
+			PageBean<Album> page=albumService.findAlbumByPage(album.getUid(),currpage,pagesize);
+			if(page==null) {
+				this.write(false, "查看相册失败");
+			}else {
+				this.write(true, page);
+			}
 		}
 	}
 	/**
@@ -121,7 +118,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入uid currpage pagesize
 	 */
 	public void findAlbumByPage() {
-		PageBean<Album> page=albumService.findAlbumByPage(uid,currpage,pagesize);
+		PageBean<Album> page=albumService.findAlbumByPage(album.getUid(),currpage,pagesize);
 		if(page==null) {
 			this.write(false, "查看相册失败");
 		}else {
