@@ -100,6 +100,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 			}
 			System.out.println(uuidFileName);
 			File cmafFile=new File(url+"/"+uuidFileName);
+			System.out.println(url+"/"+uuidFileName);
 			FileUtils.copyFile(file, cmafFile);
 		} catch (IOException e) {
 			e.printStackTrace();
