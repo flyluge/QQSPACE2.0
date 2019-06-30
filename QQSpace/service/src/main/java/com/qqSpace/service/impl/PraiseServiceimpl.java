@@ -16,12 +16,8 @@ public class PraiseServiceimpl implements PraiseService {
 	public boolean doPraise(int uid, int aid) {
 		if(praiseDao.findByUidAndAid(uid, aid) == null) {
 			Praise praise = new Praise();
-			Article article = new Article();
-			User user = new User();
-			article.setAid(aid);
-			user.setUid(uid);
-			praise.setArticleByAid(article);
-			praise.setUserByUid(user);
+			praise.setAid(aid);
+			praise.setUid(uid);
 			praiseDao.add(praise);
 			return true;
 		}

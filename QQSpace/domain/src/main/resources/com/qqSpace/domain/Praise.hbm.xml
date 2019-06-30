@@ -8,11 +8,11 @@
         <id name="pid">
             <column name="pid" sql-type="int(11)"/>
         </id>
-        <many-to-one name="userByUid" class="com.qqSpace.domain.User">
-            <column name="uid" />
-        </many-to-one>
-        <many-to-one name="articleByAid" class="com.qqSpace.domain.Article">
-            <column name="aid" />
-        </many-to-one>
+        <property name="uid">
+            <column name="uid" sql-type="int(11)" />
+        </property>
+        <property name="aid">
+            <column name="aid" sql-type="int(11)" />
+        </property>
     </class>
 </hibernate-mapping>

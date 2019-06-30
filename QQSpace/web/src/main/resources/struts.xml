@@ -16,8 +16,10 @@
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<action name="user_*" class="userAction" method="{1}">
-			<result name="success">success.jsp</result>
-			<allowed-methods>login, existAccount</allowed-methods>
+			<allowed-methods>login, existAccount, sessionuser</allowed-methods>
+		</action>
+		<action name="praise_*" class="praiseAction" method="{1}">
+			<allowed-methods>praise, cancel</allowed-methods>
 		</action>
 	</package>
 </struts>

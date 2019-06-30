@@ -8,23 +8,17 @@
         <id name="cid">
             <column name="cid" sql-type="int(11)"/>
         </id>
+        <property name="uid">
+            <column name="uid" sql-type="int(11)" />
+        </property>
+        <property name="aid">
+            <column name="aid" sql-type="int(11)" />
+        </property>
         <property name="content">
             <column name="content" sql-type="varchar(255)" />
         </property>
         <property name="pubdate">
             <column name="pubdate" sql-type="datetime" />
         </property>
-        <many-to-one name="userByUid" class="com.qqSpace.domain.User" insert="false" update="false">
-            <column name="uid" />
-        </many-to-one>
-        <many-to-one name="articleByAid" class="com.qqSpace.domain.Article" insert="false" update="false">
-            <column name="aid" />
-        </many-to-one>
-        <set name="reCommentsByCid" inverse="true">
-            <key>
-                <column name="cid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.ReComment"/>
-        </set>
     </class>
 </hibernate-mapping>

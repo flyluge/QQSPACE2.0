@@ -8,6 +8,9 @@
         <id name="aid">
             <column name="aid" sql-type="int(11)"/>
         </id>
+        <property name="uid">
+            <column name="uid" sql-type="int(11)"/>
+        </property>
         <property name="content">
             <column name="content" sql-type="varchar(255)" />
         </property>
@@ -17,20 +20,5 @@
         <property name="pubdate">
             <column name="pubdate" sql-type="datetime" />
         </property>
-        <many-to-one name="userByUid" class="com.qqSpace.domain.User">
-            <column name="uid"/>
-        </many-to-one>
-        <set name="commentsByAid" inverse="true">
-            <key>
-                <column name="aid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Comment"/>
-        </set>
-        <set name="praisesByAid" inverse="true">
-            <key>
-                <column name="aid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Praise"/>
-        </set>
     </class>
 </hibernate-mapping>

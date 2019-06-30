@@ -1,17 +1,28 @@
 package com.qqSpace.domain;
 
-public class Album {
-    private int alid;
-    private String image;
-    private User userByUid;//用户
+import java.util.Objects;
 
-    public int getAlid() {
+public class Album {
+    private Integer alid;
+    private Integer uid;
+    private String image;
+
+    public Integer getAlid() {
         return alid;
     }
 
-    public void setAlid(int alid) {
+    public void setAlid(Integer alid) {
         this.alid = alid;
     }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
     public String getImage() {
         return image;
     }
@@ -20,11 +31,18 @@ public class Album {
         this.image = image;
     }
 
-    public User getUserByUid() {
-        return userByUid;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Album album = (Album) o;
+        return Objects.equals(alid, album.alid) &&
+                Objects.equals(uid, album.uid) &&
+                Objects.equals(image, album.image);
     }
 
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
+    @Override
+    public int hashCode() {
+        return Objects.hash(alid, uid, image);
     }
 }

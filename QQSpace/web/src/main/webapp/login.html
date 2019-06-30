@@ -14,11 +14,7 @@
 					    	"user.useremail" : $('#email').val(),
 					    },
 					    function(data,status){
-					    	alert(data);
-							if(data.message){
-								windows.location.href="index.html";
-							}
-					        
+					    	$("#tip").text(data);
 					    });
 			});
 			$("#button").click(function(){
@@ -29,13 +25,16 @@
 			    },
 			    function(data,status){
 					alert(data);
-			        
+			    	//alert(  data.data);
+					//if(data.message){
+						window.location.href="index.html";
+					//}
 			    });
 			});
 		});
 	</script>
 
-		<input id="email" type="text" name="user.useremail"/>
+		<input id="email" type="text" name="user.useremail"/><span id="tip"></span><br/>
 		<input id="pass" type="text" name="user.userpassword"/>
 		<button id="button" >AFSD</button>
 

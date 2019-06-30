@@ -1,17 +1,35 @@
 package com.qqSpace.domain;
 
-public class Friend {
-    private int fid;
-    private Integer status;
-    private User userByTuid;//好友拥有者
-    private User userByFuid;//好友
+import java.util.Objects;
 
-    public int getFid() {
+public class Friend {
+    private Integer fid;
+    private Integer tuid;
+    private Integer fuid;
+    private Integer status;
+
+    public Integer getFid() {
         return fid;
     }
 
-    public void setFid(int fid) {
+    public void setFid(Integer fid) {
         this.fid = fid;
+    }
+
+    public Integer getTuid() {
+        return tuid;
+    }
+
+    public void setTuid(Integer tuid) {
+        this.tuid = tuid;
+    }
+
+    public Integer getFuid() {
+        return fuid;
+    }
+
+    public void setFuid(Integer fuid) {
+        this.fuid = fuid;
     }
 
     public Integer getStatus() {
@@ -22,19 +40,19 @@ public class Friend {
         this.status = status;
     }
 
-    public User getUserByTuid() {
-        return userByTuid;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Friend friend = (Friend) o;
+        return Objects.equals(fid, friend.fid) &&
+                Objects.equals(tuid, friend.tuid) &&
+                Objects.equals(fuid, friend.fuid) &&
+                Objects.equals(status, friend.status);
     }
 
-    public void setUserByTuid(User userByTuid) {
-        this.userByTuid = userByTuid;
-    }
-
-    public User getUserByFuid() {
-        return userByFuid;
-    }
-
-    public void setUserByFuid(User userByFuid) {
-        this.userByFuid = userByFuid;
+    @Override
+    public int hashCode() {
+        return Objects.hash(fid, tuid, fuid, status);
     }
 }
