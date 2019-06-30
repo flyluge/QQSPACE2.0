@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		$(document).ready(function() {
+			$("#button").click(function(){
+			    $.post("user_login",
+			   	{
+			    	"user.useremail" : $('#email').val(),
+			    	"user.userpassword": $('#pass').val()
+			    },
+			    function(data,status){
+					alert(data);
+			        
+			    });
+			});
+		});
+	</script>
+		<button id="button" >点赞</button>
+</body>
+</html>

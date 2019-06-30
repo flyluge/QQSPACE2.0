@@ -11,6 +11,7 @@ public class UserServiceimpl implements UserService {
 	public static final int PASSWORD_ERROR = 2; 
 	public static final int TRUE = 3;
 	public static final int FALSE = 4;
+	public static final int ACCOUNT_UNEXIST = 5;
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
@@ -39,12 +40,12 @@ public class UserServiceimpl implements UserService {
 
 	public int update(User newUser, User oldUser) {
 		if(newUser!=null && oldUser!=null) {
-			if(!isExistAccount(newUser.getUseremail())) {
+			if(isExistAccount(newUser.getUseremail())) {
 				newUser.setUid(oldUser.getUid());
 				userDao.update(newUser);
 				return TRUE;
 			} else {
-				return ACCOUNT_EXIST;
+				return ACCOUNT_UNEXIST;
 			}
 		}
 		return FALSE;

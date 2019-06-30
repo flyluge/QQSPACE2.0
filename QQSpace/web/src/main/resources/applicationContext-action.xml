@@ -18,4 +18,5 @@
     <bean id="userAction" class="com.qqSpace.web.action.UserAction">
     	<property name="userService" ref="userService"></property>
     </bean>
+    
 </beans>
