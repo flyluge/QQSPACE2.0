@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
@@ -22,4 +23,30 @@
             <column name="pubdate" sql-type="datetime" />
         </property>
     </class>
+=======
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.qqSpace.domain.ReComment" table="re_comment" schema="qqspace">
+        <id name="rmid">
+            <column name="rmid" sql-type="int(11)"/>
+            <generator class="native"></generator>
+        </id>
+        <property name="uid">
+            <column name="uid" sql-type="int(11)" />
+        </property>
+        <property name="cid">
+            <column name="cid" sql-type="int(11)" />
+        </property>
+        <property name="content">
+            <column name="content" sql-type="varchar(255)" />
+        </property>
+        <property name="pubdate">
+            <column name="pubdate" sql-type="datetime" />
+        </property>
+    </class>
+>>>>>>> 2ed55f06dde147e39782452440f25bbdff6828f4
 </hibernate-mapping>
