@@ -4,13 +4,16 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="struts2" extends="struts-default" namespace="/">
-		<action name="TestAction_*" class="com.qqSpace.web.action.TestAction" method="{1}">
-			<result name="success">success.jsp</result>
-			<allowed-methods>test01</allowed-methods>
-		</action>
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
-			<result name="success">success.jsp</result>
-			<allowed-methods>deleteAlbum</allowed-methods>
+		    <!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 
+                "fileUpload.maximumSize" ：限制上传最大的文件大小。 
+                "fileUpload.allowedTypes"：允许上传文件的类型。 
+                "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.maximumSize">500000000</param>
+                <param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
+            </interceptor-ref>
+			<allowed-methods>deleteAlbum,addAlbum</allowed-methods>
 		</action>
 	</package>
 </struts>
