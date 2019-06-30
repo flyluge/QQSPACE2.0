@@ -23,12 +23,13 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	@Override
 	public Album getModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return album;
 	}
 	/**
 	 * 删除相册  需要传入相册的id
 	 */
 	public void deleteAlbum() {
+		System.out.println(album.getAlid());
 		albumService.deleteAlbum(album);
 		write(true, "删除成功");
 	}

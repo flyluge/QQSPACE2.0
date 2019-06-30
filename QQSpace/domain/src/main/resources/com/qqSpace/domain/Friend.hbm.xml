@@ -9,13 +9,13 @@
             <column name="fid" sql-type="int(11)"/>
         </id>
         <property name="status">
-            <column name="status" sql-type="int(11)" not-null="true"/>
+            <column name="status" sql-type="int(11)" />
         </property>
         <many-to-one name="userByTuid" class="com.qqSpace.domain.User">
-            <column name="tuid" not-null="true"/>
+            <column name="tuid" />
         </many-to-one>
         <many-to-one name="userByFuid" class="com.qqSpace.domain.User">
-            <column name="fuid" not-null="true"/>
+            <column name="fuid" />
         </many-to-one>
     </class>
 </hibernate-mapping>

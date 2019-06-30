@@ -9,26 +9,26 @@
             <column name="aid" sql-type="int(11)"/>
         </id>
         <property name="content">
-            <column name="content" sql-type="varchar(255)" not-null="true"/>
+            <column name="content" sql-type="varchar(255)" />
         </property>
         <property name="image">
-            <column name="image" sql-type="varchar(255)" not-null="true"/>
+            <column name="image" sql-type="varchar(255)" />
         </property>
         <property name="pubdate">
-            <column name="pubdate" sql-type="datetime" not-null="true"/>
+            <column name="pubdate" sql-type="datetime" />
         </property>
         <many-to-one name="userByUid" class="com.qqSpace.domain.User">
             <column name="uid"/>
         </many-to-one>
         <set name="commentsByAid" inverse="true">
             <key>
-                <column name="aid" not-null="true"/>
+                <column name="aid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Comment"/>
         </set>
         <set name="praisesByAid" inverse="true">
             <key>
-                <column name="aid" not-null="true"/>
+                <column name="aid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Praise"/>
         </set>

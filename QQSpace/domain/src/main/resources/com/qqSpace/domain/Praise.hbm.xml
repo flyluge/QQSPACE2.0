@@ -9,10 +9,10 @@
             <column name="pid" sql-type="int(11)"/>
         </id>
         <many-to-one name="userByUid" class="com.qqSpace.domain.User">
-            <column name="uid" not-null="true"/>
+            <column name="uid" />
         </many-to-one>
         <many-to-one name="articleByAid" class="com.qqSpace.domain.Article">
-            <column name="aid" not-null="true"/>
+            <column name="aid" />
         </many-to-one>
     </class>
 </hibernate-mapping>
