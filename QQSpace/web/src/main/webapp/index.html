@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		$(document).ready(function() {
+			$.get("user_sessionuser",
+			function(data,status){
+				$("#name").text(data);
+			});
+			$("#button").click(function(){
+			    $.post("praise_praise",
+			   	{
+			    	"aid" : 1,
+			    },
+			    function(data,status){
+					alert(data);
+			        
+			    });
+			});
+		});
+	</script>
+	<span id="name"></span>
+		<button id="button" >点赞</button>
+</body>
+</html>

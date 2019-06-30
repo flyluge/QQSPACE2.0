@@ -1,8 +1,10 @@
 package com.qqSpace.domain;
 
 import java.sql.Date;
+import java.util.Objects;
+
 public class User {
-    private int uid;
+    private Integer uid;
     private String useremail;
     private String userpassword;
     private String userphone;
@@ -12,12 +14,12 @@ public class User {
     private Integer sex;
     private String career;
     private String hometown;
-    
-    public int getUid() {
+
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -93,4 +95,25 @@ public class User {
         this.hometown = hometown;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(uid, user.uid) &&
+                Objects.equals(useremail, user.useremail) &&
+                Objects.equals(userpassword, user.userpassword) &&
+                Objects.equals(userphone, user.userphone) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(astro, user.astro) &&
+                Objects.equals(sex, user.sex) &&
+                Objects.equals(career, user.career) &&
+                Objects.equals(hometown, user.hometown);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uid, useremail, userpassword, userphone, username, birthday, astro, sex, career, hometown);
+    }
 }

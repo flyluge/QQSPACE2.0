@@ -1,23 +1,29 @@
 package com.qqSpace.domain;
 
 import java.sql.Timestamp;
-import java.util.Collection;
+import java.util.Objects;
 
 public class Article {
-    private int aid;
+    private Integer aid;
+    private Integer uid;
     private String content;
     private String image;
     private Timestamp pubdate;
-    private User userByUid;
-    private Collection<Comment> commentsByAid;
-    private Collection<Praise> praisesByAid;
 
-    public int getAid() {
+    public Integer getAid() {
         return aid;
     }
 
-    public void setAid(int aid) {
+    public void setAid(Integer aid) {
         this.aid = aid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getContent() {
@@ -44,27 +50,20 @@ public class Article {
         this.pubdate = pubdate;
     }
 
-    public User getUserByUid() {
-        return userByUid;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Article article = (Article) o;
+        return Objects.equals(aid, article.aid) &&
+                Objects.equals(uid, article.uid) &&
+                Objects.equals(content, article.content) &&
+                Objects.equals(image, article.image) &&
+                Objects.equals(pubdate, article.pubdate);
     }
 
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
-    }
-
-    public Collection<Comment> getCommentsByAid() {
-        return commentsByAid;
-    }
-
-    public void setCommentsByAid(Collection<Comment> commentsByAid) {
-        this.commentsByAid = commentsByAid;
-    }
-
-    public Collection<Praise> getPraisesByAid() {
-        return praisesByAid;
-    }
-
-    public void setPraisesByAid(Collection<Praise> praisesByAid) {
-        this.praisesByAid = praisesByAid;
+    @Override
+    public int hashCode() {
+        return Objects.hash(aid, uid, content, image, pubdate);
     }
 }

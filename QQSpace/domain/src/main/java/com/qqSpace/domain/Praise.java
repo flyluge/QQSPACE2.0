@@ -1,31 +1,48 @@
 package com.qqSpace.domain;
 
-public class Praise {
-    private int pid;
-    private User userByUid;
-    private Article articleByAid;
+import java.util.Objects;
 
-    public int getPid() {
+public class Praise {
+    private Integer pid;
+    private Integer uid;
+    private Integer aid;
+
+    public Integer getPid() {
         return pid;
     }
 
-    public void setPid(int pid) {
+    public void setPid(Integer pid) {
         this.pid = pid;
     }
 
-    public User getUserByUid() {
-        return userByUid;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public Article getArticleByAid() {
-        return articleByAid;
+    public Integer getAid() {
+        return aid;
     }
 
-    public void setArticleByAid(Article articleByAid) {
-        this.articleByAid = articleByAid;
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Praise praise = (Praise) o;
+        return Objects.equals(pid, praise.pid) &&
+                Objects.equals(uid, praise.uid) &&
+                Objects.equals(aid, praise.aid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pid, uid, aid);
     }
 }

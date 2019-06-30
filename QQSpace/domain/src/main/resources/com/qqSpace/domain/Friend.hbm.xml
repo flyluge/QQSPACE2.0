@@ -7,15 +7,16 @@
     <class name="com.qqSpace.domain.Friend" table="friend" schema="qqspace">
         <id name="fid">
             <column name="fid" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
+        <property name="tuid">
+            <column name="tuid" sql-type="int(11)" />
+        </property>
+        <property name="fuid">
+            <column name="fuid" sql-type="int(11)" />
+        </property>
         <property name="status">
             <column name="status" sql-type="int(11)" />
         </property>
-        <many-to-one name="userByTuid" class="com.qqSpace.domain.User">
-            <column name="tuid" />
-        </many-to-one>
-        <many-to-one name="userByFuid" class="com.qqSpace.domain.User">
-            <column name="fuid" />
-        </many-to-one>
     </class>
 </hibernate-mapping>

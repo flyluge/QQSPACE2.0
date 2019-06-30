@@ -2,13 +2,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="user_login">
-		<input type="text" name="user.useremail"/>
-		<input type="text" name="user.userpassword"/>
-		<input type="submit">
-	</form>
+	<script>
+		$(document).ready(function() {
+			$("#email").blur(function(){
+				$.post("user_existAccount",
+					   	{
+					    	"user.useremail" : $('#email').val(),
+					    },
+					    function(data,status){
+					    	$("#tip").text(data);
+					    });
+			});
+			$("#button").click(function(){
+			    $.post("user_login",
+			   	{
+			    	"user.useremail" : $('#email').val(),
+			    	"user.userpassword": $('#pass').val()
+			    },
+			    function(data,status){
+					alert(data);
+			    	//alert(  data.data);
+					//if(data.message){
+						window.location.href="index.html";
+					//}
+			    });
+			});
+		});
+	</script>
+
+		<input id="email" type="text" name="user.useremail"/><span id="tip"></span><br/>
+		<input id="pass" type="text" name="user.userpassword"/>
+		<button id="button" >AFSD</button>
+
 </body>
 </html>
