@@ -13,12 +13,11 @@
                 <param name="fileUpload.maximumSize">500000000</param>
                 <param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
             </interceptor-ref>
-			<allowed-methods>deleteAlbum,addAlbum</allowed-methods>
+			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="success">success.jsp</result>
 			<allowed-methods>login</allowed-methods>
 		</action>
-		
 	</package>
 </struts>

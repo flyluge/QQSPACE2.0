@@ -16,5 +16,6 @@
 		<input type="file" name="file">请加入图片<br>
 		<input type="submit" value="提交">
 	</form>
+	<img src="D:\image\3\15\9e0128bed2334bd0980a980f9213b65c.jpg">
 </body>
 </html>
