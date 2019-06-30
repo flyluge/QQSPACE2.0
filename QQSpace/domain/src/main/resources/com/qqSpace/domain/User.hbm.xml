@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
@@ -38,45 +37,4 @@
             <column name="hometown" sql-type="varchar(255)" />
         </property>
     </class>
-=======
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-
-    <class name="com.qqSpace.domain.User" table="user" schema="qqspace">
-        <id name="uid">
-            <column name="uid" sql-type="int(11)"/>
-            <generator class="native"></generator>
-        </id>
-        <property name="useremail">
-            <column name="useremail" sql-type="varchar(20)" length="20"/>
-        </property>
-        <property name="userpassword">
-            <column name="userpassword" sql-type="varchar(255)"/>
-        </property>
-        <property name="userphone">
-            <column name="userphone" sql-type="varchar(11)" length="11" />
-        </property>
-        <property name="username">
-            <column name="username" sql-type="varchar(50)" length="50" />
-        </property>
-        <property name="birthday">
-            <column name="birthday" sql-type="date" />
-        </property>
-        <property name="astro">
-            <column name="astro" sql-type="varchar(10)" length="10" />
-        </property>
-        <property name="sex">
-            <column name="sex" sql-type="int(11)" />
-        </property>
-        <property name="career">
-            <column name="career" sql-type="varchar(50)" length="50" />
-        </property>
-        <property name="hometown">
-            <column name="hometown" sql-type="varchar(255)" />
-        </property>
-    </class>
->>>>>>> 2ed55f06dde147e39782452440f25bbdff6828f4
 </hibernate-mapping>

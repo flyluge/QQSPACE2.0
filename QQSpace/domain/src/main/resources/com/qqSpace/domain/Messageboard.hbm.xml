@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
@@ -23,30 +22,4 @@
             <column name="pubdate" sql-type="datetime" />
         </property>
     </class>
-=======
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-
-    <class name="com.qqSpace.domain.Messageboard" table="messageboard" schema="qqspace">
-        <id name="mbid">
-            <column name="mbid" sql-type="int(11)"/>
-            <generator class="native"></generator>
-        </id>
-        <property name="tuid">
-            <column name="tuid" sql-type="int(11)" />
-        </property>
-        <property name="wuid">
-            <column name="wuid" sql-type="int(11)" />
-        </property>
-        <property name="content">
-            <column name="content" sql-type="varchar(255)"/>
-        </property>
-        <property name="pubdate">
-            <column name="pubdate" sql-type="datetime" />
-        </property>
-    </class>
->>>>>>> 2ed55f06dde147e39782452440f25bbdff6828f4
 </hibernate-mapping>
