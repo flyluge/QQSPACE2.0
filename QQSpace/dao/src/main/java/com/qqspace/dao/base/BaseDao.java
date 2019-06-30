@@ -3,6 +3,8 @@ package com.qqspace.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 public interface BaseDao<T> {
 	/*
 	 * 增
@@ -32,4 +34,8 @@ public interface BaseDao<T> {
 	 * 分页查询
 	 */
 	List<T> findByPage(Integer currPage,Integer pageSize);
+	/*
+	 * 条件分页查询 
+	 */
+	List<T> findByPage(DetachedCriteria criteria, Integer begin, Integer pageSize);
 }

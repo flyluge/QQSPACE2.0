@@ -1,8 +1,6 @@
 package com.qqSpace.domain;
 
 import java.sql.Date;
-import java.util.Collection;
-
 public class User {
     private int uid;
     private String useremail;
