@@ -6,8 +6,9 @@ import com.qqspace.dao.ReCommentDao;
 public class RecommentServiceimpl implements RecommentService {
 	private ReCommentDao recommentDao;
 
-	public void setCommentDao(ReCommentDao recommentDao) {
+	public void setRecommentDao(ReCommentDao recommentDao) {
 		this.recommentDao = recommentDao;
 	}
+	
 	
 }

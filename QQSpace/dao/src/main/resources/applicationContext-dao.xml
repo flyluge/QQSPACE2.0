@@ -37,7 +37,7 @@
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!--回复评论dao  -->
-    <bean name="recomment" class="com.qqspace.dao.impl.ReCommentDaoimpl">
+    <bean name="recommentDao" class="com.qqspace.dao.impl.ReCommentDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!--用户dao  -->

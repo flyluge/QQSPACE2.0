@@ -6,8 +6,9 @@ import com.qqspace.dao.ReMessageboardDao;
 public class ReMessageboardServiceimpl implements ReMessageboardService {
 	private ReMessageboardDao remessageboardDao;
 
-	public void setMessageboardDao(ReMessageboardDao remessageboardDao) {
+	public void setRemessageboardDao(ReMessageboardDao remessageboardDao) {
 		this.remessageboardDao = remessageboardDao;
 	}
+
 	
 }

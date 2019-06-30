@@ -8,5 +8,9 @@
 			<result name="success">success.jsp</result>
 			<allowed-methods>test01</allowed-methods>
 		</action>
+		<action name="AlbumAction_*" class="albumAction" method="{1}">
+			<result name="success">success.jsp</result>
+			<allowed-methods>deleteAlbum</allowed-methods>
+		</action>
 	</package>
 </struts>
