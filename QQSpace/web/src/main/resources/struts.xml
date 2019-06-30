@@ -16,7 +16,7 @@
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<action name="user_*" class="userAction" method="{1}">
-			<allowed-methods>login, existAccount, sessionuser</allowed-methods>
+			<allowed-methods>login, existAccount, sessionuser, logout</allowed-methods>
 		</action>
 		<action name="praise_*" class="praiseAction" method="{1}">
 			<allowed-methods>praise, cancel</allowed-methods>

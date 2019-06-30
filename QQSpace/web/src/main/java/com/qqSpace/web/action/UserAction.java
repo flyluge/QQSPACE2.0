@@ -44,9 +44,8 @@ public class UserAction extends BaseAction{
 		if(user!=null) {
 			User u = userService.login(user.getUseremail(), user.getUserpassword());
 			if(u!=null) {
-				System.out.println(u.getUseremail()+" "+u.getUserpassword());
 				Map<String, Object> session = ActionContext.getContext().getSession();
-				session.put("user", user);
+				session.put("user", u);
 				write(true, "登录成功");
 			} else {
 				write(false, "用户名或密码错误");
@@ -87,6 +86,15 @@ public class UserAction extends BaseAction{
 			write(true, "修改成功");
 		} else if(note == UserServiceimpl.FALSE) {
 			write(false, "修改失败");
+		}
+	}
+	public void logout() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		if(session.get("user")!=null) {
+			session.remove("user");
+			write(true, "注销成功");
+		} else {
+			write(false, "用户未登录");
 		}
 	}
 }
