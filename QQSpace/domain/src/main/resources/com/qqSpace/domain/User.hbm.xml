@@ -16,29 +16,29 @@
             <column name="userpassword" sql-type="varchar(255)"/>
         </property>
         <property name="userphone">
-            <column name="userphone" sql-type="varchar(11)" length="11" not-null="true"/>
+            <column name="userphone" sql-type="varchar(11)" length="11" />
         </property>
         <property name="username">
-            <column name="username" sql-type="varchar(50)" length="50" not-null="true"/>
+            <column name="username" sql-type="varchar(50)" length="50" />
         </property>
         <property name="birthday">
-            <column name="birthday" sql-type="date" not-null="true"/>
+            <column name="birthday" sql-type="date" />
         </property>
         <property name="astro">
-            <column name="astro" sql-type="varchar(10)" length="10" not-null="true"/>
+            <column name="astro" sql-type="varchar(10)" length="10" />
         </property>
         <property name="sex">
-            <column name="sex" sql-type="int(11)" not-null="true"/>
+            <column name="sex" sql-type="int(11)" />
         </property>
         <property name="career">
-            <column name="career" sql-type="varchar(50)" length="50" not-null="true"/>
+            <column name="career" sql-type="varchar(50)" length="50" />
         </property>
         <property name="hometown">
-            <column name="hometown" sql-type="varchar(255)" not-null="true"/>
+            <column name="hometown" sql-type="varchar(255)" />
         </property>
         <set name="albumsByUid" inverse="true">
             <key>
-                <column name="uid" not-null="true"/>
+                <column name="uid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Album"/>
         </set>
@@ -50,37 +50,37 @@
         </set>
         <set name="commentsByUid" inverse="true">
             <key>
-                <column name="uid" not-null="true"/>
+                <column name="uid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Comment"/>
         </set>
         <set name="friendsByUid" inverse="true">
             <key>
-                <column name="tuid" not-null="true"/>
+                <column name="tuid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Friend"/>
         </set>
         <set name="messageboardsByUid" inverse="true">
             <key>
-                <column name="tuid" not-null="true"/>
+                <column name="tuid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Messageboard"/>
         </set>
         <set name="praisesByUid" inverse="true">
             <key>
-                <column name="uid" not-null="true"/>
+                <column name="uid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.Praise"/>
         </set>
         <set name="reCommentsByUid" inverse="true">
             <key>
-                <column name="uid" not-null="true"/>
+                <column name="uid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.ReComment"/>
         </set>
         <set name="reMessageboardsByUid" inverse="true">
             <key>
-                <column name="uid" not-null="true"/>
+                <column name="uid" />
             </key>
             <one-to-many not-found="ignore" class="com.qqSpace.domain.ReMessageboard"/>
         </set>

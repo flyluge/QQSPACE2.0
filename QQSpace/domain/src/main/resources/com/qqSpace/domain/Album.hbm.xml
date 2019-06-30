@@ -9,10 +9,10 @@
             <column name="alid" sql-type="int(11)"/>
         </id>
         <property name="image">
-            <column name="image" sql-type="varchar(50)" length="50" not-null="true"/>
+            <column name="image" sql-type="varchar(50)" length="50"/>
         </property>
         <many-to-one name="userByUid" class="com.qqSpace.domain.User">
-            <column name="uid" not-null="true"/>
+            <column name="uid"/>
         </many-to-one>
     </class>
 </hibernate-mapping>
