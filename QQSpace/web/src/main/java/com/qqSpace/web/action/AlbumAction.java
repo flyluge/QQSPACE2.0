@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
@@ -76,15 +77,18 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入name为file的图片
 	 */
 	public void addAlbum(){
-        //String path=ServletActionContext.getServletContext().getRealPath("/upload");
+		User user1=new User();
+		user1.setUid(1);
+		ActionContext.getContext().getSession().put("user", user1);
 		try {
-			String path="D:/image";
+			String path=ServletActionContext.getServletContext().getRealPath("/upload");
+			//String path="D:/image";
 			System.out.println(path);
 			String uuidFileName=UploadUtils.getUUIDName(fileFileName);
 			String realPath=UploadUtils.getPath(uuidFileName);
 			String url=path+realPath+"/"+uuidFileName;
 			FileUtils.copyFile(file, new File(url));
-			User user=(User) ActionContext.getContext().get("user");
+			User user=(User) ActionContext.getContext().getSession().get("user");
 			Album album=new Album();
 			album.setImage(url);
 			album.setUid(user.getUid());;
@@ -100,7 +104,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入currpage pagesize
 	 */
 	public void findSessionAlbumByPage() {
-		User user=(User) ActionContext.getContext().get("user");
+		User user=(User) ActionContext.getContext().getSession().get("user");
 		if(user==null) {
 			this.write(false, "查看相册失败");
 		}else {
