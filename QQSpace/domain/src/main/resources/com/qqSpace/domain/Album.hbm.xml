@@ -7,6 +7,7 @@
     <class name="com.qqSpace.domain.Album" table="album" schema="qqspace">
         <id name="alid">
             <column name="alid" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="uid">
             <column name="uid" sql-type="int(11)" />
