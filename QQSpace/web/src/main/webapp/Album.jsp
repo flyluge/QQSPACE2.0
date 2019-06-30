@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>相册</title>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
+<script type="text/javascript">
+
+</script>
 <body>
 	<!--删除相册  -->
 	<form action="AlbumAction_deleteAlbum">

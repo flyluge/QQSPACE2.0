@@ -1,30 +1,26 @@
 package com.qqSpace.domain;
 
 public class Album {
-    private int alid;
+    private Integer alid;
     private String image;
-    private User userByUid;//用户
-
-    public int getAlid() {
-        return alid;
-    }
-
-    public void setAlid(int alid) {
-        this.alid = alid;
-    }
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public User getUserByUid() {
-        return userByUid;
-    }
-
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
-    }
+    private Integer uid;//用户
+	public Integer getAlid() {
+		return alid;
+	}
+	public void setAlid(Integer alid) {
+		this.alid = alid;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+    
 }

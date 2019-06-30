@@ -9,5 +9,5 @@ import com.qqspace.dao.base.BaseDao;
  *
  */
 public interface AlbumDao extends BaseDao<Album>{
-	
+	Album geta();
 }

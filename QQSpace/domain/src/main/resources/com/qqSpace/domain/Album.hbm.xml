@@ -11,8 +11,8 @@
         <property name="image">
             <column name="image" sql-type="varchar(50)" length="50"/>
         </property>
-        <many-to-one name="userByUid" class="com.qqSpace.domain.User">
+        <property name="uid">
             <column name="uid"/>
-        </many-to-one>
+        </property>
     </class>
 </hibernate-mapping>
