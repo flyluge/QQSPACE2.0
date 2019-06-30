@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
@@ -32,7 +33,6 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
     private String fileFileName; //得到文件的名称
     private Integer currpage;//当前页码
     private Integer pagesize;//页面大小
-    private Integer uid;//相册拥有者
     public void setAlbumService(AlbumService albumService) {
 		this.albumService = albumService;
 	}
@@ -64,12 +64,6 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	public void setPagesize(Integer pagesize) {
 		this.pagesize = pagesize;
 	}
-	public Integer getUid() {
-		return uid;
-	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
 	/**
 	 * 删除相册  
 	 * 表单需要传入相册的id
@@ -83,18 +77,21 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入name为file的图片
 	 */
 	public void addAlbum(){
-        //String path=ServletActionContext.getServletContext().getRealPath("/upload");
+		User user1=new User();
+		user1.setUid(1);
+		ActionContext.getContext().getSession().put("user", user1);
 		try {
-			String path="D:/image";
+			String path=ServletActionContext.getServletContext().getRealPath("/upload");
+			//String path="D:/image";
 			System.out.println(path);
 			String uuidFileName=UploadUtils.getUUIDName(fileFileName);
 			String realPath=UploadUtils.getPath(uuidFileName);
 			String url=path+realPath+"/"+uuidFileName;
 			FileUtils.copyFile(file, new File(url));
-			User user=(User) ActionContext.getContext().get("user");
+			User user=(User) ActionContext.getContext().getSession().get("user");
 			Album album=new Album();
 			album.setImage(url);
-			album.setUserByUid(user);
+			album.setUid(user.getUid());;
 			albumService.addAlbum(album);
 			this.write(true, "上传成功");
 		} catch (IOException e) {
@@ -107,13 +104,17 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入currpage pagesize
 	 */
 	public void findSessionAlbumByPage() {
-		User user=(User) ActionContext.getContext().get("user");
-		uid=user.getUid();
-		PageBean<Album> page=albumService.findAlbumByPage(uid,currpage,pagesize);
-		if(page==null) {
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		if(user==null) {
 			this.write(false, "查看相册失败");
 		}else {
-			this.write(true, page);
+			album.setUid(user.getUid());
+			PageBean<Album> page=albumService.findAlbumByPage(album.getUid(),currpage,pagesize);
+			if(page==null) {
+				this.write(false, "查看相册失败");
+			}else {
+				this.write(true, page);
+			}
 		}
 	}
 	/**
@@ -121,7 +122,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入uid currpage pagesize
 	 */
 	public void findAlbumByPage() {
-		PageBean<Album> page=albumService.findAlbumByPage(uid,currpage,pagesize);
+		PageBean<Album> page=albumService.findAlbumByPage(album.getUid(),currpage,pagesize);
 		if(page==null) {
 			this.write(false, "查看相册失败");
 		}else {
