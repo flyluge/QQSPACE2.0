@@ -27,4 +27,13 @@ public class UserDaoimpl extends BaseDaoimpl<User> implements UserDao {
 //		System.out.println(udi.findByPage(0, 5));
 //	}
 
+	@Override
+	public User find(String userEmail) {
+		List<?> users = (List<?>) this.getHibernateTemplate().find("from User where useremail = ?0", userEmail);
+		if(!users.isEmpty()) {
+			return (User) users.get(0);
+		}
+		return null;
+	}
+
 }

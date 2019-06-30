@@ -16,4 +16,10 @@ public interface UserDao extends BaseDao<User>{
 	 * @return 查不到返回 null
 	 */
 	User find(String userEmail, String userPassword);
+	/**
+	 * 通过用户名查询用户
+	 * @param userEmail
+	 * @return 查不到返回 null
+	 */
+	User find(String userEmail);
 }
