@@ -13,7 +13,7 @@
             <column name="uid" sql-type="int(11)" />
         </property>
         <property name="image">
-            <column name="image" sql-type="varchar(50)" length="50" />
+            <column name="image"/>
         </property>
     </class>
 </hibernate-mapping>

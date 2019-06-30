@@ -83,14 +83,13 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 		try {
 			String path=ServletActionContext.getServletContext().getRealPath("/upload");
 			//String path="D:/image";
-			System.out.println(path);
 			String uuidFileName=UploadUtils.getUUIDName(fileFileName);
 			String realPath=UploadUtils.getPath(uuidFileName);
 			String url=path+realPath+"/"+uuidFileName;
 			FileUtils.copyFile(file, new File(url));
 			User user=(User) ActionContext.getContext().getSession().get("user");
 			Album album=new Album();
-			album.setImage(url);
+			album.setImage("upload"+realPath+"/"+uuidFileName);
 			album.setUid(user.getUid());;
 			albumService.addAlbum(album);
 			this.write(true, "上传成功");

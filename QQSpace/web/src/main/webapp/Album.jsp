@@ -14,9 +14,7 @@
 		dataType: "json",
 		data:{"currpage":1,"pagesize":5,"uid":1},
 		success:function(data){
-			alert(data.data.page[0].image);
 			$.each(data.data.page,function(i,n) {
-				alert(n.image);
 				$("#imageid").append("<img src='"+n.image+"'>");
 			});
 		}
