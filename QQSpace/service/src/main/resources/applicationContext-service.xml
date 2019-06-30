@@ -12,7 +12,7 @@
     	http://www.springframework.org/schema/aop/spring-aop.xsd
     	http://www.springframework.org/schema/tx
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
-   	<import resource="classpath:applicationContext-datasource.xml"/>
+   	<import resource="classpath:applicationContext-dao.xml"/>
 	<import resource="classpath:applicationContext_tx.xml"/>
 	<bean id="albumService" class="com.qqSpace.service.impl.AlbumServiceimpl">
 		<property name="albumDao" ref="albumDao"></property>

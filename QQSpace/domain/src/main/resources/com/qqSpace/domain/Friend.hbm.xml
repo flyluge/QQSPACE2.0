@@ -7,6 +7,7 @@
     <class name="com.qqSpace.domain.Friend" table="friend" schema="qqspace">
         <id name="fid">
             <column name="fid" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="tuid">
             <column name="tuid" sql-type="int(11)" />
