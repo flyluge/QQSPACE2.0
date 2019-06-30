@@ -13,7 +13,20 @@ public interface UserService {
 	/**
 	 * 
 	 * @param user
+	 * @return user为空返回FALSE 用户名已存在返回ACCOUNT_EXIST
+	 */
+	int register(User user);
+    /**
+     * 验证用户 account 是否存在
+     * @param account
+     * @return 不存在返回false
+     */
+	boolean isExistAccount(String account);
+	/**
+	 * 更新用户信息
+	 * @param newUser
+	 * @param oldUser
 	 * @return 
 	 */
-	boolean register(User user);
+	int update(User newUser, User oldUser);
 }

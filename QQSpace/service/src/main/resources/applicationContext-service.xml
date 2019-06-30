@@ -14,6 +14,7 @@
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
    	<import resource="classpath:applicationContext-datasource.xml"/>
    	<import resource="classpath:applicationContext-dao.xml"/>
+	<import resource="classpath:applicationContext_tx.xml"/>
 	<bean id="albumService" class="com.qqSpace.service.impl.AlbumServiceimpl">
 		<property name="albumDao" ref="albumDao"></property>
 	</bean>
@@ -42,11 +43,11 @@
 		<property name="recommentDao" ref="recommentDao"></property>
 	</bean>
 	
-	<bean id="ReMessageboardService" class="com.qqSpace.service.impl.ReMessageboardServiceimpl">
+	<bean id="reMessageboardService" class="com.qqSpace.service.impl.ReMessageboardServiceimpl">
 		<property name="remessageboardDao" ref="remessageboardDao"></property>
 	</bean>
 	
-	<bean id="UserService" class="com.qqSpace.service.impl.UserServiceimpl">
+	<bean id="userService" class="com.qqSpace.service.impl.UserServiceimpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 </beans>

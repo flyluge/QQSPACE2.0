@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.qqSpace.domain.User;
 import com.qqSpace.service.UserService;
 import com.qqspace.dao.impl.UserDaoimpl;
 
@@ -15,7 +16,7 @@ public class testService {
 	@Test
 	public void testUserService() {
 		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
-		UserService udi = (UserService) a.getBean("userService");
-		System.out.println(udi.login("110@qq.com", "123456"));
+		UserService us = (UserService) a.getBean("UserService");
+		System.out.println(us.isExistAccount("tes"));
 	}
 }

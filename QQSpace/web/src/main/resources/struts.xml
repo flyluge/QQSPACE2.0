@@ -4,13 +4,14 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="struts2" extends="struts-default" namespace="/">
-		<action name="TestAction_*" class="com.qqSpace.web.action.TestAction" method="{1}">
-			<result name="success">success.jsp</result>
-			<allowed-methods>test01</allowed-methods>
-		</action>
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
 			<result name="success">success.jsp</result>
 			<allowed-methods>deleteAlbum</allowed-methods>
 		</action>
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="success">success.jsp</result>
+			<allowed-methods>login</allowed-methods>
+		</action>
+		
 	</package>
 </struts>

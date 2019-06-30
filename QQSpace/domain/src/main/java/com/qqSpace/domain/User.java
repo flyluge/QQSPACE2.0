@@ -14,14 +14,7 @@ public class User {
     private Integer sex;
     private String career;
     private String hometown;
-    private Collection<Album> albumsByUid;
-    private Collection<Article> articlesByUid;
-    private Collection<Comment> commentsByUid;
-    private Collection<Friend> friendsByUid;
-    private Collection<Messageboard> messageboardsByUid;
-    private Collection<Praise> praisesByUid;
-    private Collection<ReComment> reCommentsByUid;
-    private Collection<ReMessageboard> reMessageboardsByUid;
+    
     public int getUid() {
         return uid;
     }
@@ -102,67 +95,4 @@ public class User {
         this.hometown = hometown;
     }
 
-    public Collection<Album> getAlbumsByUid() {
-        return albumsByUid;
-    }
-
-    public void setAlbumsByUid(Collection<Album> albumsByUid) {
-        this.albumsByUid = albumsByUid;
-    }
-
-    public Collection<Article> getArticlesByUid() {
-        return articlesByUid;
-    }
-
-    public void setArticlesByUid(Collection<Article> articlesByUid) {
-        this.articlesByUid = articlesByUid;
-    }
-
-    public Collection<Comment> getCommentsByUid() {
-        return commentsByUid;
-    }
-
-    public void setCommentsByUid(Collection<Comment> commentsByUid) {
-        this.commentsByUid = commentsByUid;
-    }
-
-    public Collection<Friend> getFriendsByUid() {
-        return friendsByUid;
-    }
-
-    public void setFriendsByUid(Collection<Friend> friendsByUid) {
-        this.friendsByUid = friendsByUid;
-    }
-
-    public Collection<Messageboard> getMessageboardsByUid() {
-        return messageboardsByUid;
-    }
-
-    public void setMessageboardsByUid(Collection<Messageboard> messageboardsByUid) {
-        this.messageboardsByUid = messageboardsByUid;
-    }
-
-    public Collection<Praise> getPraisesByUid() {
-        return praisesByUid;
-    }
-
-    public void setPraisesByUid(Collection<Praise> praisesByUid) {
-        this.praisesByUid = praisesByUid;
-    }
-
-    public Collection<ReComment> getReCommentsByUid() {
-        return reCommentsByUid;
-    }
-
-    public void setReCommentsByUid(Collection<ReComment> reCommentsByUid) {
-        this.reCommentsByUid = reCommentsByUid;
-    }
-
-    public Collection<ReMessageboard> getReMessageboardsByUid() {
-        return reMessageboardsByUid;
-    }
-
-    public void setReMessageboardsByUid(Collection<ReMessageboard> reMessageboardsByUid) {
-        this.reMessageboardsByUid = reMessageboardsByUid;
-    }
 }

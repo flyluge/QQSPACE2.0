@@ -36,53 +36,5 @@
         <property name="hometown">
             <column name="hometown" sql-type="varchar(255)" />
         </property>
-        <set name="albumsByUid" inverse="true">
-            <key>
-                <column name="uid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Album"/>
-        </set>
-        <set name="articlesByUid" inverse="true">
-            <key>
-                <column name="uid"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Article"/>
-        </set>
-        <set name="commentsByUid" inverse="true">
-            <key>
-                <column name="uid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Comment"/>
-        </set>
-        <set name="friendsByUid" inverse="true">
-            <key>
-                <column name="tuid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Friend"/>
-        </set>
-        <set name="messageboardsByUid" inverse="true">
-            <key>
-                <column name="tuid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Messageboard"/>
-        </set>
-        <set name="praisesByUid" inverse="true">
-            <key>
-                <column name="uid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.Praise"/>
-        </set>
-        <set name="reCommentsByUid" inverse="true">
-            <key>
-                <column name="uid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.ReComment"/>
-        </set>
-        <set name="reMessageboardsByUid" inverse="true">
-            <key>
-                <column name="uid" />
-            </key>
-            <one-to-many not-found="ignore" class="com.qqSpace.domain.ReMessageboard"/>
-        </set>
     </class>
 </hibernate-mapping>
