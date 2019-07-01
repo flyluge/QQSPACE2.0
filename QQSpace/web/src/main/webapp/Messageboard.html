@@ -7,27 +7,58 @@
 <script type="text/javascript">
 	$(function(){
 		$("#tijiao").click(function(){
-			var jsons=$("#form1").serializeArray();
+			let jsons=$("#form1").serializeArray();
 			$.ajax({
 				url:"Messageboard_AddMessageBoard",
 				type:"POST",
-				dataType: "json",
 				data:jsons,
+				dataType: "json",
 				success:function(data){
-					alert(data.message);
+					alert(12);
 				}
 			})
+		})
+		$("#button1").click(function(){
+			$.ajax({
+				url:"Messageboard_findMessBdByPage",
+				type:"POST",
+				data:{"tuid":1,"currpage":1,"pagesize":5},		
+				dataType: "json",
+				success:function(data){
+					$.each(data.data.page,function(i,n){
+						$("#content").append("<div>姓名:"+n.wuser.username+" 内容:"+n.content+"</div>")
+					})
+				}		
+			})
+		})
+		
+		$.ajax({
+			url:"Messageboard_getSessionMess",
+			type:"POST",
+			data:{"currpage":1,"pagesize":5},		
+			dataType: "json",
+			success:function(data){
+				$.each(data.data.page,function(i,n){
+					$("#content1").append("<div>姓名:"+n.wuser.username+" 内容:"+n.content+"</div>")
+				})
+			}		
 		})
 	})
 </script>
 </head>
 <body>
 	<h1>留言板</h1>
+	<h1>发布留言</h1>
 	<form id="form1">
-		留言者:<input name="tuid" value="1"><br>
-		受留言者:<input name="wuid" value="1"><br>
+		留言者:<input name="wuser.uid" value="1"><br>
+		受留言者:<input name="tuid" value="1"><br>
 		内容:<input type="text" name="content" value="这是内容"><br>
-		<button id="tijiao">提交</button>
+		<input type="button"  id="tijiao" value="提交">
 	</form>
+	<h1><input type="button" value="查看id为1用户拥有的留言"  id="button1"/></h1>
+	<div id="content"></div>
+	<!--留言内容  -->
+	<h1>留言内容</h1>
+	<div id="content1"></div>
 </body>
 </html>

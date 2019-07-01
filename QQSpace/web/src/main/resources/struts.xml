@@ -11,8 +11,8 @@
 				<interceptor-ref name="loginInterceptor">
 					<!-- 指定哪些方法不拦截 -->
 					<param name="excludeMethods">login, existAccount</param>
-					<!-- 指定哪些方法需要拦截
-					<param name="includeMethods">add,delete</param> -->
+					<!-- 指定哪些方法需要拦截 -->
+					<!-- <param name="includeMethods"></param>  -->
 				</interceptor-ref>
 				<!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 "fileUpload.maximumSize" ：限制上传最大的文件大小。 
 				"fileUpload.allowedTypes"：允许上传文件的类型。 "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
@@ -21,7 +21,7 @@
 					<param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
 				</interceptor-ref>
 			</interceptor-stack>
-		</interceptors>
+		</interceptors> 
 		
 		<!--放在这里就是全局的 -->
 		<default-interceptor-ref name="mystack"></default-interceptor-ref>
@@ -30,7 +30,10 @@
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<action name="Messageboard_*" class="messageboardAction" method="{1}">
-			<allowed-methods>AddMessageBoard</allowed-methods>
+			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess</allowed-methods>
+		</action>
+		<action name="ReMessageboardAction_*" class="reMessageboardAction" method="{1}">
+			<allowed-methods>findReMessByTUidandMbid,deleteReMess,addReMess</allowed-methods>
 		</action>
 
 		<!--**************************************************************************************************** -->

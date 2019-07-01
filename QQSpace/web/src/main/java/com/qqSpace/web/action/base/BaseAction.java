@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * BaseAction作为所有Action的父类
@@ -39,7 +40,7 @@ public class BaseAction extends ActionSupport{
 			HashMap<Object, Object> map=new HashMap<Object, Object>();
 			map.put("message", success);
 			map.put("data", data);
-			String jsonString = JSON.toJSONString(map);
+			String jsonString = JSON.toJSONString(map,SerializerFeature.DisableCircularReferenceDetect);
 			resp.getWriter().write(jsonString);
 		} catch (IOException e) {
 			e.printStackTrace();

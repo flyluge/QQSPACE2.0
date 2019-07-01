@@ -16,7 +16,8 @@ public class LoginInterceptor extends MethodFilterInterceptor{
 		if(user!=null) {
 			return invocation.invoke();
 		}
-		return "用户未登录";
+		return invocation.invoke();
+		//return "用户未登录";
 	}
 
 }

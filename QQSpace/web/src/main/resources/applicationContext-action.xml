@@ -24,4 +24,7 @@
     <bean id="praiseAction" class="com.qqSpace.web.action.PraiseAction">
     	<property name="praiseService" ref="praiseService"></property>
     </bean>
+    <bean id="reMessageboardAction" class="com.qqSpace.web.action.ReMessageboardAction">
+    	<property name="reMessbdService" ref="reMessageboardService"></property>
+    </bean>
 </beans>

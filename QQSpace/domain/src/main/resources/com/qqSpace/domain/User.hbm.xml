@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.qqSpace.domain.User" table="user" schema="qqspace">
+    <class name="com.qqSpace.domain.User" table="user">
         <id name="uid">
             <column name="uid" sql-type="int(11)"/>
             <generator class="native"></generator>
