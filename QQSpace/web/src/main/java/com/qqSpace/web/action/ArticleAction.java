@@ -17,6 +17,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.qqSpace.domain.Article;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.ArticleService;
+import com.qqSpace.util.PageBean;
 import com.qqSpace.util.UploadUtils;
 import com.qqSpace.web.action.base.BaseAction;
 
@@ -95,8 +96,16 @@ public class ArticleAction extends BaseAction {
 	public void selfArticle() {
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {
-			List<Article> articles =  articleService.selfArticle(user, 1, 5);
-			write(true, articles);
+			PageBean<Article> articlesPage =  articleService.selfArticle(user, 1, 5);
+			write(true, articlesPage);
+		}
+	}
+	
+	public void allArticle() {
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		if(user!=null) {
+			PageBean<Article> articlesPage =  articleService.allArticle(user, 1, 5);
+			write(true, articlesPage);
 		}
 	}
 	

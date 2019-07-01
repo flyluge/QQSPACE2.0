@@ -16,7 +16,7 @@
 			$("#button").click(function(){
 			    $.post("praise_praise",
 			   	{
-			    	"aid" : 1,
+			    	"aid" : 12,
 			    },
 			    function(data,status){
 					alert(data);
@@ -33,14 +33,15 @@
 			
 		});
 		function showArticle() {
-			 $.get("article_selfArticle",
+			 $.get("article_allArticle",
 					    function(data,status){
 							//alert(data);
 							let data1 = JSON.parse(data);
-							$.each(data1.data,function(i,n) {
+							$.each(data1.data.page,function(i,n) {
 								
 								
 								$("#a").append(`<a href="article_delArticle?article.aid=${n.aid}">删除</a>`);
+								$("#a").append(`<img src="${n.image}" />`);
 								$("#a").append(n.content+"<br/>");
 							});
 					    });
