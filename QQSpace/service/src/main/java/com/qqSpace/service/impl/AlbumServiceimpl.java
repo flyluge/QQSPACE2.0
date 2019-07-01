@@ -53,7 +53,9 @@ public class AlbumServiceimpl implements AlbumService {
 		}
 		page.setPageSize(pagesize);
 		//设置总数量
-		int totalcount=(int)albumDao.findAllCount();
+		DetachedCriteria c=DetachedCriteria.forClass(Album.class);
+		c.add(Restrictions.eq("uid", uid));
+		int totalcount=(int)albumDao.findAllCount(c);
 		page.setTotalcount(totalcount);
 		//设置总页数
 		int totalpage=totalcount/pagesize;
@@ -62,8 +64,6 @@ public class AlbumServiceimpl implements AlbumService {
 		}
 		page.setTotalpage(totalpage);
 		//设置内容
-		DetachedCriteria c=DetachedCriteria.forClass(Album.class);
-		c.add(Restrictions.eq("uid", uid));
 		List<Album> list = albumDao.findByPage(c,(currpage-1)*pagesize, pagesize);
 		page.setPage(list);
 		return page;

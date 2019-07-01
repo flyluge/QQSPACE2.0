@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.management.Query;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -26,7 +28,7 @@ public class BaseDaoimpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	public void delete(T t) {
 		this.getHibernateTemplate().delete(t);
 	}
-
+	
 	@Override
 	public void update(T t) {
 		this.getHibernateTemplate().update(t);

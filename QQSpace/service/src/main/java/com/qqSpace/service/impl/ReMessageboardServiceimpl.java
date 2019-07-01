@@ -43,6 +43,8 @@ public class ReMessageboardServiceimpl implements ReMessageboardService {
 		}
 		page.setPageSize(pagesize);
 		//设置总数量
+		DetachedCriteria c=DetachedCriteria.forClass(ReMessageboard.class);
+		c.add(Restrictions.eq("mbid", reMessbd.getMbid()));
 		int totalcount=(int)remessageboardDao.findAllCount();
 		page.setTotalcount(totalcount);
 		//设置总页数
@@ -52,8 +54,6 @@ public class ReMessageboardServiceimpl implements ReMessageboardService {
 		}
 		page.setTotalpage(totalpage);
 		//设置内容
-		DetachedCriteria c=DetachedCriteria.forClass(ReMessageboard.class);
-		c.add(Restrictions.eq("mbid", reMessbd.getMbid()));
 		List<ReMessageboard> list = remessageboardDao.findByPage(c, (currpage-1)*pagesize, pagesize);
 		page.setPage(list);
 		return page;

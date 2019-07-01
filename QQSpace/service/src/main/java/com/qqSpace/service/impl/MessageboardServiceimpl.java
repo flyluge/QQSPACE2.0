@@ -49,7 +49,9 @@ public class MessageboardServiceimpl implements MessageBoardService {
 		}
 		page.setPageSize(pagesize);
 		//设置总数量
-		int totalcount=(int)messageboardDao.findAllCount();
+		DetachedCriteria c=DetachedCriteria.forClass(Messageboard.class);
+		c.add(Restrictions.eq("tuid", messbd.getTuid()));
+		int totalcount=(int)messageboardDao.findAllCount(c);
 		page.setTotalcount(totalcount);
 		//设置总页数
 		int totalpage=totalcount/pagesize;
@@ -58,8 +60,6 @@ public class MessageboardServiceimpl implements MessageBoardService {
 		}
 		page.setTotalpage(totalpage);
 		//设置内容
-		DetachedCriteria c=DetachedCriteria.forClass(Messageboard.class);
-		c.add(Restrictions.eq("tuid", messbd.getTuid()));
 		List<Messageboard> list = messageboardDao.findByPage(c, (currpage-1)*pagesize, pagesize);
 		page.setPage(list);
 		return page;
