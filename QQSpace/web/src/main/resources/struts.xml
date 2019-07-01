@@ -25,17 +25,23 @@
 		
 		<!--放在这里就是全局的 -->
 		<default-interceptor-ref name="mystack"></default-interceptor-ref>
-		
+		<!--相册 -->
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
+		<!--留言板  -->
 		<action name="Messageboard_*" class="messageboardAction" method="{1}">
 			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess</allowed-methods>
 		</action>
+		<!--留言回复  -->
 		<action name="ReMessageboardAction_*" class="reMessageboardAction" method="{1}">
-			<allowed-methods>findReMessByTUidandMbid,deleteReMess,addReMess</allowed-methods>
+			<allowed-methods>findReMessByMbid,deleteReMess,addReMess,findReMessByUid</allowed-methods>
 		</action>
-
+		<!--评论  -->
+		<action name="CommentAction_*" class="commentAction" method="{1}">
+			<allowed-methods></allowed-methods>
+		</action>
+	
 		<!--**************************************************************************************************** -->
 
 		<action name="user_*" class="userAction" method="{1}">

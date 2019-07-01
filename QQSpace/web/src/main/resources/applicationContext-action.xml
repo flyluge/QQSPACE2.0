@@ -30,4 +30,7 @@
     <bean id="reMessageboardAction" class="com.qqSpace.web.action.ReMessageboardAction">
     	<property name="reMessbdService" ref="reMessageboardService"></property>
     </bean>
+    <bean id="commentAction" class="com.qqSpace.web.action.CommentAction">
+    	<property name="commentService" ref="commentService"></property>
+    </bean>
 </beans>

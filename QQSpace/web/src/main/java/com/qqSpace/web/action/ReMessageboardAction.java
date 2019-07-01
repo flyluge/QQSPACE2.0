@@ -51,13 +51,23 @@ public class ReMessageboardAction extends BaseAction implements ModelDriven<ReMe
 	/**
 	 *  通过留言的mbid获取留言的回复
 	 */
-	public void findReMessByTUidandMbid(){
-		PageBean<ReMessageboard> page=reMessbdService.findReMessByTUidandMbid(currpage,pagesize,reMessbd);
+	public void findReMessByMbid(){
+		PageBean<ReMessageboard> page=reMessbdService.findReMessByMbid(currpage,pagesize,reMessbd);
+		if(page==null) {
+			this.write(false, "文章不存在");
+		}else {
+			this.write(true,page);
+		}
+	}
+	/**
+	 * 通过留言发布者(uid)查看留言的回复
+	 */
+	public void findReMessByUid() {
+		PageBean<ReMessageboard> page=reMessbdService.findReMessByUid(currpage,pagesize,reMessbd);
 		if(page==null) {
 			this.write(false, "用户登陆超时");
 		}else {
 			this.write(true,page);
 		}
 	}
-
 }

@@ -5,10 +5,12 @@ import com.qqSpace.util.PageBean;
 
 public interface ReMessageboardService {
 
-	PageBean<ReMessageboard> findReMessByTUidandMbid(Integer currpage,Integer pagesize,ReMessageboard reMessbd);
+	PageBean<ReMessageboard> findReMessByMbid(Integer currpage,Integer pagesize,ReMessageboard reMessbd);
 
 	void deleteReMess(ReMessageboard reMessbd);
 
 	void addReMess(ReMessageboard reMessbd);
+
+	PageBean<ReMessageboard> findReMessByUid(Integer currpage, Integer pagesize, ReMessageboard reMessbd);
 
 }

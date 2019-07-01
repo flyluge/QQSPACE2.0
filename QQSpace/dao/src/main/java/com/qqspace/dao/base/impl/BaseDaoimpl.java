@@ -42,7 +42,15 @@ public class BaseDaoimpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		}
 		return 0;
 	}
-
+	@Override
+	public long findAllCount(DetachedCriteria criteria) {
+		criteria.setProjection(Projections.rowCount());
+		List<?> list = this.getHibernateTemplate().findByCriteria(criteria);
+		if(list.size()!=0) {
+			return (long) list.get(0);
+		}
+		return 0;
+	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findById(Serializable id) {
@@ -68,4 +76,5 @@ public class BaseDaoimpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		criteria.setProjection(null);
 		return (List<T>) this.getHibernateTemplate().findByCriteria(criteria,begin,pageSize);
 	}
+
 }

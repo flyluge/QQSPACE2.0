@@ -23,6 +23,10 @@ public interface BaseDao<T> {
 	 */
 	long findAllCount();
 	/*
+	 * 条件查询数量
+	 */
+	long findAllCount(DetachedCriteria criteria);
+	/*
 	 * 查询单个
 	 */
 	T findById(Serializable id);
