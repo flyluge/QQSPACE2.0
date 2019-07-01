@@ -13,7 +13,7 @@
     	http://www.springframework.org/schema/tx
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    	<import resource="classpath:applicationContext-service.xml"/>
     	<import resource="classpath:applicationContext-action.xml"/>
+    	<import resource="classpath:applicationContext-service.xml"/>
 
 </beans>

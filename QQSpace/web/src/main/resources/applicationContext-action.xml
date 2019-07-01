@@ -15,7 +15,7 @@
     <bean id="albumAction" class="com.qqSpace.web.action.AlbumAction">
     	<property name="albumService" ref="albumService"></property>
     </bean>
-    <bean id="messageboard" class="com.qqSpace.web.action.Messageboard">
+    <bean id="messageboardAction" class="com.qqSpace.web.action.MessageboardAction">
     	<property name="messageBoardService" ref="messageBoardService"></property>
     </bean>
     <bean id="userAction" class="com.qqSpace.web.action.UserAction">
