@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Messageboard {
-    private Integer mbid;
-    private Integer tuid;
-    private Integer wuid;
-    private String content;
-    private Timestamp pubdate;
+    private Integer mbid;//主码
+    private Integer tuid;//留言拥有者
+    private Integer wuid;//留言发布者
+    private String content;//留言内容
+    private Timestamp pubdate;//留言时间
 
     public Integer getMbid() {
         return mbid;

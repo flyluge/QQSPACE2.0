@@ -21,6 +21,12 @@
 	})
 
 </script>
+<style>
+	#imageid img{
+		width:200px;
+		font-weight: bold;
+	}
+</style>
 <body>
 	<!--删除相册  -->
 	<form action="AlbumAction_deleteAlbum">
