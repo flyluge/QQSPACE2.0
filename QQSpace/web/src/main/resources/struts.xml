@@ -29,6 +29,12 @@
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
+		<action name="Messageboard_*" class="messageboard" method="{1}">
+			<allowed-methods>AddMessageBoard</allowed-methods>
+		</action>
+
+		<!--**************************************************************************************************** -->
+
 		<action name="user_*" class="userAction" method="{1}">
 			<allowed-methods>login, existAccount, sessionuser, logout</allowed-methods>
 		</action>
