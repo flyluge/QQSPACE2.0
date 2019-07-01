@@ -4,15 +4,29 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="struts2" extends="struts-default" namespace="/">
+	
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.qqSpace.web.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="mystack">
+				<interceptor-ref name="loginInterceptor">
+					<!-- 指定哪些方法不拦截 -->
+					<param name="excludeMethods">login, existAccount</param>
+					<!-- 指定哪些方法需要拦截
+					<param name="includeMethods">add,delete</param> -->
+				</interceptor-ref>
+				<!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 "fileUpload.maximumSize" ：限制上传最大的文件大小。 
+				"fileUpload.allowedTypes"：允许上传文件的类型。 "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
+				<interceptor-ref name="defaultStack">
+					<param name="fileUpload.maximumSize">500000000</param>
+					<param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!--放在这里就是全局的 -->
+		<default-interceptor-ref name="mystack"></default-interceptor-ref>
+		
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
-		    <!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 
-                "fileUpload.maximumSize" ：限制上传最大的文件大小。 
-                "fileUpload.allowedTypes"：允许上传文件的类型。 
-                "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
-            <interceptor-ref name="defaultStack">
-                <param name="fileUpload.maximumSize">500000000</param>
-                <param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
-            </interceptor-ref>
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<action name="user_*" class="userAction" method="{1}">
