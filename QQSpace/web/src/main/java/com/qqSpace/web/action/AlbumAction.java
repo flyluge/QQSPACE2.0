@@ -77,9 +77,9 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	 * 表单需要传入name为file的图片
 	 */
 	public void addAlbum(){
-		User user1=new User();
+/*		User user1=new User();
 		user1.setUid(1);
-		ActionContext.getContext().getSession().put("user", user1);
+		ActionContext.getContext().getSession().put("user", user1);*/
 		try {
 			String path=ServletActionContext.getServletContext().getRealPath("/upload");
 			//String path="D:/image";

@@ -12,7 +12,7 @@
 		url:"AlbumAction_findAlbumByPage",
 		type:"POST",
 		dataType: "json",
-		data:{"currpage":1,"pagesize":5,"uid":1},
+		data:{"currpage":1,"pagesize":5,"uid":2},
 		success:function(data){
 			$.each(data.data.page,function(i,n) {
 				$("#imageid").append("<img src='"+n.image+"'>");

@@ -21,7 +21,7 @@
 					<param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
 				</interceptor-ref>
 			</interceptor-stack>
-		</interceptors>
+		</interceptors> 
 		
 		<!--放在这里就是全局的 -->
 		<default-interceptor-ref name="mystack"></default-interceptor-ref>
@@ -30,7 +30,10 @@
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<action name="Messageboard_*" class="messageboardAction" method="{1}">
-			<allowed-methods>AddMessageBoard</allowed-methods>
+			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess</allowed-methods>
+		</action>
+		<action name="ReMessageboardAction_*" class="reMessageboardAction" method="{1}">
+			<allowed-methods>findReMessByTUidandMbid,deleteReMess,addReMess</allowed-methods>
 		</action>
 
 		<!--**************************************************************************************************** -->
