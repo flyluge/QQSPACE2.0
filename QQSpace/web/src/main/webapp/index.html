@@ -8,6 +8,7 @@
 <body>
 	<script>
 		$(document).ready(function() {
+			showArticle();
 			$.get("user_sessionuser",
 			function(data,status){
 				$("#name").text(data);
@@ -22,10 +23,42 @@
 			        
 			    });
 			});
+			$("#publish").click(function(){
+				let json = $("#article").serializeArray();
+				alert(JSON.stringify(json));
+			    /* $.post("article_publish",json,function(data,status){
+					alert(data);
+				}); */
+			});
+			
 		});
+		function showArticle() {
+			 $.get("article_selfArticle",
+					    function(data,status){
+							//alert(data);
+							let data1 = JSON.parse(data);
+							$.each(data1.data,function(i,n) {
+								
+								
+								$("#a").append(`<a href="article_delArticle?article.aid=${n.aid}">删除</a>`);
+								$("#a").append(n.content+"<br/>");
+							});
+					    });
+		}
 	</script>
 	<span id="name"></span>
 		<button id="button" >点赞</button>
 		<a href="user_logout" >123</a>
+		
+	<div>
+		<form id="article" action="article_publish" enctype="multipart/form-data" method="post">
+			<textarea name="article.content" rows="3" cols="100"></textarea>
+			<input type="file" name="file">请加入图片<br>
+			<input type="submit" value="提交">
+		</form>
+	</div>
+	<div style="border: 1px solid grey;">
+		<div id="a"></div>
+	</div>
 </body>
 </html>

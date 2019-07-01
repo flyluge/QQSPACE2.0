@@ -10,9 +10,9 @@
 			<interceptor-stack name="mystack">
 				<interceptor-ref name="loginInterceptor">
 					<!-- 指定哪些方法不拦截 -->
-					<param name="excludeMethods">login, existAccount</param>
-					<!-- 指定哪些方法需要拦截
-					<param name="includeMethods">add,delete</param> -->
+					<!-- param name="excludeMethods">login, existAccount</param> -->
+					<!-- 指定哪些方法需要拦截 -->
+					<param name="includeMethods">aaa</param>
 				</interceptor-ref>
 				<!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 "fileUpload.maximumSize" ：限制上传最大的文件大小。 
 				"fileUpload.allowedTypes"：允许上传文件的类型。 "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
@@ -40,6 +40,9 @@
 		</action>
 		<action name="praise_*" class="praiseAction" method="{1}">
 			<allowed-methods>praise, cancel</allowed-methods>
+		</action>
+		<action name="article_*" class="articleAction" method="{1}">
+			<allowed-methods>publish,selfArticle, delArticle</allowed-methods>
 		</action>
 	</package>
 </struts>

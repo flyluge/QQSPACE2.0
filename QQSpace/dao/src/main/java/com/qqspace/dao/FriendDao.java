@@ -1,5 +1,7 @@
 package com.qqspace.dao;
 
+import java.util.List;
+
 import com.qqSpace.domain.Friend;
 import com.qqspace.dao.base.BaseDao;
 /**

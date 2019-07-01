@@ -67,7 +67,7 @@ public class UserAction extends BaseAction{
 	}
 	public void register() {
 		if(user!=null) {
-			int note = userService.register(user);
+			int note = userService.doRegister(user);
 			if(UserServiceimpl.ACCOUNT_EXIST == note||note == UserServiceimpl.FALSE) {
 				write(false, "注册失败");
 			} else if(note == UserServiceimpl.TRUE) {
@@ -79,7 +79,7 @@ public class UserAction extends BaseAction{
 	}
 	public void saveAlter() {
 		User oldUser = (User) ActionContext.getContext().getSession().get("user");
-		int note = userService.update(user, oldUser);
+		int note = userService.doUpdate(user, oldUser);
 		if(UserServiceimpl.ACCOUNT_UNEXIST == note) {
 			write(false, "注册账号禁止修改，修改失败");
 		} else if(note == UserServiceimpl.TRUE) {
@@ -96,5 +96,11 @@ public class UserAction extends BaseAction{
 		} else {
 			write(false, "用户未登录");
 		}
+	}
+	/**
+	 * 用未登录，执行该方法
+	 */
+	public void timeout() {
+		write(false, "用户未登录,请求超时");
 	}
 }

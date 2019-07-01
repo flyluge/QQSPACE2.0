@@ -15,7 +15,7 @@ public interface UserService {
 	 * @param user
 	 * @return user为空返回FALSE 用户名已存在返回ACCOUNT_EXIST
 	 */
-	int register(User user);
+	int doRegister(User user);
     /**
      * 验证用户 account 是否存在
      * @param account
@@ -28,5 +28,5 @@ public interface UserService {
 	 * @param oldUser
 	 * @return 
 	 */
-	int update(User newUser, User oldUser);
+	int doUpdate(User newUser, User oldUser);
 }

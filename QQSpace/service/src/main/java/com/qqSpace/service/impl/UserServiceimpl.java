@@ -20,7 +20,7 @@ public class UserServiceimpl implements UserService {
 		User user = userDao.find(account, password);
 		return user;
 	}
-	public int register(User user) {
+	public int doRegister(User user) {
 		if(user!=null) {
 			if(!isExistAccount(user.getUseremail())) {
 				userDao.add(user);
@@ -38,7 +38,7 @@ public class UserServiceimpl implements UserService {
 		return false;
 	}
 
-	public int update(User newUser, User oldUser) {
+	public int doUpdate(User newUser, User oldUser) {
 		if(newUser!=null && oldUser!=null) {
 			if(isExistAccount(newUser.getUseremail())) {
 				newUser.setUid(oldUser.getUid());
