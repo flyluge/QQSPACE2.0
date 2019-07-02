@@ -11,21 +11,21 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.qqSpace.domain.Article;
 import com.qqSpace.domain.User;
-import com.qqSpace.service.ArticleService;
 import com.qqSpace.service.FriendService;
-import com.qqSpace.service.PraiseService;
 import com.qqSpace.util.PageBean;
 
 public class testService {
 	@Test
 	public void testUserService() {
+		@SuppressWarnings("resource")
 		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
 		FriendService fs = (FriendService) a.getBean("friendService");
 		//fs.doSendFriendReq(1, 3);
 		PageBean<Object> page = fs.showReqList(2, 0, 10);
+		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) page.getPage().get(0);
+		@SuppressWarnings("unchecked")
 		Map<User, Integer> map = (Map<User, Integer>) page.getPage().get(1);
 		for (User user : listUser) {
 			System.out.println(user.getUseremail()+" "+map.get(user));

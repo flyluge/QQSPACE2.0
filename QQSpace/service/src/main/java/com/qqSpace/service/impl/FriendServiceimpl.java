@@ -9,11 +9,9 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
-import com.qqSpace.domain.Article;
 import com.qqSpace.domain.Friend;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.FriendService;
-import com.qqSpace.service.UserService;
 import com.qqSpace.util.PageBean;
 import com.qqspace.dao.FriendDao;
 import com.qqspace.dao.UserDao;

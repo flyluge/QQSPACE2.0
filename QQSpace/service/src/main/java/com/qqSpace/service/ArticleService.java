@@ -1,6 +1,5 @@
 package com.qqSpace.service;
 
-import java.util.List;
 
 import com.qqSpace.domain.Article;
 import com.qqSpace.domain.User;

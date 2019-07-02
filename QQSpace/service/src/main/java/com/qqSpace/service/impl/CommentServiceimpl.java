@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import com.qqSpace.domain.Article;
 import com.qqSpace.domain.Comment;
-import com.qqSpace.domain.User;
 import com.qqSpace.service.CommentService;
 import com.qqSpace.service.FriendService;
 import com.qqSpace.util.PageBean;
@@ -125,12 +124,9 @@ public class CommentServiceimpl implements CommentService {
 		
 		//获取说说拥有者
 		Article a = articleDao.findById(comment.getAid());
-		User user1 = comment.getUser();
+		Integer uid1 = comment.getUser().getUid();
 		Integer fid=a.getUid();
-		//获取发布评论人的id
-		User user2=new User();
-		user2.setUid(fid);
-		if(friendService.isFriend(user1, user2)) {
+		if(friendService.isFriend(uid1, fid)) {
 			comment.setPubdate(new Timestamp(new Date().getTime()));
 			commentDao.add(comment);
 			return true;

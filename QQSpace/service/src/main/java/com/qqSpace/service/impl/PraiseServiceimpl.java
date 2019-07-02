@@ -1,8 +1,6 @@
 package com.qqSpace.service.impl;
 
-import com.qqSpace.domain.Article;
 import com.qqSpace.domain.Praise;
-import com.qqSpace.domain.User;
 import com.qqSpace.service.PraiseService;
 import com.qqspace.dao.PraiseDao;
 
