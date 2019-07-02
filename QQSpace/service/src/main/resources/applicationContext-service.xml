@@ -28,6 +28,7 @@
 	
 	<bean id="friendService" class="com.qqSpace.service.impl.FriendServiceimpl">
 		<property name="friendDao" ref="friendDao"></property>
+		<property name="userDao" ref="userDao"></property>
 	</bean>
 	
 	<bean id="messageBoardService" class="com.qqSpace.service.impl.MessageboardServiceimpl">

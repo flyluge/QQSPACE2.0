@@ -113,6 +113,8 @@ public class ArticleAction extends BaseAction {
 		if(article!=null && article.getAid()!=null) {
 			articleService.doDelete(article.getAid());
 			this.write(true, "删除成功");
+		} else {
+			write(false, "信息不全删除失败");
 		}
 	}
 	

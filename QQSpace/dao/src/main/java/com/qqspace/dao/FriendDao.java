@@ -18,4 +18,8 @@ public interface FriendDao extends BaseDao<Friend> {
 	 * @return 返回用户tuid的好友列表
 	 */
 	List<Friend> findByUid(Integer tuid);
+	/**
+	 * 查询好友的状态
+	 */
+	Friend find(Integer tuid, Integer fuid);
 }

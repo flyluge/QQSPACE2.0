@@ -13,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.qqSpace.domain.Article;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.ArticleService;
+import com.qqSpace.service.FriendService;
 import com.qqSpace.service.PraiseService;
 import com.qqSpace.util.PageBean;
 
@@ -20,12 +21,13 @@ public class testService {
 	@Test
 	public void testUserService() {
 		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
-		ArticleService us = (ArticleService) a.getBean("articleService");
+		FriendService us = (FriendService) a.getBean("friendService");
 		User user = new User();
 		user.setUid(1);
-		PageBean<Article> list=us.allArticle(user, 1, 5);
-		for (Article article : list.getPage()) {
-			System.out.println(article.getContent());
+		PageBean<User> list=us.findFriend(user, 1, 5);
+		for (User t : list.getPage()) {
+			System.out.println(t.getUid());
 		}
+		System.out.println(list.getTotalpage());
 	}
 }
