@@ -45,10 +45,12 @@ public class ArticleServiceimpl implements ArticleService {
 			pageSize=10;
 		}
 		page.setPageSize(pageSize);
+		//设置查询条件
+		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
+		criteria.add(Restrictions.eq("uid", user.getUid()));
+		List<Article> articles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
 		//设置总数量
-		DetachedCriteria criteria1 = DetachedCriteria.forClass(Article.class);
-		criteria1.add(Restrictions.eq("uid", user.getUid()));
-		int totalcount=(int)articleDao.findAllCount(criteria1);
+		int totalcount=(int)articleDao.findAllCount(criteria);
 		page.setTotalcount(totalcount);
 		//设置总页数
 		int totalpage=totalcount/pageSize;
@@ -56,10 +58,6 @@ public class ArticleServiceimpl implements ArticleService {
 			totalpage++;
 		}
 		page.setTotalpage(totalpage);
-		//设置查询条件
-		DetachedCriteria criteria2 = DetachedCriteria.forClass(Article.class);
-		criteria2.add(Restrictions.eq("uid", user.getUid()));
-		List<Article> articles = articleDao.findByPage(criteria2, (currPage-1)*pageSize, pageSize);
 		//设置page中的数据
 		page.setPage(articles);
 		return page;
@@ -69,7 +67,6 @@ public class ArticleServiceimpl implements ArticleService {
 	 * 传入好友拥有者的id(user.uid)
 	 */
 	@SuppressWarnings("static-access")
-	@Override
 	public PageBean<Article> allArticle(User user, Integer currPage, Integer pageSize) {
 		PageBean<Article> page=new PageBean<Article>();
 		//设置当前页
@@ -82,17 +79,11 @@ public class ArticleServiceimpl implements ArticleService {
 			pageSize=10;
 		}
 		page.setPageSize(pageSize);
-		//设置总数量
-		DetachedCriteria criteria1 = DetachedCriteria.forClass(Article.class);
-		criteria1.add(Restrictions.eq("uid", user.getUid()));
-		int totalcount=(int)articleDao.findAllCount(criteria1);
-		page.setTotalcount(totalcount);
-		//设置总页数
-		int totalpage=totalcount/pageSize;
-		if(totalcount%pageSize>0) {
-			totalpage++;
-		}
-		page.setTotalpage(totalpage);
+		//查询用户的说说
+		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
+		criteria.add(Restrictions.eq("uid", user.getUid()));
+		List<Article> selfArticles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
+		int uaTotalcount = (int) articleDao.findAllCount(criteria);
 		//查询好友的说说
 		Integer tuid=user.getUid();
 		DetachedCriteria ca=DetachedCriteria.forClass(Article.class);
@@ -103,13 +94,18 @@ public class ArticleServiceimpl implements ArticleService {
 		cf.setResultTransformer(cf.DISTINCT_ROOT_ENTITY);
 		ca.add(Property.forName("uid").in(cf));
 		List<Article> friendArticle = articleDao.findByPage(ca, (currPage-1)*pageSize, pageSize);
-		//查询用户的说说
-		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
-		criteria.add(Restrictions.eq("uid", user.getUid()));
-		List<Article> selfArticles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
+		int faTotalcount = (int) articleDao.findAllCount(ca);
 		//将friend合并到self
 		selfArticles.addAll(friendArticle);
-		
+		//设置总数量
+		int totalcount = uaTotalcount+faTotalcount;
+		page.setTotalcount(totalcount);
+		//设置总页数
+		int totalpage=(totalcount)/pageSize;
+		if(totalcount%pageSize>0) {
+			totalpage++;
+		}
+		page.setTotalpage(totalpage);
 		page.setPage(selfArticles);
 		return page;
 	}
