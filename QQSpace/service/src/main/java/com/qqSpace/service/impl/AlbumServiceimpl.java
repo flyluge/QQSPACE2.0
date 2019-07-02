@@ -48,7 +48,7 @@ public class AlbumServiceimpl implements AlbumService {
 		}
 		page.setCurrpage(currpage);
 		//设置页面大小
-		if(pagesize==0||pagesize==null) {
+		if(pagesize==null) {
 			pagesize=10;
 		}
 		page.setPageSize(pagesize);

@@ -1,12 +1,12 @@
 package com.qqSpace.domain;
 
 import java.sql.Timestamp;
-import java.util.Objects;
-
 public class ReComment {
     private Integer rmid;
-    private Integer uid;
-    private Integer cid;
+  // private Integer uid;
+    private User user;
+    //private Integer cid;
+    private Comment comment;
     private String content;
     private Timestamp pubdate;
 
@@ -18,21 +18,22 @@ public class ReComment {
         this.rmid = rmid;
     }
 
-    public Integer getUid() {
+    /*public Integer getUid() {
         return uid;
     }
 
     public void setUid(Integer uid) {
         this.uid = uid;
-    }
+    }*/
+    
 
-    public Integer getCid() {
-        return cid;
-    }
+    public User getUser() {
+		return user;
+	}
 
-    public void setCid(Integer cid) {
-        this.cid = cid;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
     public String getContent() {
         return content;
@@ -50,20 +51,12 @@ public class ReComment {
         this.pubdate = pubdate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ReComment reComment = (ReComment) o;
-        return Objects.equals(rmid, reComment.rmid) &&
-                Objects.equals(uid, reComment.uid) &&
-                Objects.equals(cid, reComment.cid) &&
-                Objects.equals(content, reComment.content) &&
-                Objects.equals(pubdate, reComment.pubdate);
-    }
+	public Comment getComment() {
+		return comment;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(rmid, uid, cid, content, pubdate);
-    }
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+    
 }

@@ -39,7 +39,11 @@
 		</action>
 		<!--评论  -->
 		<action name="CommentAction_*" class="commentAction" method="{1}">
-			<allowed-methods></allowed-methods>
+			<allowed-methods>findCommentByAid,findCommentByUid,addComment,deleteComment</allowed-methods>
+		</action>
+		<!--评论回复  -->
+		<action name="RecommentAction_*" class="recommentAction" method="{1}">
+			<allowed-methods>addRecom,deleteRecom,findRecomByCid,findRecomByUid,findRecomByThisUid</allowed-methods>
 		</action>
 	
 		<!--**************************************************************************************************** -->

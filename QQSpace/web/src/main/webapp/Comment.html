@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>评论界面</title>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("#button1").click(function(){
+			/* let jsons=$("#form1").serializeArray(); */
+			$.ajax({
+				url:"CommentAction_findCommentByAid",
+				type:"POST",
+				data:{"aid":1},
+				dataType: "json",
+				success:function(data){
+					$.each(data.data.page,function(i,n){
+						$("#content1").append("评论人id:"+n.user.uid+"<br>");
+						$("#content1").append("评论人:"+n.user.username+"<br>");
+						$("#content1").append("说说id:"+n.aid+"<br>");
+						$("#content1").append("评论内容:"+n.content+"<br>");
+					})
+				}
+			})
+		})
+		$("#button2").click(function(){
+			let jsons=$("#form1").serializeArray();
+			$.ajax({
+				url:"CommentAction_addComment",
+				type:"POST",
+				data:jsons,
+				dataType: "json",
+				success:function(data){
+					alert(data.message);
+				}
+			})
+		})
+	})
+</script>
+<body>
+	<h1>评论界面</h1>
+	<h2>
+		<button id="button1">获取id为1的说说的评论</button>
+	</h2>
+	<div id="content1">
+		<h3>说说1的评论</h3>
+	</div>
+	<h2>发布评论</h2>
+	<form id="form1">
+		用户id:<input type="text" name="user.uid"><br>
+		说说id:<input type="text" name="aid"><br>
+		评论的内容:<input type="text" name="content"><br>
+		<input type="button" id="button2" value="提交">
+	</form>
+	<!--删除评论  -->
+	<a href="CommentAction_deleteComment?cid=1">删除id为1的评论</a>
+</body>
+</html>
