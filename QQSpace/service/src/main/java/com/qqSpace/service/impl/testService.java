@@ -14,6 +14,7 @@ import com.qqSpace.domain.Article;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.ArticleService;
 import com.qqSpace.service.PraiseService;
+import com.qqSpace.util.PageBean;
 
 public class testService {
 	@Test
@@ -21,8 +22,10 @@ public class testService {
 		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
 		ArticleService us = (ArticleService) a.getBean("articleService");
 		User user = new User();
-		user.setUid(2);
-		List<Article> articles = us.selfArticle(user, 1, 5);
-		System.out.println(articles.size());
+		user.setUid(1);
+		PageBean<Article> list=us.allArticle(user, 1, 5);
+		for (Article article : list.getPage()) {
+			System.out.println(article.getContent());
+		}
 	}
 }

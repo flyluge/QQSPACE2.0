@@ -51,7 +51,7 @@
 			<allowed-methods>praise, cancel</allowed-methods>
 		</action>
 		<action name="article_*" class="articleAction" method="{1}">
-			<allowed-methods>publish,selfArticle, delArticle</allowed-methods>
+			<allowed-methods>publish,selfArticle, delArticle, allArticle</allowed-methods>
 		</action>
 	</package>
 </struts>
