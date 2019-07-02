@@ -15,8 +15,11 @@
         <property name="fuid">
             <column name="fuid" sql-type="int(11)" />
         </property>
-        <property name="status">
-            <column name="status" sql-type="int(11)" />
+        <property name="fstatus">
+            <column name="fstatus" sql-type="int(11)" />
+        </property>
+        <property name="rstatus">
+            <column name="rstatus" sql-type="int(11)" />
         </property>
     </class>
 </hibernate-mapping>

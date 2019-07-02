@@ -78,5 +78,10 @@ public class BaseDaoimpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		criteria.setProjection(null);
 		return (List<T>) this.getHibernateTemplate().findByCriteria(criteria,begin,pageSize);
 	}
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> find(DetachedCriteria criteria) {
+		return (List<T>) this.getHibernateTemplate().findByCriteria(criteria);
+	}
+	
 }

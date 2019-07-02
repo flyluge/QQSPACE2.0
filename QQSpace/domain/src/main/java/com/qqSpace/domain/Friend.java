@@ -1,12 +1,11 @@
 package com.qqSpace.domain;
 
-import java.util.Objects;
-
 public class Friend {
     private Integer fid;
     private Integer tuid;
     private Integer fuid;
-    private Integer status;
+    private Integer fstatus;
+    private Integer rstatus;
 
     public Integer getFid() {
         return fid;
@@ -32,27 +31,20 @@ public class Friend {
         this.fuid = fuid;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
+	public Integer getFstatus() {
+		return fstatus;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setFstatus(Integer fstatus) {
+		this.fstatus = fstatus;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Friend friend = (Friend) o;
-        return Objects.equals(fid, friend.fid) &&
-                Objects.equals(tuid, friend.tuid) &&
-                Objects.equals(fuid, friend.fuid) &&
-                Objects.equals(status, friend.status);
-    }
+	public Integer getRstatus() {
+		return rstatus;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(fid, tuid, fuid, status);
-    }
+	public void setRstatus(Integer rstatus) {
+		this.rstatus = rstatus;
+	}
+
 }

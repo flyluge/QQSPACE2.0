@@ -22,4 +22,10 @@ public interface FriendDao extends BaseDao<Friend> {
 	 * 查询好友的状态
 	 */
 	Friend find(Integer tuid, Integer fuid);
+	/**
+	 * 通过状态查询好友请求
+	 * @param status
+	 * @return 没有值返回null
+	 */
+	List<Friend> findByStatus(Integer uid, Integer status);
 }

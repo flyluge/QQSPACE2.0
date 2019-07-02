@@ -42,4 +42,8 @@ public interface BaseDao<T> {
 	 * 条件分页查询 
 	 */
 	List<T> findByPage(DetachedCriteria criteria, Integer begin, Integer pageSize);
+	/*
+	 * 条件查询
+	 */
+	List<T> find(DetachedCriteria criteria);
 }

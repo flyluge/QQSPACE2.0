@@ -5,6 +5,7 @@ package com.qqSpace.service.impl;
 */
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -21,13 +22,14 @@ public class testService {
 	@Test
 	public void testUserService() {
 		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
-		FriendService us = (FriendService) a.getBean("friendService");
-		User user = new User();
-		user.setUid(1);
-		PageBean<User> list=us.findFriend(user, 1, 5);
-		for (User t : list.getPage()) {
-			System.out.println(t.getUid());
+		FriendService fs = (FriendService) a.getBean("friendService");
+		//fs.doSendFriendReq(1, 3);
+		PageBean<Object> page = fs.showReqList(2, 0, 10);
+		List<User> listUser = (List<User>) page.getPage().get(0);
+		Map<User, Integer> map = (Map<User, Integer>) page.getPage().get(1);
+		for (User user : listUser) {
+			System.out.println(user.getUseremail()+" "+map.get(user));
 		}
-		System.out.println(list.getTotalpage());
+		//fs.doAffirmReq(2, 1, 0);
 	}
 }
