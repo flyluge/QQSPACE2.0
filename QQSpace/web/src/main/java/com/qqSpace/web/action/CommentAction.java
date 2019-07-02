@@ -63,10 +63,14 @@ public class CommentAction extends BaseAction implements ModelDriven<Comment>{
 		}
 	}
 	/**
-	 * 添加评论 需要用户uid 说说aid 内容content 时间pubdate
+	 * 添加评论 需要用户user.uid 说说aid 内容content 时间pubdate
  	 */
 	public void addComment() {
-		
+		if(commentService.addComment(comment)) {
+			this.write(true, "添加成功");
+		}else {
+			this.write(false, "添加失败,非好友");
+		}
 	}
 	/**
 	 * 删除评论 需要评论的aid

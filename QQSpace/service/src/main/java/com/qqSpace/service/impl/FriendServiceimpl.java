@@ -64,7 +64,6 @@ public class FriendServiceimpl implements FriendService {
 		page.setPage(userDao.findByPage(cu, (currPage-1)*pageSize, pageSize));
 		return page;
 	}
-
 	public boolean isFriend(User user1, User user2) {
 		Friend f = friendDao.find(user1.getUid(), user2.getUid());
 		if(f!=null && f.getStatus()== FRIEND_STATUS){
@@ -72,7 +71,4 @@ public class FriendServiceimpl implements FriendService {
 		}
 		return false;
 	}
-	
-
-	
 }

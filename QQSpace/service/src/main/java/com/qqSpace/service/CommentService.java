@@ -11,4 +11,6 @@ public interface CommentService {
 
 	void deleteComment(Comment comment);
 
+	boolean addComment(Comment comment);
+
 }

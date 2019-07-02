@@ -24,6 +24,8 @@
 	
 	<bean id="commentService" class="com.qqSpace.service.impl.CommentServiceimpl">
 		<property name="commentDao" ref="commentDao"></property>
+		<property name="articleDao" ref="articleDao"></property>
+		<property name="friendService" ref="friendService"></property>
 	</bean>
 	
 	<bean id="friendService" class="com.qqSpace.service.impl.FriendServiceimpl">

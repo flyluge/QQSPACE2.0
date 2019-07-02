@@ -33,4 +33,7 @@
     <bean id="commentAction" class="com.qqSpace.web.action.CommentAction">
     	<property name="commentService" ref="commentService"></property>
     </bean>
+    <bean id="recommentAction" class="com.qqSpace.web.action.RecommentAction">
+    	<property name="recomService" ref="recommentService"></property>
+    </bean>
 </beans>

@@ -1,14 +1,19 @@
 package com.qqSpace.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
+import com.qqSpace.domain.Article;
 import com.qqSpace.domain.Comment;
-import com.qqSpace.domain.Messageboard;
+import com.qqSpace.domain.User;
 import com.qqSpace.service.CommentService;
+import com.qqSpace.service.FriendService;
 import com.qqSpace.util.PageBean;
+import com.qqspace.dao.ArticleDao;
 import com.qqspace.dao.CommentDao;
 /**
  * 说说评论的服务类
@@ -17,10 +22,20 @@ import com.qqspace.dao.CommentDao;
  */
 public class CommentServiceimpl implements CommentService {
 	CommentDao commentDao;
-
+	ArticleDao articleDao;
+	FriendService friendService;
 	public void setCommentDao(CommentDao commentDao) {
 		this.commentDao = commentDao;
 	}
+	
+	public void setArticleDao(ArticleDao articleDao) {
+		this.articleDao = articleDao;
+	}
+	
+	public void setFriendService(FriendService friendService) {
+		this.friendService = friendService;
+	}
+
 	/**
 	 * 通过id获取说说的评论 分页
 	 */
@@ -41,7 +56,7 @@ public class CommentServiceimpl implements CommentService {
 		}
 		page.setPageSize(pagesize);
 		//设置总数量
-		DetachedCriteria c=DetachedCriteria.forClass(Messageboard.class);
+		DetachedCriteria c=DetachedCriteria.forClass(Comment.class);
 		c.add(Restrictions.eq("aid", comment.getAid()));
 		int totalcount=(int)commentDao.findAllCount(c);
 		page.setTotalcount(totalcount);
@@ -76,7 +91,7 @@ public class CommentServiceimpl implements CommentService {
 		}
 		page.setPageSize(pagesize);
 		//设置总数量
-		DetachedCriteria c=DetachedCriteria.forClass(Messageboard.class);
+		DetachedCriteria c=DetachedCriteria.forClass(Comment.class);
 		c.add(Restrictions.eq("user.uid", comment.getUser().getUid()));
 		int totalcount=(int)commentDao.findAllCount(c);
 		page.setTotalcount(totalcount);
@@ -99,6 +114,28 @@ public class CommentServiceimpl implements CommentService {
 		Comment c = commentDao.findById(comment.getCid());
 		if(c!=null) {
 			commentDao.delete(c);
+		}
+	}
+	/**
+	 *  添加说说评论
+	 *  需要comment.user.uid\ aid \content 
+	 */
+	@Override
+	public boolean addComment(Comment comment) {
+		
+		//获取说说拥有者
+		Article a = articleDao.findById(comment.getAid());
+		User user1 = comment.getUser();
+		Integer fid=a.getUid();
+		//获取发布评论人的id
+		User user2=new User();
+		user2.setUid(fid);
+		if(friendService.isFriend(user1, user2)) {
+			comment.setPubdate(new Timestamp(new Date().getTime()));
+			commentDao.add(comment);
+			return true;
+		}else {
+			return false;
 		}
 	}
 	
