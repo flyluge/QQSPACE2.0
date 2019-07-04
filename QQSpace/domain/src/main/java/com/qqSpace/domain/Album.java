@@ -1,13 +1,22 @@
 package com.qqSpace.domain;
 
-import java.util.Objects;
+import java.sql.Timestamp;
 
 public class Album {
     private Integer alid;
     private Integer uid;
     private String image;
+    private Timestamp pubdate;
+    
+    public Timestamp getPubdate() {
+		return pubdate;
+	}
 
-    public Integer getAlid() {
+	public void setPubdate(Timestamp pubdate) {
+		this.pubdate = pubdate;
+	}
+
+	public Integer getAlid() {
         return alid;
     }
 
@@ -31,18 +40,4 @@ public class Album {
         this.image = image;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Album album = (Album) o;
-        return Objects.equals(alid, album.alid) &&
-                Objects.equals(uid, album.uid) &&
-                Objects.equals(image, album.image);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(alid, uid, image);
-    }
 }

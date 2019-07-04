@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="vue/vue.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="css/article.css" rel="stylesheet" />
+		<script>
+			$(function(){
+				$("#head").load("container/head.html");
+			})
+		</script>
+	</head>
+	<body style="background: #F9F9F9;">
+		<div id="head"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="col-md-12 text-center" style="background: white; padding: 5px;">
+						<div class="col-md-4"><a href="#"><h4>说说<span>10</span></h4></a></div>
+						<div class="col-md-4"><a href="#"><h4>相册<span>2</span></h4></a></div>
+						<div class="col-md-4"><a href="#"><h4>好友<span>2</span></h4></a></div>
+					</div>
+				</div>
+				<div class="col-md-8 article_container">
+					<div class="col-md-12 publish-article">
+						<div class="input-group">
+							<textarea class="form-control" placeholder="写下此刻的想法" aria-describedby="basic-addon2"></textarea>
+							<span class="btn input-group-addon" id="basic-addon2">
+								添加图片
+							</span>
+							<span class="btn btn-primary input-group-addon" id="basic-addon2">发表</span>
+						</div>
+					</div>
+					<div class="col-md-12 article-wrap">
+						<div class="article-content">
+							<div class="article-heading">
+								<img class="img-circle user-headimg user-img" src="img/1.jpg">
+								<span class="user-name">用户二</span>
+							</div>
+							<div class="article-body">
+								<p>我发说说了</p>
+								<div class="col-md-12 article-imglist">
+									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
+								</div>
+							</div>
+							<div class="text-right">
+								<span class="article-publish-time">2016/07/01</span>
+								<a href="#" class=" text-danger"><span class="glyphicon glyphicon-heart"></span>15</a>
+							</div>
+						</div>
+						<div class="article-comment">
+							<ul class="media-list comment">
+								<li class="media">
+									<div class="media-left">
+										<a href="#">
+											<img class="media-object user-img" src="img/1.jpg" alt="...">
+										</a>
+									</div>
+									<div class="media-body">
+										<h5 class="media-heading">用户一<span class="article-comment-time">time</span><a href="#"><span class="glyphicon glyphicon-comment"></span></a></h5>
+										<p>
+											我评论文章了
+										</p>
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<a href="#">
+														<img class="media-object user-img" src="img/001.png" alt="...">
+													</a>
+												</div>
+												<div class="media-body">
+													<h5 class="media-heading">
+														<a>用户二</a><span class="article-comment-time">time</span>
+														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+													</h5>
+													<p>
+														我评论文章了
+													</p>
+												</div>
+											</li>
+										</ul>
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<a href="#">
+														<img class="media-object user-img" src="img/001.png" alt="...">
+													</a>
+												</div>
+												<div class="media-body">
+													<h5 class="media-heading">
+														用户三<span class="article-comment-time">time</span>
+														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+													</h5>
+													<p>
+														我评论文章了
+													</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="publish-article-comment">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="写下你的想法" aria-describedby="basic-addon2">
+								<span class="input-group-addon" id="basic-addon2">评论</span>
+							</div>
+						</div>
+					</div>
+					<!---->
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

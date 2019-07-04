@@ -15,5 +15,8 @@
         <property name="image">
             <column name="image"/>
         </property>
+        <property name="pubdate">
+            <column name="pubdate"/>
+        </property>
     </class>
 </hibernate-mapping>

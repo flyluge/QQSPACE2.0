@@ -1,65 +1,245 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<title>Insert title here</title>
-</head>
-<body>
-	<script>
-		$(document).ready(function() {
-			showArticle();
-			$.get("user_sessionuser",
-			function(data,status){
-				$("#name").text(data);
-			});
-			$("#button").click(function(){
-			    $.post("praise_praise",
-			   	{
-			    	"aid" : 12,
-			    },
-			    function(data,status){
-					alert(data);
-			        
-			    });
-			});
-			$("#publish").click(function(){
-				let json = $("#article").serializeArray();
-				alert(JSON.stringify(json));
-			    /* $.post("article_publish",json,function(data,status){
-					alert(data);
-				}); */
-			});
-			
-		});
-		function showArticle() {
-			 $.get("article_allArticle",
-					    function(data,status){
-							//alert(data);
-							let data1 = JSON.parse(data);
-							$.each(data1.data.page,function(i,n) {
-								
-								
-								$("#a").append(`<a href="article_delArticle?article.aid=${n.aid}">删除</a>`);
-								$("#a").append(`<img src="${n.image}" />`);
-								$("#a").append(n.content+"<br/>");
-							});
-					    });
-		}
-	</script>
-	<span id="name"></span>
-		<button id="button" >点赞</button>
-		<a href="user_logout" >123</a>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- 引入 Bootstrap -->
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="css/top_nav.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet"/>
+		<!---->
+		<script type="text/javascript">
+			 $(function(){
+			 	$("#head").load("container/head.html");
+			 	$(".article_container").append(``);
 		
-	<div>
-		<form id="article" action="article_publish" enctype="multipart/form-data" method="post">
-			<textarea name="article.content" rows="3" cols="100"></textarea>
-			<input type="file" name="file">请加入图片<br>
-			<input type="submit" value="提交">
-		</form>
-	</div>
-	<div style="border: 1px solid grey;">
-		<div id="a"></div>
-	</div>
-</body>
+			 	$(".article_container").append(``);
+			 })
+			
+		</script>
+	</head>
+	<body style="background: #F9F9F9;">
+		<div id="head"></div>
+		<div class="container content">
+			<div class="row">
+				<div class="col-md-2" style="padding: 0;">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<span class="badge">14</span>
+							好友动态
+						</li>
+						<li class="list-group-item">
+							<span class="badge">14</span>
+							我的相册
+						</li>
+						<li class="list-group-item">
+							<span class="badge">14</span>
+							好友请求
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-8 article_container">
+					<div class="col-md-12 publish-article">
+						<div class="input-group">
+							<textarea class="form-control" placeholder="写下此刻的想法" aria-describedby="basic-addon2"></textarea>
+							<span class="btn input-group-addon" id="basic-addon2">
+								添加图片
+							</span>
+							<span class="btn btn-primary input-group-addon" id="basic-addon2">发表</span>
+						</div>
+					</div>
+					<div class="col-md-12 article-wrap">
+						<div class="article-content">
+							<div class="article-heading">
+								<img class="img-circle user-headimg user-img" src="img/1.jpg">
+								<span class="user-name">用户</span>
+							</div>
+							<div class="article-body">
+								<p>我发说说了,这是我的第一个文章</p>
+								<div class="col-md-12 article-imglist">
+									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
+									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
+									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
+								</div>
+							</div>
+							<div class="text-right">
+								<span class="article-publish-time">2016/07/01</span>
+								<a href="#" class=" text-danger"><span class="glyphicon glyphicon-heart"></span>15</a>
+							</div>
+						</div>
+						<div class="article-comment">
+							<ul class="media-list comment">
+								<li class="media">
+									<div class="media-left">
+										<a href="#">
+											<img class="media-object user-img" src="img/1.jpg" alt="...">
+										</a>
+									</div>
+									<div class="media-body">
+										<h5 class="media-heading">用户一<span class="article-comment-time">time</span><a href="#"><span class="glyphicon glyphicon-comment"></span></a></h5>
+										<p>
+											我评论文章了
+											
+										</p>
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<a href="#">
+														<img class="media-object user-img" src="img/001.png" alt="...">
+													</a>
+												</div>
+												<div class="media-body">
+													<h5 class="media-heading">
+														<a>用户二</a><span class="article-comment-time">time</span>
+														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+													</h5>
+													<p>
+														我评论文章了
+													</p>
+												</div>
+											</li>
+										</ul>
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<a href="#">
+														<img class="media-object user-img" src="img/001.png" alt="...">
+													</a>
+												</div>
+												<div class="media-body">
+													<h5 class="media-heading">
+														用户三<span class="article-comment-time">time</span>
+														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+													</h5>
+													<p>
+														我评论文章了
+													</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="publish-article-comment">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="写下你的想法" aria-describedby="basic-addon2">
+								<span class="input-group-addon" id="basic-addon2">评论</span>
+							</div>
+						</div>
+					</div>
+					<!---->
+					<div class="col-md-12 article-wrap">
+						<div class="article-content">
+							<div class="article-heading">
+								<img class="img-circle user-headimg user-img" src="img/1.jpg">
+								<span class="user-name">用户二</span>
+							</div>
+							<div class="article-body">
+								<p>我发说说了,这是我的第一个文章</p>
+								<div class="col-md-12 article-imglist">
+									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
+								</div>
+							</div>
+							<div class="text-right">
+								<span class="article-publish-time">2016/07/01</span>
+								<a href="#" class=" text-danger"><span class="glyphicon glyphicon-heart"></span>15</a>
+							</div>
+						</div>
+						<div class="article-comment">
+							<ul class="media-list comment">
+								<li class="media">
+									<div class="media-left">
+										<a href="#">
+											<img class="media-object user-img" src="img/1.jpg" alt="...">
+										</a>
+									</div>
+									<div class="media-body">
+										<h5 class="media-heading">用户一<span class="article-comment-time">time</span><a href="#"><span class="glyphicon glyphicon-comment"></span></a></h5>
+										<p>
+											我评论文章了
+											
+										</p>
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<a href="#">
+														<img class="media-object user-img" src="img/001.png" alt="...">
+													</a>
+												</div>
+												<div class="media-body">
+													<h5 class="media-heading">
+														<a>用户二</a><span class="article-comment-time">time</span>
+														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+													</h5>
+													<p>
+														我评论文章了
+													</p>
+												</div>
+											</li>
+										</ul>
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<a href="#">
+														<img class="media-object user-img" src="img/001.png" alt="...">
+													</a>
+												</div>
+												<div class="media-body">
+													<h5 class="media-heading">
+														用户三<span class="article-comment-time">time</span>
+														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+													</h5>
+													<p>
+														我评论文章了
+													</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="publish-article-comment">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="写下你的想法" aria-describedby="basic-addon2">
+								<span class="input-group-addon" id="basic-addon2">评论</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col-md-2" style="padding: 0;">
+					<div class="panel panel-default left-panel">
+						<div class="panel-heading">
+							<h3 class="panel-title text-center">路哥的空间</h3>
+						</div>
+						<div class="panel-body text-center">
+							<img src="img/001 (2).jpg" class="img-responsive"/>
+							守护
+						</div>
+					</div>
+					<div class="panel panel-default left-panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">广告位招租</h3>
+						</div>
+						<div class="panel-body">
+							联系电话:110
+						</div>
+					</div>
+					<div class="panel panel-default left-panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">广告位招租</h3>
+						</div>
+						<div class="panel-body">
+							联系电话:110
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <script src="js/top_nav.js"></script> -->
+	</body>
 </html>

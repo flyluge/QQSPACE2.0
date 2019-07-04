@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="vue/vue.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="css/info.css" rel="stylesheet" />
+	</head>
+	<script type="text/javascript">
+		$(function(){
+			$("#head").load("container/head.html");
+		})
+	</script>
+	<body style="background: #F9F9F9;">
+		<div id="head"></div>
+		
+		<div class="container">
+			<div class="row" style="background: white;">
+				<div style="margin-bottom: 10px; border-bottom: 1px solid goldenrod;">
+					<div style="padding-left: 26px;">
+						<h3>个人档</h3>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-2" style="padding: 0px;">
+						<div>
+							<img src="img/1.jpg" class="img-responsive img-rounded">
+						</div>
+						<div class="text-center" style="padding: 8px;"><a href="#">修改头像</a></div>
+						<div class="col-md-12 text-center">
+							<div class="col-md-6"><a href="#">说说<span>10</span></a></div>
+							<div class="col-md-6"><a href="#">相册<span>2</span></a></div>
+						</div>
+					</div>
+					<div class="col-md-10" style="border-left: 1px solid goldenrod;">
+						<div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">基本资料</a></li>
+								<li role="presentation"><a href="#alert" aria-controls="alert" role="tab" data-toggle="tab">编辑资料</a></li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="info">
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">昵称</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">性别</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">手机号</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">邮箱</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">生日</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">星座</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">职业</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">家乡</div>
+										<div class="col-md-10 class-value">12</div>
+									</div>
+								</div>
+								<div role="tabpanel" class="tab-pane" id="alert">
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">昵称</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">性别</div>
+										<div class="col-md-10 class-value">
+											男<input type="radio" name="sex" value="男" />
+											女<input type="radio" name="sex" value="女" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">手机号</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">邮箱</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">修改密码</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">地址</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">生日</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">星座</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<div class="col-md-2 class-name">职业</div>
+										<div class="col-md-10 class-value">
+											<input type="text" />
+										</div>
+									</div>
+									<div class="col-md-12 user-info-detail">
+										<button class="btn btn-default">确认修改</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

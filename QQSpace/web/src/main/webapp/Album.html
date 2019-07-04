@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>相册</title>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	</head>
+	<script type="text/javascript">
+		$(function() {
+			$("#head").load("container/head.html");
+			$.ajax({
+				url:"AlbumAction_findAlbumByPage",
+				type:"POST",
+				dataType: "json",
+				data:{"currpage":1,"pagesize":12,"uid":2},
+				success:function(data){
+					$.each(data.data.page,function(i,n) {
+						let a = `
+								<div class="col-xs-4 col-md-2 .col-sm-3" style="padding: 5px;">
+									<div class="thumbnail"  style="padding: 10px;height:180px;border:solid 1px gray;">
+										<img src="${n.image}" class="img-responsive" alt="图片加载失败">
+										<div class="caption" style="position:absolute;bottom:10%">
+											<div class="text-right">
+												${n.pubdate}
+												<a onclick="deleteAl(${n.alid})" role="button">
+													<span class="glyphicon glyphicon-trash"></span>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+						      `;
+						$("#album_container").append(a);
+					});
+				}
+			})
+		})
+		function deleteAl(alid){
+			$.ajax({
+				url:"AlbumAction_deleteAlbum",
+				type:"POST",
+				dataType: "json",
+				data:{"alid":alid},
+				async: false, 
+				success:function(data){
+					if(data.message){
+						alert("删除成功");
+						$(this).parent().parent().parent().parent().remove();
+						window.location.reload();
+					}else{
+						alert("删除失败");
+					}
+				}
+			})
+		}
+		function loadAlbum(){
+			
+		}
+	</script>
+
+	<body style="background:  #F9F9F9;">
+
+		<div id="head"></div>
+
+		<div class="container" style="background: white;border-radius: 5px;">
+			<div style="margin-top:20px">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active">
+						<a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+							<span class="text-primary">我的相册</span>
+						</a>
+					</li>
+				</ul>
+				<!--图片显示区域-->
+				<div class="tab-content" style="margin-top: 20px;border:solid gainsboro 1px;">
+					<div role="tabpanel" class="tab-pane active" id="home">
+						<div class="row" id="album_container" style="padding: 50px;">
+						</div>
+					</div>
+					<!--分页标签-->
+					<a>显示更多...</a>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

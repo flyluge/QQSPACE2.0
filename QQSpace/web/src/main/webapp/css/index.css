@@ -1,0 +1,53 @@
+.content {
+	padding: 10px;
+}
+
+.article-wrap {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.article-content {
+	background: white;
+	padding: 20px;
+}
+.article-comment{
+	border-top: 1px solid #B2B2B2;
+	background: white;
+	padding: 20px;
+}
+.article-imglist img{
+	float: left;
+	padding: 3px;
+	width: 100%;
+	height: 100%;
+}
+.article-publish-time{
+	padding: 5px;
+	color: #B2B2B2;
+}
+.article-comment-time{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #B2B2B2;
+}
+.article-wrap .user-img{
+	height: 50px;
+}
+.publish-article-comment{
+	width: 100%;
+}
+.media-list{
+	padding: 10px;
+}
+.article-body{
+	padding: 10px;
+}
+.article-body p{
+	line-height: 30px;
+}
+.article-comment{
+	line-break: 40px;
+}
+.left-panel{
+	padding-bottom: 10px;
+}

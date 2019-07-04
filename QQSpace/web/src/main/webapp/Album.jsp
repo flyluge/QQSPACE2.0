@@ -9,7 +9,7 @@
 </head>
 <script type="text/javascript">
 	$.ajax({
-		url:"AlbumAction_findAlbumByPage",
+		url:"AlbumAction_deleteAlbum",
 		type:"POST",
 		dataType: "json",
 		data:{"currpage":1,"pagesize":5,"uid":2},

@@ -1,5 +1,7 @@
 package com.qqSpace.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -31,6 +33,7 @@ public class AlbumServiceimpl implements AlbumService {
 	 */
 	@Override
 	public void addAlbum(Album album) {
+		album.setPubdate(new Timestamp(new Date().getTime()));
 		albumDao.add(album);
 	}
 	/**
