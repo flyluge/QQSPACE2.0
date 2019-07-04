@@ -36,5 +36,8 @@
         <property name="hometown">
             <column name="hometown" sql-type="varchar(255)" />
         </property>
+        <property name="userimg">
+            <column name="userimg" sql-type="varchar(255)" />
+        </property>
     </class>
 </hibernate-mapping>

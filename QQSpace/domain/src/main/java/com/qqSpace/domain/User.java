@@ -13,8 +13,18 @@ public class User {
     private Integer sex;
     private String career;
     private String hometown;
+    private String userimg;
+    
 
-    public Integer getUid() {
+    public String getUserimg() {
+		return userimg;
+	}
+
+	public void setUserimg(String userimg) {
+		this.userimg = userimg;
+	}
+
+	public Integer getUid() {
         return uid;
     }
 
