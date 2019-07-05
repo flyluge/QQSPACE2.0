@@ -47,7 +47,7 @@ public class ArticleServiceimpl implements ArticleService {
 		page.setPageSize(pageSize);
 		//设置查询条件
 		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
-		criteria.add(Restrictions.eq("uid", user.getUid()));
+		criteria.add(Restrictions.eq("user.uid", user.getUid()));
 		List<Article> articles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
 		//设置总数量
 		int totalcount=(int)articleDao.findAllCount(criteria);
@@ -81,7 +81,7 @@ public class ArticleServiceimpl implements ArticleService {
 		page.setPageSize(pageSize);
 		//查询用户的说说
 		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
-		criteria.add(Restrictions.eq("uid", user.getUid()));
+		criteria.add(Restrictions.eq("user.uid", user.getUid()));
 		List<Article> selfArticles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
 		int uaTotalcount = (int) articleDao.findAllCount(criteria);
 		//查询好友的说说
@@ -89,10 +89,10 @@ public class ArticleServiceimpl implements ArticleService {
 		DetachedCriteria ca=DetachedCriteria.forClass(Article.class);
 		DetachedCriteria cf=DetachedCriteria.forClass(Friend.class);
 		cf.add(Restrictions.eq("tuid", tuid));
-		cf.add(Restrictions.eq("status", 1));
+		cf.add(Restrictions.eq("fstatus", 1));
 		cf.setProjection(Property.forName("fuid"));
 		cf.setResultTransformer(cf.DISTINCT_ROOT_ENTITY);
-		ca.add(Property.forName("uid").in(cf));
+		ca.add(Property.forName("user.uid").in(cf));
 		List<Article> friendArticle = articleDao.findByPage(ca, (currPage-1)*pageSize, pageSize);
 		int faTotalcount = (int) articleDao.findAllCount(ca);
 		//将friend合并到self
