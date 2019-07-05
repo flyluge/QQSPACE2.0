@@ -10,7 +10,6 @@
 	<body style="background:  #F9F9F9;">
 		
 		<jsp:include page="../container/head.jsp"></jsp:include>
-		
 		<div class="container" style="background: white;border-radius: 5px;">
 			<div style="margin-top:20px">
 				<!-- Nav tabs -->
