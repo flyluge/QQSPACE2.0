@@ -125,7 +125,7 @@ public class CommentServiceimpl implements CommentService {
 		//获取说说拥有者
 		Article a = articleDao.findById(comment.getAid());
 		Integer uid1 = comment.getUser().getUid();
-		Integer fid=a.getUid();
+		Integer fid=a.getUser().getUid();
 		if(friendService.isFriend(uid1, fid)) {
 			comment.setPubdate(new Timestamp(new Date().getTime()));
 			commentDao.add(comment);

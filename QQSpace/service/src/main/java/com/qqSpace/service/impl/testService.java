@@ -16,6 +16,7 @@ import com.qqSpace.domain.User;
 import com.qqSpace.service.ArticleService;
 import com.qqSpace.service.CommentService;
 import com.qqSpace.service.FriendService;
+import com.qqSpace.service.PraiseService;
 import com.qqSpace.util.PageBean;
 
 public class testService {
@@ -23,10 +24,8 @@ public class testService {
 	public void testUserService() {
 		@SuppressWarnings("resource")
 		ApplicationContext a = new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
-		ArticleService fs = (ArticleService) a.getBean("articleService");
-		User user = new User();
-		user.setUid(1);
-		fs.selfArticle(user, 1, 10);
+		PraiseService fs = (PraiseService) a.getBean("praiseService");
+		System.out.println(fs.findAllCount(1));;
 //		Comment comment = new Comment();
 //		comment.setAid(1);
 //		fs.findCommentByAid(1, 10, comment);

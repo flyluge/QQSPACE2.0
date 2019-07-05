@@ -41,5 +41,6 @@
     	<property name="commentService" ref="commentService"></property>
     	<property name="articleService" ref="articleService"></property>
     	<property name="userService" ref="userService"></property>
+    	<property name="praiseService" ref="praiseService"></property>
     </bean>
 </beans>

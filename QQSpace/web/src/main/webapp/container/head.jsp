@@ -6,14 +6,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script type="text/javascript" src="${pageContext.request.contextPath }/vue/vue.js"></script>
 		<!-- 引入 Bootstrap -->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/bootstrap/js/bootstrap.min.js"></script>
 		<link href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath }/css/top_nav.css" rel="stylesheet" />
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/container.js"></script>
 	</head>
 	<style>
 		*{
@@ -52,9 +50,6 @@
 			height: 50px;
 		}
 	</style>
-	<script type="text/javascript">
-
-	</script>
 	<body  style="background: #e9e9e9;">
 		<!--头-->
 		<div class="container-fluid top-fix-bar">
@@ -63,7 +58,7 @@
 					<div class="row">
 						<div class="top-logo"><img src="${pageContext.request.contextPath }/img/logo.png"></div>
 						<ul class="top-nav">
-							<li id="top-index"><a href="${pageContext.request.contextPath }/#">个人中心</a></li>
+							<li id="top-index"><a href="${pageContext.request.contextPath }/index_index">个人中心</a></li>
 							<li id="top-main">
 								我的主页
 							</li>
@@ -114,7 +109,7 @@
 								<div style="width:100%;">
 									<ul id="head_daohang">
 										<li></li>
-										<li><a href="${pageContext.request.contextPath }/index.html">主页</a></li>
+										<li><a href="${pageContext.request.contextPath }/index_index">主页</a></li>
 										<li><a href="${pageContext.request.contextPath }/index.html">日志</a></li>
 										<li><a href="${pageContext.request.contextPath }/Album.html">相册</a></li>
 										<li><a href="${pageContext.request.contextPath }/messageboard.html">留言板</a></li>

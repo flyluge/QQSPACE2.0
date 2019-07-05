@@ -41,7 +41,6 @@ public class PraiseAction extends BaseAction {
 	public void praise() {
 		User u = (User) ActionContext.getContext().getSession().get("user");
 		if(u!=null) {
-			System.out.println(u.getUid());
 			this.uid = u.getUid();
 			if(praiseService.doPraise(uid, aid)) {
 				write(true, "");

@@ -22,7 +22,7 @@ public class ArticleServiceimpl implements ArticleService {
 
 	public void doPublish(User user, Article article) {
 		if(user!=null && user.getUid()!=null && article!=null) {
-			article.setUid(user.getUid());
+			article.setUser(user);
 			articleDao.add(article);
 		}
 	}
