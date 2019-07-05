@@ -4,7 +4,6 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="struts2" extends="struts-default" namespace="/">
-	
 		<interceptors>
 			<interceptor name="loginInterceptor" class="com.qqSpace.web.interceptor.LoginInterceptor"></interceptor>
 			<interceptor-stack name="mystack">
@@ -22,9 +21,12 @@
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors> 
-		
 		<!--放在这里就是全局的 -->
 		<default-interceptor-ref name="mystack"></default-interceptor-ref>
+		<!--全局的方法  -->
+		<global-results>
+			<result name="input">jsp/input.jsp</result>
+		</global-results>
 		<!--相册 -->
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
 			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
@@ -48,8 +50,10 @@
 	
 		<!--**************************************************************************************************** -->
 
-		<action name="user_*" class="userAction" method="{1}">
-			<allowed-methods>login, existAccount, sessionuser, logout,register</allowed-methods>
+		<action name="UserAction_*" class="userAction" method="{1}">
+			<result name="loginsuccess" type="redirect">jsp/album.jsp</result>
+			<result name="loginFrame">jsp/login.jsp</result>
+			<allowed-methods>loginFrame,login, existAccount, sessionuser, logout,register</allowed-methods>
 		</action>
 		<action name="praise_*" class="praiseAction" method="{1}">
 			<allowed-methods>praise, cancel</allowed-methods>

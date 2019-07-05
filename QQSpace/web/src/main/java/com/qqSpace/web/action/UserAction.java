@@ -40,19 +40,23 @@ public class UserAction extends BaseAction{
 			write(false , "用户未登录");						
 		}
 	}
-	public void login() {
+	public String loginFrame() {
+		return "loginFrame";
+	}
+	public String login() {
 		if(user!=null) {
 			User u = userService.login(user.getUseremail(), user.getUserpassword());
 			if(u!=null) {
-				Map<String, Object> session = ActionContext.getContext().getSession();
-				session.put("user", u);
-				write(true, "登录成功");
+				//将用户信息存在session中
+				ActionContext.getContext().getSession().put("user", u);
+				return "loginsuccess";
 			} else {
-				write(false, "用户名或密码错误");
+				addFieldError("error", "用户名或密码错误");
 			}			
 		} else {
-			write(false, "用户信息不全");
+			addFieldError("error", "用户信息不全");
 		}
+		return "loginFrame";	
 	}
 	public void existAccount() {
 		if(user!=null) {
@@ -88,13 +92,14 @@ public class UserAction extends BaseAction{
 			write(false, "修改失败");
 		}
 	}
-	public void logout() {
+	public String logout() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		if(session.get("user")!=null) {
 			session.remove("user");
-			write(true, "注销成功");
+			return "loginFrame";
 		} else {
 			write(false, "用户未登录");
+			return NONE;
 		}
 	}
 	/**
