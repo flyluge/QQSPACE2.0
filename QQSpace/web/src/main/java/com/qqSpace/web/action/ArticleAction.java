@@ -104,7 +104,7 @@ public class ArticleAction extends BaseAction {
 	public void allArticle() {
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {
-			PageBean<Article> articlesPage =  articleService.allArticle(user, 1, 5);
+			PageBean<Article> articlesPage =  articleService.allArticle(user, 1, 10);
 			write(true, articlesPage);
 		}
 	}

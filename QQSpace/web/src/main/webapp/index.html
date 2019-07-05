@@ -10,13 +10,11 @@
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="css/top_nav.css" rel="stylesheet" />
 		<link href="css/index.css" rel="stylesheet"/>
+		<script type="text/javascript" src="js/index.js"></script>
 		<!---->
 		<script type="text/javascript">
 			 $(function(){
 			 	$("#head").load("container/head.html");
-			 	$(".article_container").append(``);
-		
-			 	$(".article_container").append(``);
 			 })
 			
 		</script>
@@ -44,181 +42,23 @@
 				<div class="col-md-8 article_container">
 					<div class="col-md-12 publish-article">
 						<div class="input-group">
-							<textarea class="form-control" placeholder="写下此刻的想法" aria-describedby="basic-addon2"></textarea>
+							<textarea id="article_content_pub" class="form-control" placeholder="写下此刻的想法" aria-describedby="basic-addon2"></textarea>
 							<span class="btn input-group-addon" id="basic-addon2">
 								添加图片
 							</span>
-							<span class="btn btn-primary input-group-addon" id="basic-addon2">发表</span>
+							<span class="btn btn-primary input-group-addon" id="basic-addon2" onclick="publish_article()">发表</span>
 						</div>
 					</div>
-					<div class="col-md-12 article-wrap">
-						<div class="article-content">
-							<div class="article-heading">
-								<img class="img-circle user-headimg user-img" src="img/1.jpg">
-								<span class="user-name">用户</span>
-							</div>
-							<div class="article-body">
-								<p>我发说说了,这是我的第一个文章</p>
-								<div class="col-md-12 article-imglist">
-									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
-									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
-									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
-								</div>
-							</div>
-							<div class="text-right">
-								<span class="article-publish-time">2016/07/01</span>
-								<a href="#" class=" text-danger"><span class="glyphicon glyphicon-heart"></span>15</a>
-							</div>
-						</div>
-						<div class="article-comment">
-							<ul class="media-list comment">
-								<li class="media">
-									<div class="media-left">
-										<a href="#">
-											<img class="media-object user-img" src="img/1.jpg" alt="...">
-										</a>
-									</div>
-									<div class="media-body">
-										<h5 class="media-heading">用户一<span class="article-comment-time">time</span><a href="#"><span class="glyphicon glyphicon-comment"></span></a></h5>
-										<p>
-											我评论文章了
-											
-										</p>
-										<ul class="media-list">
-											<li class="media">
-												<div class="media-left">
-													<a href="#">
-														<img class="media-object user-img" src="img/001.png" alt="...">
-													</a>
-												</div>
-												<div class="media-body">
-													<h5 class="media-heading">
-														<a>用户二</a><span class="article-comment-time">time</span>
-														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
-													</h5>
-													<p>
-														我评论文章了
-													</p>
-												</div>
-											</li>
-										</ul>
-										<ul class="media-list">
-											<li class="media">
-												<div class="media-left">
-													<a href="#">
-														<img class="media-object user-img" src="img/001.png" alt="...">
-													</a>
-												</div>
-												<div class="media-body">
-													<h5 class="media-heading">
-														用户三<span class="article-comment-time">time</span>
-														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
-													</h5>
-													<p>
-														我评论文章了
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<div class="publish-article-comment">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="写下你的想法" aria-describedby="basic-addon2">
-								<span class="input-group-addon" id="basic-addon2">评论</span>
-							</div>
-						</div>
-					</div>
-					<!---->
-					<div class="col-md-12 article-wrap">
-						<div class="article-content">
-							<div class="article-heading">
-								<img class="img-circle user-headimg user-img" src="img/1.jpg">
-								<span class="user-name">用户二</span>
-							</div>
-							<div class="article-body">
-								<p>我发说说了,这是我的第一个文章</p>
-								<div class="col-md-12 article-imglist">
-									<div class="col-md-4"><img class="img-responsive" src="img/1.jpg" /></div>
-								</div>
-							</div>
-							<div class="text-right">
-								<span class="article-publish-time">2016/07/01</span>
-								<a href="#" class=" text-danger"><span class="glyphicon glyphicon-heart"></span>15</a>
-							</div>
-						</div>
-						<div class="article-comment">
-							<ul class="media-list comment">
-								<li class="media">
-									<div class="media-left">
-										<a href="#">
-											<img class="media-object user-img" src="img/1.jpg" alt="...">
-										</a>
-									</div>
-									<div class="media-body">
-										<h5 class="media-heading">用户一<span class="article-comment-time">time</span><a href="#"><span class="glyphicon glyphicon-comment"></span></a></h5>
-										<p>
-											我评论文章了
-											
-										</p>
-										<ul class="media-list">
-											<li class="media">
-												<div class="media-left">
-													<a href="#">
-														<img class="media-object user-img" src="img/001.png" alt="...">
-													</a>
-												</div>
-												<div class="media-body">
-													<h5 class="media-heading">
-														<a>用户二</a><span class="article-comment-time">time</span>
-														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
-													</h5>
-													<p>
-														我评论文章了
-													</p>
-												</div>
-											</li>
-										</ul>
-										<ul class="media-list">
-											<li class="media">
-												<div class="media-left">
-													<a href="#">
-														<img class="media-object user-img" src="img/001.png" alt="...">
-													</a>
-												</div>
-												<div class="media-body">
-													<h5 class="media-heading">
-														用户三<span class="article-comment-time">time</span>
-														<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
-													</h5>
-													<p>
-														我评论文章了
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<div class="publish-article-comment">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="写下你的想法" aria-describedby="basic-addon2">
-								<span class="input-group-addon" id="basic-addon2">评论</span>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				<div class=" col-md-2" style="padding: 0;">
 					<div class="panel panel-default left-panel">
 						<div class="panel-heading">
-							<h3 class="panel-title text-center">路哥的空间</h3>
+							<h3 class="panel-title text-center"><span class="user-name"></span>的空间</h3>
 						</div>
 						<div class="panel-body text-center">
-							<img src="img/001 (2).jpg" class="img-responsive"/>
-							守护
+							<img class="user-touxiang-img" src="" class="img-responsive"/>
+							<span class="user-name"></span>
 						</div>
 					</div>
 					<div class="panel panel-default left-panel">

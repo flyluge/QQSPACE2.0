@@ -1,7 +1,9 @@
 package com.qqSpace.web.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.qqSpace.domain.Comment;
+import com.qqSpace.domain.User;
 import com.qqSpace.service.CommentService;
 import com.qqSpace.util.PageBean;
 import com.qqSpace.web.action.base.BaseAction;
@@ -10,11 +12,11 @@ import com.qqSpace.web.action.base.BaseAction;
  * @author Luge
  *
  */
-public class CommentAction extends BaseAction implements ModelDriven<Comment>{
+public class CommentAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
 	private CommentService commentService;
-	private Comment comment=new Comment();
+	private Comment comment;
 	private Integer currpage;//当前页
 	private Integer pagesize;//页面大小
 	public void setCommentService(CommentService commentService) {
@@ -32,12 +34,13 @@ public class CommentAction extends BaseAction implements ModelDriven<Comment>{
 	public void setPagesize(Integer pagesize) {
 		this.pagesize = pagesize;
 	}
-	@Override
-	public Comment getModel() {
-		// TODO Auto-generated method stub
+
+	public Comment getComment() {
 		return comment;
 	}
-
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
 	/**
 	 *  通过说说的aid获取评论的内容
 	 *  需要传入aid

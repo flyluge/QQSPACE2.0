@@ -5,8 +5,13 @@ $(document).ready(function() {
 		dataType: "json",
 		success:function(data){
 			//alert(JSON.stringify(data));
-			$(".user-name").text(data.data.username);
-			$(".user-touxiang-img").attr("src", data.data.userimg);
+			if(data.message){
+				$(".user-name").text(data.data.username);
+				$(".user-touxiang-img").attr("src", data.data.userimg);
+			} else {
+				alert(data.data);
+				window.location.href="login.html";
+			}
 		}
 	})
 });
