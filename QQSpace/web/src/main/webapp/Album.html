@@ -8,11 +8,19 @@
 	<script type="text/javascript">
 		$(function() {
 			$("#head").load("container/head.html");
+			getSessionUser();
+			/*异步查找用户相册 */
+			
+			/* 提交表单事件 */
+			$("#uploadAlbum_sub").click(uploadFile);
+		})
+		/* 加载相册界面 */
+		function getAlbumMess(){
 			$.ajax({
 				url:"AlbumAction_findAlbumByPage",
 				type:"POST",
 				dataType: "json",
-				data:{"currpage":1,"pagesize":12,"uid":2},
+				data:{"currpage":1,"pagesize":15,"uid":$("#sessionuser_uid").val()},
 				success:function(data){
 					$.each(data.data.page,function(i,n) {
 						let a = `
@@ -34,7 +42,8 @@
 					});
 				}
 			})
-		})
+		}
+		/* 删除相册 */
 		function deleteAl(alid){
 			$.ajax({
 				url:"AlbumAction_deleteAlbum",
@@ -53,8 +62,39 @@
 				}
 			})
 		}
-		function loadAlbum(){
-			
+		/* 获取登陆用户 */
+		function getSessionUser(){
+			$.ajax({
+				url:"user_sessionuser",
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					$(".sessionuser_uid").val(data.data.uid);
+					getAlbumMess();
+				}
+			})			
+		}
+		/* 文件上传 */
+		function uploadFile(){
+			var formData = new FormData($( "#form_uploadAlbum")[0]);
+			$.ajax({
+				url:"AlbumAction_addAlbum",
+				type:"POST",
+				dataType: "json",
+				async: false,  
+				cache: false,  
+				contentType: false,  
+				processData: false,  
+				data:formData,
+				success:function(data){
+					if(data.message){
+						alert("上传成功");
+						window.location.reload(); 
+					}else{
+						alert("上传失败");
+					}
+				}
+			})
 		}
 	</script>
 
@@ -72,6 +112,13 @@
 						</a>
 					</li>
 				</ul>
+				<div>
+					<form style="padding-left:50px" id="form_uploadAlbum" enctype="multipart/form-data">
+						上传我的相册<input type="file" name="file"><br>
+						<input type="hidden" name="user.uid" class="sessionuser_uid" id="sessionuser_uid">
+						<input type="button" value="提交" id="uploadAlbum_sub">						
+					</form>
+				</div>
 				<!--图片显示区域-->
 				<div class="tab-content" style="margin-top: 20px;border:solid gainsboro 1px;">
 					<div role="tabpanel" class="tab-pane active" id="home">
@@ -79,7 +126,9 @@
 						</div>
 					</div>
 					<!--分页标签-->
-					<a>显示更多...</a>
+					<div class="text-right">
+						<a>显示更多...</a>
+					</div>
 				</div>
 			</div>
 
