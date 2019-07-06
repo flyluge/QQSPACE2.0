@@ -37,16 +37,16 @@ public class ReMessageboardAction extends BaseAction implements ModelDriven<ReMe
 	/**
 	 * 添加回复
 	 */
-	public void addReMess() {
+	public String addReMess() {
 		reMessbdService.addReMess(reMessbd);
-		this.write(true, "添加成功");
+		return "addsuccess";
 	}
 	/**
 	 * 删除回复
 	 */
-	public void deleteReMess() {
+	public String deleteReMess() {
 		reMessbdService.deleteReMess(reMessbd);
-		this.write(true, "删除成功");
+		return "deletesuccess";
 	}
 	/**
 	 *  通过留言的mbid获取留言的回复

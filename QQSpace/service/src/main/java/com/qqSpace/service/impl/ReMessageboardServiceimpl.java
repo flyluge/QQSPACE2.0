@@ -80,7 +80,7 @@ public class ReMessageboardServiceimpl implements ReMessageboardService {
 
 	@Override
 	public PageBean<ReMessageboard> findReMessByUid(Integer currpage, Integer pagesize, ReMessageboard reMessbd) {
-		if(reMessbd.getUid()==null) {
+		if(reMessbd.getUser().getUid()==null) {
 			return null;
 		}
 		PageBean<ReMessageboard> page=new PageBean<ReMessageboard>();
@@ -105,7 +105,7 @@ public class ReMessageboardServiceimpl implements ReMessageboardService {
 		page.setTotalpage(totalpage);
 		//设置内容
 		DetachedCriteria c=DetachedCriteria.forClass(ReMessageboard.class);
-		c.add(Restrictions.eq("uid", reMessbd.getUid()));
+		c.add(Restrictions.eq("user.uid", reMessbd.getUser().getUid()));
 		List<ReMessageboard> list = remessageboardDao.findByPage(c, (currpage-1)*pagesize, pagesize);
 		page.setPage(list);
 		return page;

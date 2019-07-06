@@ -6,14 +6,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script type="text/javascript" src="${pageContext.request.contextPath }/vue/vue.js"></script>
 		<!-- 引入 Bootstrap -->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/bootstrap/js/bootstrap.min.js"></script>
 		<link href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath }/css/top_nav.css" rel="stylesheet" />
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/container.js"></script>
 	</head>
 	<style>
 		*{
@@ -52,9 +50,6 @@
 			height: 50px;
 		}
 	</style>
-	<script type="text/javascript">
-
-	</script>
 	<body  style="background: #e9e9e9;">
 		<!--头-->
 		<div class="container-fluid top-fix-bar">
@@ -116,8 +111,8 @@
 										<li></li>
 										<li><a href="${pageContext.request.contextPath }/index.html">主页</a></li>
 										<li><a href="${pageContext.request.contextPath }/index.html">日志</a></li>
-										<li><a href="${pageContext.request.contextPath }/Album.html">相册</a></li>
-										<li><a href="${pageContext.request.contextPath }/messageboard.html">留言板</a></li>
+										<li><a href="${pageContext.request.contextPath }/AlbumAction_showAlbum">相册</a></li>
+										<li><a href="${pageContext.request.contextPath }/Messageboard_showMessageboard">留言板</a></li>
 										<li><a href="${pageContext.request.contextPath }/article.html">说说</a></li>
 										<li><a href="${pageContext.request.contextPath }/info.html">个人档</a></li>
 										<li><a href="${pageContext.request.contextPath }/index.html">音乐</a></li>

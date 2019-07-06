@@ -17,6 +17,7 @@
     </bean>
     <bean id="messageboardAction" class="com.qqSpace.web.action.MessageboardAction">
     	<property name="messageBoardService" ref="messageBoardService"></property>
+    	<property name="remessService" ref="reMessageboardService"></property>
     </bean>
     <bean id="userAction" class="com.qqSpace.web.action.UserAction">
     	<property name="userService" ref="userService"></property>

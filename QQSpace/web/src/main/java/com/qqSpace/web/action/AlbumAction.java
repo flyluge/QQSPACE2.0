@@ -17,6 +17,7 @@ import com.qqSpace.service.AlbumService;
 import com.qqSpace.util.PageBean;
 import com.qqSpace.util.UploadUtils;
 import com.qqSpace.web.action.base.BaseAction;
+
 /**
  * AlbumAction类为相册相关操作类
  * @author Luge
@@ -65,19 +66,32 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 		this.pagesize = pagesize;
 	}
 	/**
+	 * 进入相册界面
+	 */
+	public String showAlbum() {
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		if(user!=null) {
+			PageBean<Album> page=albumService.findAlbumByPage(user.getUid(), 1, 12);
+			ActionContext.getContext().getValueStack().set("page", page);
+			return "albumFrame";
+		}else {
+			write(false, "用户未登录");
+			return NONE;
+		}
+	}
+	/**
 	 * 删除相册  
 	 * 表单需要传入相册的id
 	 */
-	public void deleteAlbum() {
+	public String deleteAlbum() {
 		albumService.deleteAlbum(album);
-		write(true, "删除成功");
+		return "deletesuccess";
 	}
-	
 	/**
 	 * 增加相册 表单上传图片
 	 * 表单需要传入name为file的图片
 	 */
-	public void addAlbum(){
+	public String addAlbum(){
 /*		User user1=new User();
 		user1.setUid(1);
 		ActionContext.getContext().getSession().put("user", user1);*/
@@ -91,12 +105,12 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 			User user=(User) ActionContext.getContext().getSession().get("user");
 			Album album=new Album();
 			album.setImage("upload"+realPath+"/"+uuidFileName);
-			album.setUid(user.getUid());;
+			album.setUid(user.getUid());
 			albumService.addAlbum(album);
-			this.write(true, "上传成功");
+			return "addsuccess";
 		} catch (IOException e) {
 			e.printStackTrace();
-			this.write(false, "上传失败");
+			return "addFail";
 		}
 	}
 	/**

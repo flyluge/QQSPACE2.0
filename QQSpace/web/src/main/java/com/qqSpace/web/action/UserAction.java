@@ -96,11 +96,8 @@ public class UserAction extends BaseAction{
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		if(session.get("user")!=null) {
 			session.remove("user");
-			return "loginFrame";
-		} else {
-			write(false, "用户未登录");
-			return NONE;
-		}
+		} 
+		return "loginFrame";
 	}
 	/**
 	 * 用未登录，执行该方法

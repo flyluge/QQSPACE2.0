@@ -1,11 +1,10 @@
 package com.qqSpace.domain;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 
 public class ReMessageboard {
     private Integer rmid;
-    private Integer uid;
+    private User user;
     private Integer mbid;
     private String content;
     private Timestamp pubdate;
@@ -18,15 +17,15 @@ public class ReMessageboard {
         this.rmid = rmid;
     }
 
-    public Integer getUid() {
-        return uid;
-    }
+    public User getUser() {
+		return user;
+	}
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public Integer getMbid() {
+	public Integer getMbid() {
         return mbid;
     }
 
@@ -50,20 +49,4 @@ public class ReMessageboard {
         this.pubdate = pubdate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ReMessageboard that = (ReMessageboard) o;
-        return Objects.equals(rmid, that.rmid) &&
-                Objects.equals(uid, that.uid) &&
-                Objects.equals(mbid, that.mbid) &&
-                Objects.equals(content, that.content) &&
-                Objects.equals(pubdate, that.pubdate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rmid, uid, mbid, content, pubdate);
-    }
 }

@@ -5,6 +5,7 @@
 package com.qqSpace.util;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * PageBean封装了分页
@@ -17,6 +18,14 @@ public class PageBean<T> {
 	private int totalcount;//总数量
 	private int totalpage;//总页数
 	private List<T> page;
+	private Map<?,?> map;
+	
+	public Map<?, ?> getMap() {
+		return map;
+	}
+	public void setMap(Map<?, ?> map) {
+		this.map = map;
+	}
 	public int getCurrpage() {
 		return currpage;
 	}

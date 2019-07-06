@@ -30,15 +30,24 @@
 		</global-results>
 		<!--相册 -->
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
-			<allowed-methods>deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
+			<result name="albumFrame">jsp/album.jsp</result>
+			<result name="addsuccess" type="redirect">AlbumAction_showAlbum</result>
+			<result name="addFail"  type="redirect">AlbumAction_showAlbum</result>
+			<result name="deletesuccess"  type="redirect">AlbumAction_showAlbum</result>
+			<allowed-methods>showAlbum,deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
 		</action>
 		<!--留言板  -->
 		<action name="Messageboard_*" class="messageboardAction" method="{1}">
-			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess</allowed-methods>
+			<result name="messageboardFrame">jsp/messageboard.jsp</result>
+			<result name="deletesuccess">Messageboard_deleteMessBd</result>
+			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess,showMessageboard</allowed-methods>
 		</action>
 		<!--留言回复  -->
 		<action name="ReMessageboardAction_*" class="reMessageboardAction" method="{1}">
+		<result name="addsuccess" type="redirect">Messageboard_showMessageboard</result>
+		<result name="deletesuccess" type="redirect">Messageboard_showMessageboard</result>
 			<allowed-methods>findReMessByMbid,deleteReMess,addReMess,findReMessByUid</allowed-methods>
+			
 		</action>
 		<!--评论  -->
 		<action name="CommentAction_*" class="commentAction" method="{1}">
