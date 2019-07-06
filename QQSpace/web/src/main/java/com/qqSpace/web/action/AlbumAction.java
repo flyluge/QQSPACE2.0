@@ -72,6 +72,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 		albumService.deleteAlbum(album);
 		write(true, "删除成功");
 	}
+	
 	/**
 	 * 增加相册 表单上传图片
 	 * 表单需要传入name为file的图片

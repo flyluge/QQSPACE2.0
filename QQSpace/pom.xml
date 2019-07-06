@@ -66,6 +66,9 @@
 	</dependencyManagement>
 	<!-- 依赖管理 -->
 	<dependencies>
+		<!--jstl  -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
+	
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
