@@ -76,7 +76,7 @@ public class CommentAction extends BaseAction{
 		}
 	}
 	/**
-	 * 删除评论 需要评论的aid
+	 * 删除评论 需要评论的cid
 	 */
 	public void deleteComment() {
 		commentService.deleteComment(comment);

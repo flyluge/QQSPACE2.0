@@ -58,7 +58,7 @@
 					<div class="row">
 						<div class="top-logo"><img src="${pageContext.request.contextPath }/img/logo.png"></div>
 						<ul class="top-nav">
-							<li id="top-index"><a href="${pageContext.request.contextPath }/#">个人中心</a></li>
+							<li id="top-index"><a href="${pageContext.request.contextPath }/index_index">个人中心</a></li>
 							<li id="top-main">
 								我的主页
 							</li>
@@ -109,7 +109,7 @@
 								<div style="width:100%;">
 									<ul id="head_daohang">
 										<li></li>
-										<li><a href="${pageContext.request.contextPath }/index.html">主页</a></li>
+										<li><a href="${pageContext.request.contextPath }/index_index">主页</a></li>
 										<li><a href="${pageContext.request.contextPath }/index.html">日志</a></li>
 										<li><a href="${pageContext.request.contextPath }/AlbumAction_showAlbum">相册</a></li>
 										<li><a href="${pageContext.request.contextPath }/Messageboard_showMessageboard">留言板</a></li>

@@ -61,7 +61,7 @@
 		<!--**************************************************************************************************** -->
 
 		<action name="UserAction_*" class="userAction" method="{1}">
-			<result name="loginsuccess" type="redirect">jsp/album.jsp</result>
+			<result name="loginsuccess" type="redirect">index_index</result>
 			<result name="loginFrame">jsp/login.jsp</result>
 			<allowed-methods>loginFrame,login, existAccount, sessionuser, logout,register</allowed-methods>
 		</action>
@@ -72,7 +72,7 @@
 			<allowed-methods>publish,selfArticle, delArticle, allArticle</allowed-methods>
 		</action>
 		<action name="index_*" class="indexAction" method="{1}">
-			<result name="success">index.jsp</result>
+			<result name="success">jsp/index.jsp</result>
 			<allowed-methods>index</allowed-methods>
 		</action>
 		

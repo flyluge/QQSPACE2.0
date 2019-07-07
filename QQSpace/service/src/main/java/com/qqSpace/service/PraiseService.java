@@ -12,4 +12,6 @@ public interface PraiseService {
 	 * @param praise
 	 */
 	void doCanclePraise(int uid, int aid);
+	
+	Integer findAllCount(Integer aid);
 }

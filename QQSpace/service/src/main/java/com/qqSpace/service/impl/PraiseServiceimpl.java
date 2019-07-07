@@ -1,5 +1,8 @@
 package com.qqSpace.service.impl;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 import com.qqSpace.domain.Praise;
 import com.qqSpace.service.PraiseService;
 import com.qqspace.dao.PraiseDao;
@@ -27,6 +30,12 @@ public class PraiseServiceimpl implements PraiseService {
 		if(praise!=null) {
 			praiseDao.delete(praise);			
 		}
+	}
+	
+	public Integer findAllCount(Integer aid) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Praise.class);
+		criteria.add(Restrictions.eq("aid", aid));
+		return (int) praiseDao.findAllCount(criteria);
 	}
 
 	

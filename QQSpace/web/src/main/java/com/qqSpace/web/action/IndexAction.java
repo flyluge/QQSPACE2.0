@@ -11,6 +11,7 @@ import com.qqSpace.domain.ReComment;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.ArticleService;
 import com.qqSpace.service.CommentService;
+import com.qqSpace.service.PraiseService;
 import com.qqSpace.service.RecommentService;
 import com.qqSpace.service.UserService;
 import com.qqSpace.util.PageBean;
@@ -24,10 +25,24 @@ public class IndexAction extends ActionSupport {
 	private UserService userService;
 	private CommentService commentService;
 	private RecommentService recommentService;
+	private PraiseService praiseService;
 	private User user;
 	private PageBean<Article> articles;
+	private Map<Integer, Integer> praises;
 	private Map<Integer, PageBean<Comment>> comments;
 	private Map<Integer, PageBean<ReComment>> recomments;
+	
+	public Map<Integer, Integer> getPraises() {
+		return praises;
+	}
+
+	public void setPraises(Map<Integer, Integer> praises) {
+		this.praises = praises;
+	}
+
+	public void setPraiseService(PraiseService praiseService) {
+		this.praiseService = praiseService;
+	}
 	
 	public Map<Integer, PageBean<ReComment>> getRecomments() {
 		return recomments;
@@ -73,7 +88,11 @@ public class IndexAction extends ActionSupport {
 			articles = articleService.allArticle(user, 1, 10);
 			//System.out.println(articles);
 			comments = new HashMap<>();
+			praises = new HashMap<>();
 			for (Article article: articles.getPage()) {
+				
+				praises.put(article.getAid(), praiseService.findAllCount(article.getAid()));
+				
 				Comment comment = new Comment();
 				comment.setAid(article.getAid());
 				PageBean<Comment> commentPage = commentService.findCommentByAid(1, 10, comment);
@@ -87,6 +106,7 @@ public class IndexAction extends ActionSupport {
 //				}
 				comments.put(article.getAid(), commentPage);
 			}
+			
 			return SUCCESS;
 		}
 		return ERROR;
