@@ -6,7 +6,7 @@ import com.qqSpace.domain.User;
 import com.qqSpace.util.PageBean;
 
 public interface ArticleService {
-	void doPublish(User user, Article article);
+	Article doPublish(User user, Article article);
 	
 	void doDelete(Integer aid);
 	/**
@@ -25,4 +25,9 @@ public interface ArticleService {
 	 * @return
 	 */
 	PageBean<Article> allArticle(User user, Integer currPage, Integer pageSize);
+	/**
+	 *  获取说说数量
+	 * @param uid
+	 */
+	Integer findCount(Integer uid);
 }

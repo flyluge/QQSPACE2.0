@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.qqSpace.domain.Album;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.AlbumService;
+import com.qqSpace.service.UserService;
 import com.qqSpace.util.PageBean;
 import com.qqSpace.util.UploadUtils;
 import com.qqSpace.web.action.base.BaseAction;
@@ -28,6 +29,7 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	private static final long serialVersionUID = 1L;
 	
 	private AlbumService albumService;
+	private UserService userService;
 	private Album album=new Album();
     private File file; //得到上传的文件
     private String fileContentType; //得到文件的类型
@@ -37,6 +39,11 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
     public void setAlbumService(AlbumService albumService) {
 		this.albumService = albumService;
 	}
+    
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	@Override
 	public Album getModel() {
 		return album;
@@ -71,13 +78,29 @@ public class AlbumAction extends BaseAction implements ModelDriven<Album>{
 	public String showAlbum() {
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {
-			PageBean<Album> page=albumService.findAlbumByPage(user.getUid(), 1, 12);
+			PageBean<Album> page=albumService.findAlbumByPage(user.getUid(), currpage, pagesize);
 			ActionContext.getContext().getValueStack().set("page", page);
 			return "albumFrame";
 		}else {
 			write(false, "用户未登录");
 			return NONE;
 		}
+	}
+	public String showMoreAlbum() {
+		PageBean<Album> page=albumService.findAlbumByPage(album.getUid(), currpage, pagesize);
+		ActionContext.getContext().getValueStack().set("page", page);
+		write(true, page.getPage());
+		return NONE;
+	}
+	/**
+	 * 进入好友相册界面
+	 */
+	public String friendAlbum() {
+		PageBean<Album> page=albumService.findAlbumByPage(album.getUid(), currpage, pagesize);
+		ActionContext.getContext().getValueStack().set("page", page);
+		User user=userService.findUserById(album.getUid());
+		ActionContext.getContext().getValueStack().set("selfuser", user);
+		return "falbumFrame";
 	}
 	/**
 	 * 删除相册  

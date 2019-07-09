@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.qqSpace.domain.Article;
 import com.qqSpace.domain.Comment;
 import com.qqSpace.domain.ReComment;
@@ -15,12 +14,14 @@ import com.qqSpace.service.PraiseService;
 import com.qqSpace.service.RecommentService;
 import com.qqSpace.service.UserService;
 import com.qqSpace.util.PageBean;
+import com.qqSpace.web.action.base.BaseAction;
 
 /** 
 * @author 作者 YunLei
 * @version 创建时间：2019年7月5日 上午10:55:39 
 */
-public class IndexAction extends ActionSupport {
+public class IndexAction extends BaseAction {
+	private static final long serialVersionUID = 1L;
 	private ArticleService articleService;
 	private UserService userService;
 	private CommentService commentService;
@@ -31,7 +32,24 @@ public class IndexAction extends ActionSupport {
 	private Map<Integer, Integer> praises;
 	private Map<Integer, PageBean<Comment>> comments;
 	private Map<Integer, PageBean<ReComment>> recomments;
-	
+    private Integer currpage;//当前页码
+    private Integer pagesize;//页面大小
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public void setRecommentService(RecommentService recommentService) {
+		this.recommentService = recommentService;
+	}
+
+	public void setCurrpage(Integer currpage) {
+		this.currpage = currpage;
+	}
+
+	public void setPagesize(Integer pagesize) {
+		this.pagesize = pagesize;
+	}
+
 	public Map<Integer, Integer> getPraises() {
 		return praises;
 	}
@@ -49,9 +67,6 @@ public class IndexAction extends ActionSupport {
 	}
 	public void setRecomments(Map<Integer, PageBean<ReComment>> recomments) {
 		this.recomments = recomments;
-	}
-	public void setRecommentService(RecommentService recommentService) {
-		this.recommentService = recommentService;
 	}
 	public PageBean<Article> getArticles() {
 		return articles;
@@ -78,37 +93,25 @@ public class IndexAction extends ActionSupport {
 	public void setArticleService(ArticleService articleService) {
 		this.articleService = articleService;
 	}
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
 	
 	public String index() {
 		User user = (User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {
-			articles = articleService.allArticle(user, 1, 10);
-			//System.out.println(articles);
+			articles = articleService.allArticle(user, currpage, pagesize);
 			comments = new HashMap<>();
 			praises = new HashMap<>();
 			for (Article article: articles.getPage()) {
-				
 				praises.put(article.getAid(), praiseService.findAllCount(article.getAid()));
-				
 				Comment comment = new Comment();
 				comment.setAid(article.getAid());
-				PageBean<Comment> commentPage = commentService.findCommentByAid(1, 10, comment);
-//				recomments = new HashMap<>();
-//				for(Comment c: commentPage.getPage()) {
-//					ReComment recomment = new ReComment();
-//					recomment.setComment(c);
-//					PageBean<ReComment> recommentPage = recommentService.findRecomByCid(1, 5, recomment);
-//					System.out.println(c+" "+recomment+" "+recomments);
-//					recomments.put(c.getCid(), recommentPage);
-//				}
+				PageBean<Comment> commentPage = commentService.findCommentByAid(1, 30, comment);
 				comments.put(article.getAid(), commentPage);
 			}
-			
 			return SUCCESS;
 		}
-		return ERROR;
+		else {
+			this.write(false, "用户未登陆");
+			return NONE;
+		}
 	};
 }

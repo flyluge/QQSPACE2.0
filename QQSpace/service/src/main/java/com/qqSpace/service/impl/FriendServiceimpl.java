@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
@@ -40,7 +41,7 @@ public class FriendServiceimpl implements FriendService {
 	}
 
 	@SuppressWarnings("static-access")
-	public PageBean<User> findFriends(User user, Integer currPage, Integer pageSize) {
+	public PageBean<User> findFriends(Integer uid, Integer currPage, Integer pageSize) {
 		PageBean<User> page=new PageBean<User>();
 		//设置当前页
 		if(currPage==null) {
@@ -48,14 +49,14 @@ public class FriendServiceimpl implements FriendService {
 		}
 		page.setCurrpage(currPage);
 		//设置页面大小
-		if(pageSize==0||pageSize==null) {
+		if(pageSize==null) {
 			pageSize=10;
 		}
 		page.setPageSize(pageSize);
 		//设置总数量
 		DetachedCriteria cf = DetachedCriteria.forClass(Friend.class);
-		cf.add(Restrictions.eq("tuid", user.getUid()));
-		cf.add(Restrictions.eq("status", FRIEND_STATUS));
+		cf.add(Restrictions.eq("tuid", uid));
+		cf.add(Restrictions.eq("fstatus", FRIEND_STATUS));
 		int totalcount=(int)friendDao.findAllCount(cf);
 		page.setTotalcount(totalcount);
 		//设置总页数
@@ -194,8 +195,32 @@ public class FriendServiceimpl implements FriendService {
 		}
 		return -1;
 	}
-	
-	
 
-	
+	@Override
+	public Integer findFCount(Integer tuid) {
+		DetachedCriteria cf = DetachedCriteria.forClass(Friend.class);
+		cf.add(Restrictions.eq("tuid", tuid));
+		cf.add(Restrictions.eq("fstatus", FRIEND_STATUS));
+		return (int)friendDao.findAllCount(cf);
+
+	}
+
+	public List<User> findFriends(Integer tuid) {
+		DetachedCriteria cf = DetachedCriteria.forClass(Friend.class);
+		cf.add(Restrictions.eq("tuid", tuid));
+		cf.add(Restrictions.eq("fstatus", FRIEND_STATUS));
+		DetachedCriteria cu=DetachedCriteria.forClass(User.class);
+		cf.setProjection(Property.forName("fuid"));
+		cf.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+		cu.add(Property.forName("uid").in(cf));
+		return userDao.find(cu);
+	}
+
+	@Override
+	public Integer findFReqCount(Integer tuid) {
+			DetachedCriteria cf = DetachedCriteria.forClass(Friend.class);
+			cf.add(Restrictions.eq("tuid", tuid));
+			cf.add(Restrictions.eq("rstatus", RESPONSE_STATUS));
+			return (int)friendDao.findAllCount(cf);
+	}
 }

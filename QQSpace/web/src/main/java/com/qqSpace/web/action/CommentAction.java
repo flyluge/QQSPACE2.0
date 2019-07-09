@@ -1,9 +1,6 @@
 package com.qqSpace.web.action;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ModelDriven;
 import com.qqSpace.domain.Comment;
-import com.qqSpace.domain.User;
 import com.qqSpace.service.CommentService;
 import com.qqSpace.util.PageBean;
 import com.qqSpace.web.action.base.BaseAction;
@@ -69,8 +66,9 @@ public class CommentAction extends BaseAction{
 	 * 添加评论 需要用户user.uid 说说aid 内容content 时间pubdate
  	 */
 	public void addComment() {
-		if(commentService.addComment(comment)) {
-			this.write(true, "添加成功");
+		Comment c = commentService.addComment(comment);
+		if(c!=null) {
+			this.write(true, c);
 		}else {
 			this.write(false, "添加失败,非好友");
 		}

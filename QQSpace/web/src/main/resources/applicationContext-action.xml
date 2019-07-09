@@ -14,10 +14,12 @@
     	http://www.springframework.org/schema/tx/spring-tx.xsd">
     <bean id="albumAction" class="com.qqSpace.web.action.AlbumAction">
     	<property name="albumService" ref="albumService"></property>
+    	<property name="userService" ref="userService"></property>
     </bean>
     <bean id="messageboardAction" class="com.qqSpace.web.action.MessageboardAction">
     	<property name="messageBoardService" ref="messageBoardService"></property>
     	<property name="remessService" ref="reMessageboardService"></property>
+    	<property name="userService" ref="userService"></property>
     </bean>
     <bean id="userAction" class="com.qqSpace.web.action.UserAction">
     	<property name="userService" ref="userService"></property>
@@ -27,6 +29,9 @@
     </bean>
     <bean id="articleAction" class="com.qqSpace.web.action.ArticleAction">
     	<property name="articleService" ref="articleService"></property>
+    	<property name="commentService" ref="commentService"></property>
+    	<property name="praiseService" ref="praiseService"></property>
+    	<property name="userService" ref="userService"></property>
     </bean>
     <bean id="reMessageboardAction" class="com.qqSpace.web.action.ReMessageboardAction">
     	<property name="reMessbdService" ref="reMessageboardService"></property>
@@ -36,6 +41,9 @@
     </bean>
     <bean id="recommentAction" class="com.qqSpace.web.action.RecommentAction">
     	<property name="recomService" ref="recommentService"></property>
+    </bean>
+    <bean id="friendAction" class="com.qqSpace.web.action.FriendAction">
+    	<property name="friendService" ref="friendService"></property>
     </bean>
     <bean id="indexAction" class="com.qqSpace.web.action.IndexAction">
     	<property name="recommentService" ref="recommentService"></property>

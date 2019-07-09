@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.qqSpace.domain.Article;
@@ -66,6 +67,7 @@ public class CommentServiceimpl implements CommentService {
 		}
 		page.setTotalpage(totalpage);
 		//设置内容
+		c.addOrder(Order.asc("pubdate"));
 		List<Comment> list = commentDao.findByPage(c, (currpage-1)*pagesize, pagesize);
 		page.setPage(list);
 		return page;
@@ -101,6 +103,7 @@ public class CommentServiceimpl implements CommentService {
 		}
 		page.setTotalpage(totalpage);
 		//设置内容
+		c.addOrder(Order.asc("pubdate"));
 		List<Comment> list = commentDao.findByPage(c, (currpage-1)*pagesize, pagesize);
 		page.setPage(list);
 		return page;
@@ -120,7 +123,7 @@ public class CommentServiceimpl implements CommentService {
 	 *  需要comment.user.uid\ aid \content 
 	 */
 	@Override
-	public boolean addComment(Comment comment) {
+	public Comment addComment(Comment comment) {
 		
 		//获取说说拥有者
 		Article a = articleDao.findById(comment.getAid());
@@ -129,10 +132,11 @@ public class CommentServiceimpl implements CommentService {
 		if(friendService.isFriend(uid1, fid)) {
 			comment.setPubdate(new Timestamp(new Date().getTime()));
 			commentDao.add(comment);
-			return true;
+			return comment;
 		}else {
-			return false;
+			return comment;
 		}
 	}
+
 	
 }

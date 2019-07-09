@@ -10,14 +10,14 @@
 			<interceptor-stack name="mystack">
 				<interceptor-ref name="loginInterceptor">
 					<!-- 指定哪些方法不拦截 -->
-					<!-- param name="excludeMethods">login, existAccount</param> -->
+					<param name="excludeMethods">login, existAccount,logout</param>
 					<!-- 指定哪些方法需要拦截 -->
-					<param name="includeMethods">aaa</param>
+					<!-- <param name="includeMethods">aaa</param> -->
 				</interceptor-ref>
 				<!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 "fileUpload.maximumSize" ：限制上传最大的文件大小。 
 				"fileUpload.allowedTypes"：允许上传文件的类型。 "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
 				<interceptor-ref name="defaultStack">
-					<param name="fileUpload.maximumSize">500000000</param>
+					<param name="fileUpload.maximumSize">5000000000</param>
 					<param name="fileUpload.allowedExtensions">.jpg,.jpeg,.JPG,.JPEG,.png,.PNG</param>
 				</interceptor-ref>
 			</interceptor-stack>
@@ -27,6 +27,8 @@
 		<!--全局的方法  -->
 		<global-results>
 			<result name="input">jsp/input.jsp</result>
+			<result name="toLogin" type="redirect">jsp/login.jsp</result>
+			<result name="timeout" type="redirect">jsp/timeout.jsp</result>
 		</global-results>
 		<!--相册 -->
 		<action name="AlbumAction_*" class="albumAction" method="{1}">
@@ -34,13 +36,15 @@
 			<result name="addsuccess" type="redirect">AlbumAction_showAlbum</result>
 			<result name="addFail"  type="redirect">AlbumAction_showAlbum</result>
 			<result name="deletesuccess"  type="redirect">AlbumAction_showAlbum</result>
-			<allowed-methods>showAlbum,deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage</allowed-methods>
+			<result name="falbumFrame">jsp/falbum.jsp</result>
+			<allowed-methods>showAlbum,deleteAlbum,addAlbum,findAlbumByPage,findSessionAlbumByPage,friendAlbum,showMoreAlbum</allowed-methods>
 		</action>
 		<!--留言板  -->
 		<action name="Messageboard_*" class="messageboardAction" method="{1}">
 			<result name="messageboardFrame">jsp/messageboard.jsp</result>
 			<result name="deletesuccess">Messageboard_deleteMessBd</result>
-			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess,showMessageboard</allowed-methods>
+			<result name="fmessageboardFrame">jsp/fmessageboard.jsp</result>
+			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess,showMessageboard,showFMessageboard,</allowed-methods>
 		</action>
 		<!--留言回复  -->
 		<action name="ReMessageboardAction_*" class="reMessageboardAction" method="{1}">
@@ -57,19 +61,26 @@
 		<action name="RecommentAction_*" class="recommentAction" method="{1}">
 			<allowed-methods>addRecom,deleteRecom,findRecomByCid,findRecomByUid,findRecomByThisUid</allowed-methods>
 		</action>
+		<action name="FriendAction_*" class="friendAction" method="{1}">
+			<allowed-methods>findFCount,findAllFriends,findFReqCount</allowed-methods>
+		</action>
 	
 		<!--**************************************************************************************************** -->
 
 		<action name="UserAction_*" class="userAction" method="{1}">
 			<result name="loginsuccess" type="redirect">index_index</result>
 			<result name="loginFrame">jsp/login.jsp</result>
-			<allowed-methods>loginFrame,login, existAccount, sessionuser, logout,register</allowed-methods>
+			<result name="infoFrame">jsp/info.jsp</result>
+			<result name="updatesuccess" type="redirect">UserAction_showinfo</result>
+			<allowed-methods>loginFrame,login, existAccount, sessionuser, logout,register,showinfo,saveAlter</allowed-methods>
 		</action>
 		<action name="praise_*" class="praiseAction" method="{1}">
 			<allowed-methods>praise, cancel</allowed-methods>
 		</action>
 		<action name="article_*" class="articleAction" method="{1}">
-			<allowed-methods>publish,selfArticle, delArticle, allArticle</allowed-methods>
+			<result name="farticleFrame">jsp/farticle.jsp</result>
+			<result name="tarticleFrame">jsp/tarticle.jsp</result>
+			<allowed-methods>publish,selfArticle, delArticle, allArticle,showfarticle,showtarticle,getCount</allowed-methods>
 		</action>
 		<action name="index_*" class="indexAction" method="{1}">
 			<result name="success">jsp/index.jsp</result>

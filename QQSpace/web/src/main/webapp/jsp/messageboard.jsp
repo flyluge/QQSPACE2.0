@@ -9,14 +9,8 @@
 		<title>留言板</title>
 		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	</head>
-	<script type="text/javascript">
-		function getReMessBD(mbid){
-			alert(mbid);
-		}
-	
-	</script>
 	<body>
-		<jsp:include page="../container/head.jsp"></jsp:include>
+		<jsp:include page="container/head.jsp"></jsp:include>
 		<div class="container" style="background: white;border-radius: 5px;">
 			<div style="margin-top:20px">
 				<!-- Nav tabs -->
@@ -28,6 +22,9 @@
 					</li>
 				</ul>
 				<div class="row" style="padding:20px;">
+					<c:if test="${page.page[0]==null }">
+						<h4>您的好友未给您留言</h4>
+					</c:if>
 					<c:forEach var="mess" items="${page.page }" varStatus="status">
 						<!--这是一个评论模块-->
 						<div class="col-md-12" style="margin-top:20px ;">
@@ -48,7 +45,6 @@
 											<a role="button" data-toggle="collapse" href="#${status.index }">回复</a>
 											<a href="Messageboard_deleteMessBd?mbid=${mess.mbid }">删除</a>
 										</div>
-										<button onclick="getReMessBD(1)">aaa</button>
 										<!--回复评论-->
 										<div id="remess_${status.index }">
 										</div>
@@ -102,24 +98,5 @@
 			</div>
 		</div>
 	</body>
-<%-- <div class="col-md-12" id="remessbd_container_${status.index }" onload="getReMessBD(1)">
-											<ul class="media-list" style="margin-top:10px ;">
-												<li class="media">
-													<div class="media-left">
-														<a href="#">
-															<img class="media-object" src="" alt="图片加载失败" width="50px">
-														</a>
-													</div>
-													<div class="media-body">
-														<h4 class="media-heading">
-															望风的蜗牛
-															<small>2016-08-09 7:00	<a href="#">删除</a></small>
-														</h4>
-														<div style="border:dotted gainsboro 1px;border-radius: 5px;">
-															<p></p>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div> --%>
+	<jsp:include page="container/footer.jsp"></jsp:include>
 </html>

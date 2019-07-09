@@ -117,7 +117,7 @@
 			$("#user_phone3").blur(function(){
 				let jsonmess=$("#user_phone3").val();
 				$.ajax({
-					url:"user_existAccount",
+					url:"UserAction_existAccount",
 					type:"POST",
 					dataType: "json",
 					data:{"user.useremail":jsonmess},
@@ -176,7 +176,7 @@
 		<div class="container" style="margin-top: 50px;">
 			<div class="row">
 				<!--版块一-->
-				<div class="col-md-6 col-sm-12 hidden-xs" style="background: url(img/ju_top.jpg) no-repeat center top;background-position: 0px top;">
+				<div class="col-md-6 col-sm-12 hidden-xs" style="background: url(/web/img/ju_top.jpg) no-repeat center top;background-position: 0px top;">
 					<div style="width: 100%;padding:5% 15% 0% 15%;line-height: 20px;margin: 75px auto 0 auto;">
 						<p>落寞的孤辰，乱了谁的发梢，三生的河畔，许了谁的流年。</p>
 						<p>奈何桥上谁饮了那孟婆汤刻下这悠远的思念，遗忘，感伤！</p>
@@ -185,7 +185,7 @@
 						<p>蝶花陨落，许你一世柔情；</p>
 						<p>残缺了月圆，凄美了誓言，终是那一世花开，这一生花落。</p>
 					</div>
-					<div style="background: url(img/ju_bottom.jpg);width: 100%;min-height: 88px;"></div>
+					<div style="background: url(/web/img/ju_bottom.jpg);width: 100%;min-height: 88px;"></div>
 				</div>
 				<!--板块二-->
 				<!--<div class="col-md-4 " style="overflow: hidden;">

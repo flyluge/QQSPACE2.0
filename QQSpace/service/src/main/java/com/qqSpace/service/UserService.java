@@ -29,4 +29,13 @@ public interface UserService {
 	 * @return 
 	 */
 	int doUpdate(User newUser, User oldUser);
+	/**
+	 * 更新用户
+	 * @param user
+	 */
+	void updateUser(User user);
+	/**
+	 * 通过id获取用户
+	 */
+	User findUserById(Integer uid);
 }

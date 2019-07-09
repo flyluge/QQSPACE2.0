@@ -1,5 +1,7 @@
 package com.qqSpace.service;
 
+import java.util.List;
+
 import com.qqSpace.domain.User;
 import com.qqSpace.util.PageBean;
 
@@ -11,12 +13,12 @@ public interface FriendService {
 	User findFriend(Integer uid, Integer fuid);
 	/**
 	 * 
-	 * @param user
+	 * @param integer
 	 * @param currPage
 	 * @param pageSize
 	 * @return
 	 */
-	PageBean<User> findFriends(User user, Integer currPage, Integer pageSize);
+	PageBean<User> findFriends(Integer integer, Integer currPage, Integer pageSize);
 	/**
 	 * 判断是否为好友
 	 * @param uid
@@ -51,4 +53,7 @@ public interface FriendService {
 	 * @return 0已发送请求 1未同意 2同意 -1接受状态
 	 */
 	Integer status(Integer uid1, Integer uid2);
+	Integer findFCount(Integer tuid);
+	List<User> findFriends(Integer tuid);
+	Integer findFReqCount(Integer tuid);
 }

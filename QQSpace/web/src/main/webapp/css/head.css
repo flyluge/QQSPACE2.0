@@ -1,0 +1,35 @@
+*{
+	font-family: punctuation,"PingFangSC-Regular","Microsoft Yahei","sans-serif";
+}
+border{
+	background:  #F9F9F9;
+}
+#every_head{
+	background-image: url("/web/img/bg4.png"); 
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: scroll;
+	margin-top: 48px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+#every_head_touxiang{
+	width:125px;
+	height: 125px;
+	border-radius: 10px;
+	border: goldenrod 4px solid;
+}
+#head_daohang{
+	list-style: none;
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+}
+#head_daohang>li{
+	line-height: 60px;
+	width:10%;
+	color: goldenrod;
+	float: left;
+	text-align: center;
+	height: 50px;
+}

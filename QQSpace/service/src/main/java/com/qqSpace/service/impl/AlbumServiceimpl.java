@@ -47,7 +47,7 @@ public class AlbumServiceimpl implements AlbumService {
 		PageBean<Album> page=new PageBean<Album>();
 		//设置当前页
 		if(currpage==null) {
-			currpage=0;
+			currpage=1;
 		}
 		page.setCurrpage(currpage);
 		//设置页面大小

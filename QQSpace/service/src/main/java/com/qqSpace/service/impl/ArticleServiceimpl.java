@@ -2,7 +2,9 @@ package com.qqSpace.service.impl;
 
 import java.util.List;
 
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
@@ -20,11 +22,12 @@ public class ArticleServiceimpl implements ArticleService {
 		this.articleDao = articleDao;
 	}
 
-	public void doPublish(User user, Article article) {
+	public Article doPublish(User user, Article article) {
 		if(user!=null && user.getUid()!=null && article!=null) {
 			article.setUser(user);
 			articleDao.add(article);
 		}
+		return article;
 	}
 
 	public void doDelete(Integer aid) {
@@ -41,13 +44,14 @@ public class ArticleServiceimpl implements ArticleService {
 		}
 		page.setCurrpage(currPage);
 		//设置页面大小
-		if(pageSize==0||pageSize==null) {
+		if(pageSize==null) {
 			pageSize=10;
 		}
 		page.setPageSize(pageSize);
 		//设置查询条件
 		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
 		criteria.add(Restrictions.eq("user.uid", user.getUid()));
+		criteria.addOrder(Order.desc("pubdate"));
 		List<Article> articles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
 		//设置总数量
 		int totalcount=(int)articleDao.findAllCount(criteria);
@@ -66,7 +70,6 @@ public class ArticleServiceimpl implements ArticleService {
 	 * 查找好友的说说
 	 * 传入好友拥有者的id(user.uid)
 	 */
-	@SuppressWarnings("static-access")
 	public PageBean<Article> allArticle(User user, Integer currPage, Integer pageSize) {
 		PageBean<Article> page=new PageBean<Article>();
 		//设置当前页
@@ -75,30 +78,28 @@ public class ArticleServiceimpl implements ArticleService {
 		}
 		page.setCurrpage(currPage);
 		//设置页面大小
-		if(pageSize==0||pageSize==null) {
+		if(pageSize==null) {
 			pageSize=10;
 		}
 		page.setPageSize(pageSize);
 		//查询用户的说说
 		DetachedCriteria criteria = DetachedCriteria.forClass(Article.class);
-		criteria.add(Restrictions.eq("user.uid", user.getUid()));
-		List<Article> selfArticles = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
-		int uaTotalcount = (int) articleDao.findAllCount(criteria);
+		
 		//查询好友的说说
 		Integer tuid=user.getUid();
-		DetachedCriteria ca=DetachedCriteria.forClass(Article.class);
+		
 		DetachedCriteria cf=DetachedCriteria.forClass(Friend.class);
 		cf.add(Restrictions.eq("tuid", tuid));
 		cf.add(Restrictions.eq("fstatus", 1));
 		cf.setProjection(Property.forName("fuid"));
-		cf.setResultTransformer(cf.DISTINCT_ROOT_ENTITY);
-		ca.add(Property.forName("user.uid").in(cf));
-		List<Article> friendArticle = articleDao.findByPage(ca, (currPage-1)*pageSize, pageSize);
-		int faTotalcount = (int) articleDao.findAllCount(ca);
-		//将friend合并到self
-		selfArticles.addAll(friendArticle);
+		cf.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+		
+		criteria.add(Restrictions.or(Property.forName("user.uid").in(cf),Restrictions.eq("user.uid", user.getUid())));
+		criteria.addOrder(Order.desc("pubdate"));
+		List<Article> article = articleDao.findByPage(criteria, (currPage-1)*pageSize, pageSize);
+		int totalcountx = (int) articleDao.findAllCount(criteria);
 		//设置总数量
-		int totalcount = uaTotalcount+faTotalcount;
+		int totalcount = totalcountx;
 		page.setTotalcount(totalcount);
 		//设置总页数
 		int totalpage=(totalcount)/pageSize;
@@ -106,8 +107,16 @@ public class ArticleServiceimpl implements ArticleService {
 			totalpage++;
 		}
 		page.setTotalpage(totalpage);
-		page.setPage(selfArticles);
+		page.setPage(article);
 		return page;
+	}
+
+	@Override
+	public Integer findCount(Integer uid) {
+		// TODO Auto-generated method stub
+		DetachedCriteria ca=DetachedCriteria.forClass(Article.class);
+		ca.add(Restrictions.eq("user.uid", uid));
+		return (int) articleDao.findAllCount(ca);
 	}
 	
 }

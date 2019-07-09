@@ -11,6 +11,7 @@ import com.qqSpace.domain.ReMessageboard;
 import com.qqSpace.domain.User;
 import com.qqSpace.service.MessageBoardService;
 import com.qqSpace.service.ReMessageboardService;
+import com.qqSpace.service.UserService;
 import com.qqSpace.util.PageBean;
 import com.qqSpace.web.action.base.BaseAction;
 /**
@@ -22,6 +23,7 @@ public class MessageboardAction extends BaseAction implements ModelDriven<Messag
 	private static final long serialVersionUID = 1L;
 	private MessageBoardService messageBoardService;
 	private ReMessageboardService remessService;
+	private UserService userService;
 	private Messageboard messbd=new Messageboard();
     private Integer currpage;//当前页码
     private Integer pagesize;//页面大小
@@ -29,6 +31,14 @@ public class MessageboardAction extends BaseAction implements ModelDriven<Messag
 		this.messageBoardService = messageBoardService;
 	}
 	
+	public void setMessbd(Messageboard messbd) {
+		this.messbd = messbd;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	public ReMessageboardService getRemessService() {
 		return remessService;
 	}
@@ -48,7 +58,22 @@ public class MessageboardAction extends BaseAction implements ModelDriven<Messag
 	public void setPagesize(Integer pagesize) {
 		this.pagesize = pagesize;
 	}
-	
+	public String showFMessageboard() {
+			PageBean<Messageboard> page = messageBoardService.findMessBdByPage(currpage, pagesize, messbd);
+			page.setMap(new HashMap<Integer,List<ReMessageboard>>());
+			for (Messageboard m : page.getPage()) {
+				ReMessageboard reMessbd=new ReMessageboard();
+				reMessbd.setMbid(m.getMbid());
+				PageBean<ReMessageboard> pa = remessService.findReMessByMbid(1, 30, reMessbd);
+				@SuppressWarnings("unchecked")
+				Map<Integer,List<ReMessageboard>> map= (Map<Integer, List<ReMessageboard>>) page.getMap();
+				map.put(m.getMbid(), pa.getPage());
+			}
+			User user=userService.findUserById(messbd.getTuid());
+			ActionContext.getContext().getValueStack().set("selfuser", user);
+			ActionContext.getContext().getValueStack().set("page", page);
+		return "fmessageboardFrame";
+	}
 	public String showMessageboard() {
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {

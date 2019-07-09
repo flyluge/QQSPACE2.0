@@ -14,7 +14,6 @@ public class Messageboard {
         return mbid;
     }
 
-
 	public Integer getTuid() {
 		return tuid;
 	}
