@@ -17,6 +17,9 @@
 <link href="${pageContext.request.contextPath }/css/index.css" rel="stylesheet" />
 <script type="text/javascript">
 	var flag_showfriend=false;
+	var flag_showfriendreq=false;
+	var flag_addfriend=false;
+	var flag_myreqfriend=false;
 	function publish_article(){
 		$.ajax({
 			url:"article_publish",
@@ -152,6 +155,9 @@
 	}
 	$(function(){
 		$("#collapseFriend").hide();
+		$("#collapseFriendReq").hide();
+		$("#addFrined").hide();
+		$("#myreqFriend").hide();
 		flushFriends();
 	})
 	/*获取好友的数量和好友请求的数量  */
@@ -161,7 +167,7 @@
 			url:"FriendAction_findFCount",
 			type:"post",
 			dataType: "json",
-			data:{tuid:"${user.uid}"},
+			data:{tuid:"${sessionScope.user.uid}"},
 			success:function(data){
 				if(data.message){
 					$("#index_myfriend").html(data.data);
@@ -170,10 +176,10 @@
 		})
 		/*获取请求数量  */
 		$.ajax({
-			url:"FriendAction_findFCount",
+			url:"FriendAction_findFReqCount",
 			type:"post",
 			dataType: "json",
-			data:{tuid:"${user.uid}"},
+			data:{tuid:"${sessionScope.user.uid}"},
 			success:function(data){
 				if(data.message){
 					$("#index_reqfriend").html(data.data);
@@ -202,6 +208,85 @@
 			$("#collapseFriend").hide();
 		}
 	}
+	function showFriendsReq(){
+		if(flag_showfriendreq==false){
+			flag_showfriendreq=true;
+			$("#collapseFriendReq").show();
+			$.ajax({
+				url:"FriendAction_findReqFriend",
+				type:"post",
+				dataType: "json",
+				data:{tuid:"${sessionScope.user.uid}"},
+				success:function(data){
+					$.each(data.data,function(i,n){
+						$("#collapseFriendReq").append(`<div>`+n.fuser.username+`&nbsp<a href="FriendAction_agreeFriend?msg=1&uid1=${sessionScope.user.uid}&uid2=`+n.fuser.uid+`">同意</a>&nbsp<a href="FriendAction_agreeFriend?msg=0&uid1=${sessionScope.user.uid}&uid2=`+n.fuser.uid+`"" >拒绝</a></div>`);
+					})
+				}
+			})
+		}else if(flag_showfriendreq==true){
+			flag_showfriendreq=false;
+			$("#collapseFriendReq").html("");
+			$("#collapseFriendReq").hide();
+		}
+	}
+	function addFriends(){
+		if(flag_addfriend==false){
+			flag_addfriend=true;
+			$("#addFrined").show();
+			$.ajax({
+				url:"FriendAction_findReqFriend",
+				type:"post",
+				dataType: "json",
+				data:{tuid:"${sessionScope.user.uid}"},
+				success:function(data){
+					$.each(data.data,function(i,n){
+					})
+				}
+			})
+		}else if(flag_addfriend==true){
+			flag_addfriend=false;
+			$("#friendFrame").html("");
+			$("#addFrined").hide();
+		}
+	}
+	function searchFriend(){
+		let jsonString=$("#form_addFriend").serialize();
+		$("#friendFrame").html("");
+		$.ajax({
+			url:"UserAction_findFuzzyUser",
+			type:"post",
+			dataType: "json",
+			data:jsonString,
+			success:function(data){
+				if(data.data==""){
+					$("#friendFrame").html("未查询到用户");
+				}
+				$.each(data.data,function(i,n){
+					$("#friendFrame").append(`<div>账号:`+n.useremail+`</div><div>用户名:`+n.username+`&nbsp<a href="FriendAction_addReq?uid1=${sessionScope.user.uid}&uid2=`+n.uid+`">添加</a><div>`);
+				})
+			}
+		})
+	}
+	function showMyReq(){
+		if(flag_myreqfriend==false){
+			flag_myreqfriend=true;
+			$("#myreqFriend").show();
+			$.ajax({
+				url:"FriendAction_findReqFriend",
+				type:"post",
+				dataType: "json",
+				data:{tuid:"${sessionScope.user.uid}"},
+				success:function(data){
+					$.each(data.data,function(i,n){
+					})
+				}
+			})
+		}else if(flag_myreqfriend==true){
+			flag_myreqfriend=false;
+			$("#myreqFriend").html("");
+			$("#myreqFriend").hide();
+		}
+	}
 </script>
 </head>
 <body style="background: #F9F9F9;">
@@ -212,17 +297,39 @@
 				<ul class="list-group">
 					<li class="list-group-item">
 						<span><a onclick="showFriends()">我的好友</a></span>
-						<span class="badge" id="index_myfriend">
-						</span> 
+						<span class="badge" id="index_myfriend"></span> 
 					</li>
 					<!--显示好友列表  -->
 					<li class="list-group-item" id="collapseFriend">
 					</li>
 					<li class="list-group-item">
-						<span>好友请求</span>
+						<span><a onclick="showFriendsReq()">好友请求</a></span>
 						<span id="index_reqfriend" class="badge"></span>
 					</li>
-					<li class="list-group-item"><span class="badge"></span> 我收到的回复
+					<!--显示好友请求  -->
+					<li class="list-group-item" id="collapseFriendReq">
+					<li class="list-group-item">
+						<span><a onclick="addFriends()">添加好友</a></span>
+						<span id="index_reqfriend" class="badge"></span>
+					</li>
+					<!--添加好友  -->
+					<li class="list-group-item" id="addFrined">
+						请输入好友的昵称:<br>
+						<div>
+							<form method="post" id="form_addFriend">
+								<input type="text" name="fuzzyname" style="width:60%"><a class="btn" onclick="searchFriend()">搜索</a>
+							</form>
+							<div id="friendFrame">
+								
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<span><a onclick="showMyReq()">我的申请</a></span>
+						<span id="index_reqfriend" class="badge"></span>
+					</li>
+					<!--显示好友请求  -->
+					<li class="list-group-item" id="myreqFriend">
 					</li>
 				</ul>
 			</div>
@@ -298,10 +405,10 @@
 				<div class="text-right">
 					总共${articles.totalcount }条记录/每页显示${articles.pageSize }条<br>
 					当前页${articles.currpage }/总共${articles.totalpage }页<br>
-					<c:if test="${articles.currpage<articles.totalpage }">
+					<c:if test="${articles.currpage < articles.totalpage }">
 						<a href="index_index?currpage=${articles.currpage+1}&pagesize=10">下一页</a>
 					</c:if>
-					<c:if test="${articles.currpage>=articles.totalpage}">
+					<c:if test="${articles.currpage>=1&&articles.totalpage!=1&&articles.currpage<=articles.totalpage}">
 						<a href="index_index?currpage=${articles.currpage-1}&pagesize=10">上一页</a>
 					</c:if>
 				</div>

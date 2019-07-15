@@ -1,5 +1,7 @@
 package com.qqSpace.service;
 
+import java.util.List;
+
 import com.qqSpace.domain.User;
 
 public interface UserService {
@@ -38,4 +40,5 @@ public interface UserService {
 	 * 通过id获取用户
 	 */
 	User findUserById(Integer uid);
+	List<User> findFuzzyUser(String fuzzyname);
 }

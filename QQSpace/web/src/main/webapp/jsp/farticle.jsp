@@ -116,12 +116,12 @@
 			<div class="col-md-2" style="padding: 0;">
 				<ul class="list-group">
 					<li class="list-group-item">
-						<span><a href="article_showfarticle?uid=${selfuser.uid }">他的说说</a></span>
+						<span>他的说说</span>
 						<span class="badge" id="fartcle_myfriend">
 						</span> 
 					</li>
 					<li class="list-group-item">
-						<span><a href="Messageboard_showFMessageboard?tuid=${selfuser.uid }">他的留言板</a></span>
+						<span><a href="Messageboard_showFMessageboard.action?tuid=${selfuser.uid }">他的留言板</a></span>
 					</li>
 					<li class="list-group-item">
 						<span><a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=1&pagesize=6">他的相册</a></span>
@@ -188,7 +188,7 @@
 					<c:if test="${page.currpage<page.totalpage }">
 						<a href="article_showfarticle?uid=${selfuser.uid }&currpage=${selfarticle.currpage+1}&pagesize=10">下一页</a>
 					</c:if>
-					<c:if test="${page.currpage>=2}">
+					<c:if test="${page.currpage>1&&page.totalpage!=1&&page.currpage<=page.totalpage}">
 						<a href="article_showfarticle?uid=${selfuser.uid }&currpage=${selfarticle.currpage-1}&pagesize=10">上一页</a>
 					</c:if>
 				</div>

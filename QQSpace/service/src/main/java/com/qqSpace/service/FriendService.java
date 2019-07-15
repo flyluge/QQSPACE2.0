@@ -2,15 +2,11 @@ package com.qqSpace.service;
 
 import java.util.List;
 
+import com.qqSpace.domain.Friend;
 import com.qqSpace.domain.User;
 import com.qqSpace.util.PageBean;
 
 public interface FriendService {
-	/**
-	 * 查询用户uid的好友fuid的信息
-	 * @return fuid的user对象
-	 */
-	User findFriend(Integer uid, Integer fuid);
 	/**
 	 * 
 	 * @param integer
@@ -54,6 +50,22 @@ public interface FriendService {
 	 */
 	Integer status(Integer uid1, Integer uid2);
 	Integer findFCount(Integer tuid);
+	/**
+	 * 获取所有的好友
+	 * @param tuid
+	 * @return
+	 */
 	List<User> findFriends(Integer tuid);
+	/**
+	 * 获取好友请求数量
+	 * @param tuid
+	 * @return
+	 */
 	Integer findFReqCount(Integer tuid);
+	/**
+	 * 通过tuid获取好友请求
+	 * @param tuid
+	 * @return
+	 */
+	List<Friend> findReqFriends(Integer tuid);
 }

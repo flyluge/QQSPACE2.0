@@ -67,7 +67,7 @@ public class FriendServiceimpl implements FriendService {
 		page.setTotalpage(totalpage);
 		//查询好友的详细信息
 		DetachedCriteria cu=DetachedCriteria.forClass(User.class);
-		cf.setProjection(Property.forName("fuid"));
+		cf.setProjection(Property.forName("fuser.uid"));
 		cf.setResultTransformer(cf.DISTINCT_ROOT_ENTITY);
 		cu.add(Property.forName("uid").in(cf));
 		//
@@ -85,35 +85,27 @@ public class FriendServiceimpl implements FriendService {
 		return false;
 	}
 
-	@Override
-	public User findFriend(Integer uid, Integer fuid) {
-		Friend f = friendDao.find(uid, fuid);
-		if(f!=null) {
-			User user = userDao.findById(f.getFuid());
-			user.setUserpassword(null);
-			return user;
-		}
-		return null;
-	}
 
 	@Override
 	public void doSendFriendReq(Integer uid1, Integer uid2) {
-		if(userDao.findById(uid2)!=null) {
-			Friend f1 = new Friend();
-			//给用户uid1添加好友uid2
-			f1.setTuid(uid1);
-			f1.setFuid(uid2);
-			f1.setRstatus(REQUEST_STATUS);
-			f1.setFstatus(UNFRIEND_STATUS);
-			friendDao.add(f1);
-			//给用户uid2添加好友uid1
-			Friend f2 = new Friend();
-			f2.setTuid(uid2);
-			f2.setFuid(uid1);
-			f2.setRstatus(RESPONSE_STATUS);
-			f2.setFstatus(UNFRIEND_STATUS);
-			friendDao.add(f2);
-		}
+		Friend f1 = new Friend();
+		//给用户uid1添加好友uid2
+		f1.setTuid(uid1);
+		User user=new User();
+		user.setUid(uid2);
+		f1.setFuser(user);
+		f1.setRstatus(REQUEST_STATUS);
+		f1.setFstatus(UNFRIEND_STATUS);
+		friendDao.add(f1);
+		//给用户uid2添加好友uid1
+		Friend f2 = new Friend();
+		f2.setTuid(uid2);
+		User user2=new User();
+		user2.setUid(uid1);
+		f2.setFuser(user2);
+		f2.setRstatus(RESPONSE_STATUS);
+		f2.setFstatus(UNFRIEND_STATUS);
+		friendDao.add(f2);
 		
 	}
 
@@ -145,7 +137,7 @@ public class FriendServiceimpl implements FriendService {
 			}
 			page.setTotalpage(totalpage);
 			//获取数据
-			cf.setProjection(Property.forName("fuid"));
+			cf.setProjection(Property.forName("fuser.uid"));
 			cf.setResultTransformer(cf.DISTINCT_ROOT_ENTITY);
 			DetachedCriteria cu=DetachedCriteria.forClass(User.class);
 			cu.add(Property.forName("uid").in(cf));
@@ -210,7 +202,7 @@ public class FriendServiceimpl implements FriendService {
 		cf.add(Restrictions.eq("tuid", tuid));
 		cf.add(Restrictions.eq("fstatus", FRIEND_STATUS));
 		DetachedCriteria cu=DetachedCriteria.forClass(User.class);
-		cf.setProjection(Property.forName("fuid"));
+		cf.setProjection(Property.forName("fuser.uid"));
 		cf.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
 		cu.add(Property.forName("uid").in(cf));
 		return userDao.find(cu);
@@ -222,5 +214,13 @@ public class FriendServiceimpl implements FriendService {
 			cf.add(Restrictions.eq("tuid", tuid));
 			cf.add(Restrictions.eq("rstatus", RESPONSE_STATUS));
 			return (int)friendDao.findAllCount(cf);
+	}
+
+	@Override
+	public List<Friend> findReqFriends(Integer tuid) {
+		DetachedCriteria c=DetachedCriteria.forClass(Friend.class);
+		c.add(Restrictions.eq("tuid",tuid));
+		c.add(Restrictions.eq("rstatus", -1));
+		return friendDao.find(c);
 	}
 }

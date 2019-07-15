@@ -15,9 +15,9 @@
 				/*获取说说数量  */
 				$.ajax({
 					url:"article_getCount",
-					type:"post",
+					type:"get",
 					data:{
-						"uid": ${selfuser.uid}
+						"uid": "${selfuser.uid}"
 					},
 					dataType: "json",
 					success:function(data){
@@ -42,7 +42,7 @@
 		<jsp:include page="container/fhead.jsp"></jsp:include>
 		<div class="container" style="border-radius: 5px;">
 			<div class="row">
-				<div class="col-md-2" style="padding: 0;">
+				<div class=" col-md-2" style="padding: 0;">
 					<ul class="list-group">
 						<li class="list-group-item">
 							<span><a href="article_showfarticle?uid=${selfuser.uid }">他的说说</a></span>
@@ -50,10 +50,10 @@
 							</span> 
 						</li>
 						<li class="list-group-item">
-							<span><a>他的留言板</a></span>
+							<span><a href="Messageboard_showFMessageboard.action?tuid=${selfuser.uid }">他的留言板</a></span>
 						</li>
 						<li class="list-group-item">
-							<span><a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=1&pagesize=6">他的相册</a></span>
+							<span>他的相册</span>
 						</li>
 					</ul>
 				</div>
@@ -87,7 +87,7 @@
 							<c:if test="${page.currpage<page.totalpage }">
 								<a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=${page.currpage+1}&pagesize=6">下一页</a>
 							</c:if>
-							<c:if test="${page.currpage>=2}">
+							<c:if test="${page.currpage>=2&&page.currpage<=page.totalpage}">
 								<a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=${page.currpage-1}&pagesize=6">上一页</a>
 							</c:if>
 						</div>

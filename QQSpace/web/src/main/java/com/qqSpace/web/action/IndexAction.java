@@ -93,7 +93,7 @@ public class IndexAction extends BaseAction {
 	public void setArticleService(ArticleService articleService) {
 		this.articleService = articleService;
 	}
-	
+	//显示主页面
 	public String index() {
 		User user = (User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {

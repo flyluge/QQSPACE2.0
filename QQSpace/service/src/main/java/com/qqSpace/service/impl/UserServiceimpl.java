@@ -1,5 +1,10 @@
 package com.qqSpace.service.impl;
 
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 import com.qqSpace.domain.User;
 import com.qqSpace.service.UserService;
 import com.qqspace.dao.UserDao;
@@ -59,6 +64,13 @@ public class UserServiceimpl implements UserService {
 	@Override
 	public User findUserById(Integer uid) {
 		return userDao.findById(uid);
+	}
+
+	@Override
+	public List<User> findFuzzyUser(String fuzzyname) {
+		DetachedCriteria c=DetachedCriteria.forClass(User.class);
+		c.add(Restrictions.like("username", "%"+fuzzyname+"%"));
+		return userDao.find(c);
 	}
 	
 }

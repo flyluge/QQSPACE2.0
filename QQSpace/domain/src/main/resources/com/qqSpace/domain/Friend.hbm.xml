@@ -12,14 +12,12 @@
         <property name="tuid">
             <column name="tuid" sql-type="int(11)" />
         </property>
-        <property name="fuid">
-            <column name="fuid" sql-type="int(11)" />
-        </property>
         <property name="fstatus">
             <column name="fstatus" sql-type="int(11)" />
         </property>
         <property name="rstatus">
             <column name="rstatus" sql-type="int(11)" />
         </property>
+        <many-to-one name="fuser" column="fuid" class="com.qqSpace.domain.User" lazy="false"></many-to-one>
     </class>
 </hibernate-mapping>
