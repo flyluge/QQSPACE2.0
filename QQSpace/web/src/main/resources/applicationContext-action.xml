@@ -52,4 +52,7 @@
     	<property name="userService" ref="userService"></property>
     	<property name="praiseService" ref="praiseService"></property>
     </bean>
+    <bean id="dailyAction" class="com.qqSpace.web.action.DailyAction">
+    	<property name="dailyService" ref="dailyService"></property>
+    </bean>
 </beans>

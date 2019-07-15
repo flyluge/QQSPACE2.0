@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="ckeditor.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div style="width: 1000px; margin: auto;">
+			<textarea name="editorl" id="editorl"></textarea>
+			<script type="text/javascript">
+				CKEDITOR.replace('editorl');
+			
+				function submit() {
+					alert("提交成功");
+				}
+			</script>
+			<button id="sub" onclick="submit()">提交</button>
+		</div>
+	</body>
+</html>

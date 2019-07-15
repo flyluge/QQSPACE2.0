@@ -49,4 +49,8 @@
     <bean name="praiseDao" class="com.qqspace.dao.impl.PraiseDaoimpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <!--  -->
+    <bean name="dailyDao" class="com.qqspace.dao.impl.DailyDaoimpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 </beans>

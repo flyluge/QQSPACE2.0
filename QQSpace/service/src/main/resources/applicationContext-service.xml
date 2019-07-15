@@ -52,4 +52,7 @@
 	<bean id="userService" class="com.qqSpace.service.impl.UserServiceimpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	<bean id="dailyService" class="com.qqSpace.service.impl.DailyServiceimpl">
+		<property name="dailyDao" ref="dailyDao"></property>
+	</bean>
 </beans>

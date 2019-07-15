@@ -74,7 +74,7 @@
 									<ul id="head_daohang">
 										<li></li>
 										<li><a href="${pageContext.request.contextPath }/index_index">主页</a></li>
-										<li><a href="${pageContext.request.contextPath }/index.html">日志</a></li>
+										<li><a href="${pageContext.request.contextPath }/daily_show">日志</a></li>
 										<li><a href="${pageContext.request.contextPath }/AlbumAction_showAlbum">相册</a></li>
 										<li><a href="${pageContext.request.contextPath }/Messageboard_showMessageboard">留言板</a></li>
 										<li><a href="${pageContext.request.contextPath }/article_showtarticle">说说</a></li>

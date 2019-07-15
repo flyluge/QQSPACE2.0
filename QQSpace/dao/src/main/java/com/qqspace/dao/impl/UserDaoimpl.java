@@ -5,6 +5,7 @@ package com.qqspace.dao.impl;
 */
 import java.util.List;
 
+import com.qqSpace.domain.Daily;
 import com.qqSpace.domain.User;
 import com.qqspace.dao.UserDao;
 import com.qqspace.dao.base.impl.BaseDaoimpl;
