@@ -6,8 +6,9 @@ import com.qqSpace.service.PraiseService;
 import com.qqSpace.web.action.base.BaseAction;
 
 /** 
-* @author 作者 YunLei
+* @author 作者 Wangcheng
 * @version 创建时间：2019年6月30日 下午6:49:08 
+* 点赞功能
 */
 public class PraiseAction extends BaseAction {
 	/**
@@ -15,8 +16,8 @@ public class PraiseAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 	PraiseService praiseService;
-	private int aid;
-	private int uid;
+	private int aid;//说说id
+	private int uid;//用户id
 	
 	public int getAid() {
 		return aid;
@@ -37,7 +38,9 @@ public class PraiseAction extends BaseAction {
 	public void setPraiseService(PraiseService praiseService) {
 		this.praiseService = praiseService;
 	}
-	
+	/**
+	 * 点赞
+	 */
 	public void praise() {
 		User u = (User) ActionContext.getContext().getSession().get("user");
 		if(u!=null) {
@@ -49,6 +52,9 @@ public class PraiseAction extends BaseAction {
 			}
 		}
 	}
+	/**
+	 * 取消点赞
+	 */
 	public void cancel() {
 		User user = (User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {

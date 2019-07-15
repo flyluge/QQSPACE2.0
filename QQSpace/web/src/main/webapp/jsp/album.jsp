@@ -62,14 +62,19 @@
 								</div>
 							</c:forEach>
 						</div>
-						<div class="find_more">
-							<a href="#">显示更多</a>
-						</div>
 					</div>
 					<!--分页标签-->
-					<div class="text-right">
-						<a>显示更多...</a>
-					</div>
+					<!--分页标签-->
+						<div class="text-right">
+							总共${page.totalcount }条记录/每页显示${page.pageSize }条<br>
+							当前页${page.currpage }/总共${page.totalpage }页<br>
+							<c:if test="${page.currpage<page.totalpage }">
+								<a href="AlbumAction_showAlbum?uid=${sessionScope.user.uid }&currpage=${page.currpage+1}&pagesize=6">下一页</a>
+							</c:if>
+							<c:if test="${page.currpage>=2}">
+								<a href="AlbumAction_showAlbum?uid=${ssessionScope.uid }&currpage=${page.currpage-1}&pagesize=6">上一页</a>
+							</c:if>
+						</div>
 				</div>
 			</div>
 

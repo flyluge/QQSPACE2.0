@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>用户登陆界面</title>
+		<title>用户登录界面</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- 引入 Bootstrap -->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.4.1.min.js"></script>
@@ -193,18 +193,18 @@
 				<!--板块三-->
 				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div style="border:1px solid #a0b1c4;width: 332px;height: 380px;border-radius: 5px;margin:0 auto;">
-						<!--登陆标题-->
+						<!--登录标题-->
 						<div style="height: 50px;border-bottom:1px solid #a0b1c4; background-color: #f9fbfe;border-radius: 6px 6px 0 0;">
 							<div id="btn_login_1" class="col-md-6" style="font-size: 16px;line-height: 50px; float: left;text-align: center;cursor: pointer;color:black">
-								账号密码登陆
+								账号密码登录
 							</div>
 							<div id="btn_login_2" class="col-md-6" style="font-size: 16px;line-height: 50px; float: left;text-align: center;cursor: pointer;color:#999">
-								手机快速登陆
+								手机快速登录
 							</div>
 						</div>
 						<!--------------------------------------------------------------------------------------------------------------->
 						<!--has-error has-success has-warning-->
-						<!--用户名密码登陆-->
+						<!--用户名密码登录-->
 						<form id="form1" action="UserAction_login">
 							<div class="login_frame" id="login_frame_1" style="display: block;margin: 20px;">
 								<!--手机号-->
@@ -234,7 +234,7 @@
 							        </label>
 									</div>
 								</div>
-								<input type="submit" class="btn btn-primary btn-block btn-lg" value="登陆"> 
+								<input type="submit" class="btn btn-primary btn-block btn-lg" value="登录"> 
 								<div align="right">
 									<a id="registerFrame">免费注册</a>
 									<a>忘记密码</a>
@@ -242,7 +242,7 @@
 							</div>
 						</form>
 						<!---------------------------------------------------------------------------------------------------------------->
-						<!--手机号验证登陆-->
+						<!--手机号验证登录-->
 						<div class="login_frame" id="login_frame_2" style="display: none;padding: 20px;">
 							<div class="form-group has-feedback" style="margin-top: 20px;">
 								<label for="phonenumber">请输入手机号</label>
@@ -261,7 +261,7 @@
 								<!--验证图标-->
 								<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 							</div>
-							<button type="button" id="btn_login_3" class="btn btn-primary btn-lg btn-block">登陆</button>
+							<button type="button" id="btn_login_3" class="btn btn-primary btn-lg btn-block">登录</button>
 						</div>
 						<!--------------------------------------------------------------------------------------------------------------->
 						<!--用户注册-->

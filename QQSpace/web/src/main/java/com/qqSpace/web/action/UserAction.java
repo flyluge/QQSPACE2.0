@@ -14,7 +14,7 @@ import com.qqSpace.util.UploadUtils;
 import com.qqSpace.web.action.base.BaseAction;
 
 /** 
-* @author 作者 YunLei
+* @author 作者 WuBiao
 * @version 创建时间：2019年6月30日 下午2:31:27 
 */
 public class UserAction extends BaseAction{
