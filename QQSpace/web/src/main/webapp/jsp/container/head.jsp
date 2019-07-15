@@ -63,7 +63,7 @@
 							<div class="col-md-2">
 								<img class="user-touxiang-img" id="every_head_touxiang" src="${pageContext.request.contextPath }/${sessionScope.user.userimg}" class="img-rounded"/>
 							</div>
-							<div class="col-md-8">
+							<div class="col-md-7">
 								<div class="col-md-12">
 									<h3 class="text-primary user-name"></h3>
 								</div>
@@ -72,21 +72,17 @@
 								</div>
 								<div style="width:100%;">
 									<ul id="head_daohang">
-										<li></li>
 										<li><a href="${pageContext.request.contextPath }/index_index">主页</a></li>
 										<li><a href="${pageContext.request.contextPath }/daily_show">日志</a></li>
 										<li><a href="${pageContext.request.contextPath }/AlbumAction_showAlbum">相册</a></li>
 										<li><a href="${pageContext.request.contextPath }/Messageboard_showMessageboard">留言板</a></li>
 										<li><a href="${pageContext.request.contextPath }/article_showtarticle">说说</a></li>
 										<li><a href="${pageContext.request.contextPath }/UserAction_showinfo">个人档</a></li>
-										<li><a href="${pageContext.request.contextPath }/index.html">音乐</a></li>
-										<li><a href="${pageContext.request.contextPath }/index.html">更多</a></li>
-										<li></li>
 									</ul>
 								</div>
 							</div>
-							<div class="col-md-2">
-								天气 晴
+							<div class="col-md-3">
+								<iframe allowtransparency="true" frameborder="0" width="195" height="96" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=1&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=195&h=96&align=center"></iframe>
 							</div>
 						</div>					
 					</div>				

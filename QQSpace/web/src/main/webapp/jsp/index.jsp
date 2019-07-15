@@ -267,26 +267,6 @@
 			}
 		})
 	}
-	function showMyReq(){
-		if(flag_myreqfriend==false){
-			flag_myreqfriend=true;
-			$("#myreqFriend").show();
-			$.ajax({
-				url:"FriendAction_findReqFriend",
-				type:"post",
-				dataType: "json",
-				data:{tuid:"${sessionScope.user.uid}"},
-				success:function(data){
-					$.each(data.data,function(i,n){
-					})
-				}
-			})
-		}else if(flag_myreqfriend==true){
-			flag_myreqfriend=false;
-			$("#myreqFriend").html("");
-			$("#myreqFriend").hide();
-		}
-	}
 </script>
 </head>
 <body style="background: #F9F9F9;">
@@ -323,13 +303,6 @@
 								
 							</div>
 						</div>
-					</li>
-					<li class="list-group-item">
-						<span><a onclick="showMyReq()">我的申请</a></span>
-						<span id="index_reqfriend" class="badge"></span>
-					</li>
-					<!--显示好友请求  -->
-					<li class="list-group-item" id="myreqFriend">
 					</li>
 				</ul>
 			</div>
