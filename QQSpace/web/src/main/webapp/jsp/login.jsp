@@ -205,7 +205,7 @@
 						<!--------------------------------------------------------------------------------------------------------------->
 						<!--has-error has-success has-warning-->
 						<!--用户名密码登录-->
-						<form id="form1" action="UserAction_login">
+						<form id="form1" action="UserAction_login" method="post">
 							<div class="login_frame" id="login_frame_1" style="display: block;margin: 20px;">
 								<!--手机号-->
 								<div class="form-group has-feedback" style="margin-top:50px ;">
@@ -234,6 +234,9 @@
 							        </label>
 									</div>
 								</div>
+								
+								<input type="hidden" name="currpage" value="1"> 
+								<input type="hidden" name="pagesize" value="10"> 
 								<input type="submit" class="btn btn-primary btn-block btn-lg" value="登录"> 
 								<div align="right">
 									<a id="registerFrame">免费注册</a>

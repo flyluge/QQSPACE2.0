@@ -2,6 +2,7 @@ package com.qqSpace.web.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -22,10 +23,16 @@ public class UserAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	User user;
 	UserService userService;
+	private String fuzzyname;
     private File file; //得到上传的文件
 	private String fileContentType; //得到文件的类型
     private String fileFileName; //得到文件的名称
     
+    
+	public void setFuzzyname(String fuzzyname) {
+		this.fuzzyname = fuzzyname;
+	}
+
 	public File getFile() {
 		return file;
 	}
@@ -131,6 +138,13 @@ public class UserAction extends BaseAction{
 		ActionContext.getContext().getSession().remove("user");
 		ActionContext.getContext().getSession().put("user", user);
 		return "updatesuccess";
+	}
+	/**
+	 * 模糊查询用户
+	 */
+	public void findFuzzyUser() {
+		List<User> list=userService.findFuzzyUser(fuzzyname);
+		this.write(true, list);
 	}
 	public String logout() {
 		ActionContext.getContext().getSession().remove("user");

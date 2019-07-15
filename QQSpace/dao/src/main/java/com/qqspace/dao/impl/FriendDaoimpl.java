@@ -3,7 +3,6 @@ package com.qqspace.dao.impl;
 import java.util.List;
 
 import com.qqSpace.domain.Friend;
-import com.qqSpace.domain.User;
 import com.qqspace.dao.FriendDao;
 import com.qqspace.dao.base.impl.BaseDaoimpl;
 
@@ -15,7 +14,7 @@ public class FriendDaoimpl extends BaseDaoimpl<Friend> implements FriendDao {
 	}
 
 	public Friend find(Integer tuid, Integer fuid) {
-		List<?> friends = (List<?>) this.getHibernateTemplate().find("from Friend where tuid = ?0 and fuid = ?1", tuid, fuid);
+		List<?> friends = (List<?>) this.getHibernateTemplate().find("from Friend where tuid = ?0 and fuser.uid = ?1", tuid, fuid);
 		if(!friends.isEmpty()) {
 			return (Friend) friends.get(0);
 		}

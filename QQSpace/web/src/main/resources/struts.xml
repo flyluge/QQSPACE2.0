@@ -44,7 +44,7 @@
 			<result name="messageboardFrame">jsp/messageboard.jsp</result>
 			<result name="deletesuccess">Messageboard_deleteMessBd</result>
 			<result name="fmessageboardFrame">jsp/fmessageboard.jsp</result>
-			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess,showMessageboard,showFMessageboard,</allowed-methods>
+			<allowed-methods>AddMessageBoard,findMessBdByPage,deleteMessBd,getSessionMess,showMessageboard,showFMessageboard,deleteMessBd</allowed-methods>
 		</action>
 		<!--留言回复  -->
 		<action name="ReMessageboardAction_*" class="reMessageboardAction" method="{1}">
@@ -62,7 +62,8 @@
 			<allowed-methods>addRecom,deleteRecom,findRecomByCid,findRecomByUid,findRecomByThisUid</allowed-methods>
 		</action>
 		<action name="FriendAction_*" class="friendAction" method="{1}">
-			<allowed-methods>findFCount,findAllFriends,findFReqCount</allowed-methods>
+			<result name="addReqsuccess" type="redirect">index_index</result>
+			<allowed-methods>findFCount,findAllFriends,findFReqCount,findReqFriend,addReq,agreeFriend</allowed-methods>
 		</action>
 	
 		<!--**************************************************************************************************** -->
@@ -72,7 +73,7 @@
 			<result name="loginFrame">jsp/login.jsp</result>
 			<result name="infoFrame">jsp/info.jsp</result>
 			<result name="updatesuccess" type="redirect">UserAction_showinfo</result>
-			<allowed-methods>loginFrame,login, existAccount, sessionuser, logout,register,showinfo,saveAlter</allowed-methods>
+			<allowed-methods>loginFrame,login, existAccount, sessionuser, logout,register,showinfo,saveAlter,findFuzzyUser</allowed-methods>
 		</action>
 		<action name="praise_*" class="praiseAction" method="{1}">
 			<allowed-methods>praise, cancel</allowed-methods>

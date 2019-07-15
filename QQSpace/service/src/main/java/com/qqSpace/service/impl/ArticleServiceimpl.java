@@ -91,7 +91,7 @@ public class ArticleServiceimpl implements ArticleService {
 		DetachedCriteria cf=DetachedCriteria.forClass(Friend.class);
 		cf.add(Restrictions.eq("tuid", tuid));
 		cf.add(Restrictions.eq("fstatus", 1));
-		cf.setProjection(Property.forName("fuid"));
+		cf.setProjection(Property.forName("fuser.uid"));
 		cf.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
 		
 		criteria.add(Restrictions.or(Property.forName("user.uid").in(cf),Restrictions.eq("user.uid", user.getUid())));

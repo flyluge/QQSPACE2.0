@@ -26,6 +26,35 @@
 		})
 		
 	</script>
+			<script type="text/javascript">
+			var count=1;
+			$(function(){
+				setImg(400,200);
+				/*获取说说数量  */
+				$.ajax({
+					url:"article_getCount",
+					type:"get",
+					data:{
+						"uid": "${selfuser.uid}"
+					},
+					dataType: "json",
+					success:function(data){
+						if(data.message){
+							$("#fartcle_myfriend").html(data.data);
+						}
+					}
+				})
+			})
+			function setImg(w, h){
+			    var imgList = document.getElementsByTagName('img');
+			    for(var i=0;i<imgList.length;i++){
+			        if(imgList[i].width>w || imgList[i].height>h){
+			            imgList[i].width = w;
+			            imgList[i].heigth = h;
+			        }
+			    }
+			}
+		</script>
 	<body>
 		<jsp:include page="container/fhead.jsp"></jsp:include>
 		<div class="container" style="background: white;border-radius: 5px;">
@@ -39,7 +68,7 @@
 								</span> 
 							</li>
 							<li class="list-group-item">
-								<span><a href="Messageboard_showFMessageboard?tuid=${selfuser.uid }">他的留言板</a></span>
+								<span>他的留言板</span>
 							</li>
 							<li class="list-group-item">
 								<span><a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=1&pagesize=6">他的相册</a></span>
@@ -50,7 +79,7 @@
 						<div style="border:solid lightgray 1px;border-radius:10px;padding:10px">
 						<form id="addMessageboard">
 							<input type="hidden" name="tuid" value="${selfuser.uid }">
-							<input type="hidden" name="wuid" value="${sessionScope.user.uid }">
+							<input type="hidden" name="wuser.uid" value="${sessionScope.user.uid }">
 							<span class="text-primary">给他留言:</span>
 							<div class="col-md-12">
 								<textarea style="width:100%;height:80px" name="content" placeholder="快来留言吧"></textarea>
@@ -70,11 +99,11 @@
 									<li class="media">
 										<div class="media-left">
 											<a href="#">
-												<img class="media-object" src="${mess.wuser.userimg }" alt="图片加载失败" width="80px">
+												<img class="media-object" src="${pageContext.request.contextPath }/${mess.wuser.userimg }" alt="图片加载失败" width="80px">
 											</a>
 										</div>
 										<div class="media-body">
-											<h4 class="media-heading">${mess.content } <small>一楼</small></h4>
+											<h4 class="media-heading">${mess.wuser.username}</h4>
 											<div style="border:dotted gainsboro 1px;border-radius: 5px;padding:20px;">
 												<p>${mess.content }</p>
 											</div>
@@ -91,7 +120,7 @@
 														<li class="media">
 															<div class="media-left">
 																<a href="#">
-																	<img class="media-object" src="${mmp.user.userimg }" alt="图片加载失败" width="50px">
+																	<img class="media-object" src="${pageContext.request.contextPath }/${mmp.user.userimg }" alt="图片加载失败" width="50px">
 																</a>
 															</div>
 															<div class="media-body">
@@ -135,7 +164,7 @@
 									<c:if test="${page.currpage<page.totalpage }">
 										<a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=${page.currpage+1}&pagesize=6">下一页</a>
 									</c:if>
-									<c:if test="${page.currpage>=2}">
+									<c:if test="${page.currpage>=2&&page.currpage<=page.totalpage}">
 										<a href="AlbumAction_friendAlbum?uid=${selfuser.uid }&currpage=${page.currpage-1}&pagesize=6">上一页</a>
 									</c:if>
 								</div>
